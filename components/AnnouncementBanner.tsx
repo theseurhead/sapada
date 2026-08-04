@@ -1,14 +1,9 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import {
-  ChevronLeft,
-  ChevronRight,
-  ArrowRight,
-  BellRing,
-  Sparkles,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowRight, Sparkles } from "lucide-react";
 import { announcementsData, Announcement } from "@/data/announcements";
 
 interface AnnouncementBannerProps {
@@ -18,7 +13,6 @@ interface AnnouncementBannerProps {
 export default function AnnouncementBanner({
   items = announcementsData,
 }: AnnouncementBannerProps) {
-  // Hanya ambil banner yang berstatus active = true
   const activeItems = items.filter((item) => item.active);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -39,7 +33,7 @@ export default function AnnouncementBanner({
     setCurrentIndex((prev) => (prev - 1 + totalItems) % totalItems);
   }, [totalItems]);
 
-  // Auto-slide otomatis (4.5 detik jika > 1 item aktif)
+  // Auto-slide effect (4.5s)
   useEffect(() => {
     if (totalItems <= 1 || isPaused) return;
 
@@ -50,11 +44,8 @@ export default function AnnouncementBanner({
     return () => clearInterval(timer);
   }, [totalItems, isPaused, handleNext]);
 
-  // Pause on user interaction & resume after a few seconds
   const pauseAndScheduleResume = (delayMs = 3000) => {
-    if (resumeTimeoutRef.current) {
-      clearTimeout(resumeTimeoutRef.current);
-    }
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
     setIsPaused(true);
     resumeTimeoutRef.current = setTimeout(() => {
       setIsPaused(false);
@@ -70,7 +61,6 @@ export default function AnnouncementBanner({
     pauseAndScheduleResume(2000);
   };
 
-  // Mobile Touch Gestures (Swipe & Touch Hold)
   const handleTouchStart = (e: React.TouchEvent) => {
     if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
     setIsPaused(true);
@@ -85,7 +75,7 @@ export default function AnnouncementBanner({
   const handleTouchEnd = () => {
     if (touchStartXRef.current !== null && touchEndXRef.current !== null) {
       const deltaX = touchStartXRef.current - touchEndXRef.current;
-      const minSwipeDistance = 35; // Minimum px for swipe trigger
+      const minSwipeDistance = 35;
 
       if (deltaX > minSwipeDistance) {
         handleNext();
@@ -101,129 +91,132 @@ export default function AnnouncementBanner({
 
   if (totalItems === 0) return null;
 
-  const current = activeItems[currentIndex];
-
   return (
     <div
       role="region"
-      aria-label="Pengumuman Pajak Terkini"
+      aria-label="Banner Pengumuman dan Promosi SAPADA"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      className="w-full relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#0d1e48] via-[#17306e] to-[#0d1e48] border border-blue-500/40 shadow-xl shadow-blue-950/40 backdrop-blur-md p-3.5 sm:p-4 text-white select-none transition-all duration-300 hover:border-blue-400/60 group/banner"
+      className="w-full relative overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 shadow-2xl bg-[#0b1120] select-none group/banner aspect-[16/9] sm:aspect-[21/8] md:aspect-[24/9] min-h-[220px] sm:min-h-[260px] md:min-h-[280px] flex items-center"
     >
-      {/* Background Subtle Glow */}
-      <div className="absolute -left-12 -top-12 w-36 h-36 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -right-12 -bottom-12 w-36 h-36 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none" />
+      {/* Slides Container */}
+      {activeItems.map((item, index) => {
+        const isActive = index === currentIndex;
+        return (
+          <div
+            key={item.id}
+            aria-hidden={!isActive}
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+              isActive
+                ? "opacity-100 pointer-events-auto z-10"
+                : "opacity-0 pointer-events-none z-0"
+            }`}
+          >
+            {/* Background Image */}
+            <Image
+              src={item.image}
+              alt={item.title}
+              fill
+              priority={index === 0}
+              className="object-cover object-center transform transition-transform duration-1000 ease-out scale-105 group-hover/banner:scale-100"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 900px, 1000px"
+            />
 
-      <div className="relative z-10 flex items-center justify-between gap-2.5 sm:gap-4">
-        {/* Left: Previous button (Desktop & Tablet) */}
-        {totalItems > 1 && (
+            {/* Dark & Brand Gradient Overlays for optimal text contrast */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/75 to-black/30 sm:via-black/60 sm:to-black/20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
+            <div className="absolute inset-0 bg-blue-950/20 mix-blend-multiply pointer-events-none" />
+
+            {/* Content Container (Overlay Text & CTA) */}
+            <div className="relative h-full flex flex-col justify-center px-6 sm:px-12 md:px-16 py-6 max-w-2xl z-20 space-y-2.5 sm:space-y-3.5">
+              {/* Badge */}
+              {item.badge && (
+                <div>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-blue-600/90 text-white border border-blue-400/40 backdrop-blur-md shadow-lg shadow-blue-950/50">
+                    <Sparkles className="w-3 h-3 text-blue-200" />
+                    <span>{item.badge}</span>
+                  </span>
+                </div>
+              )}
+
+              {/* Title */}
+              <h2 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight leading-tight drop-shadow-md">
+                {item.title}
+              </h2>
+
+              {/* Description */}
+              <p className="text-xs sm:text-sm md:text-base text-white/90 leading-relaxed drop-shadow line-clamp-2 sm:line-clamp-3">
+                {item.description}
+              </p>
+
+              {/* CTA Button */}
+              {item.link && (
+                <div className="pt-1">
+                  <Link
+                    href={item.link.url}
+                    onClick={() => pauseAndScheduleResume(5000)}
+                    className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#1d4ed8] hover:bg-blue-600 active:bg-blue-700 text-white text-xs sm:text-sm font-semibold shadow-lg shadow-blue-900/60 transition-all hover:scale-105 group/cta"
+                  >
+                    <span>{item.link.label}</span>
+                    <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover/cta:translate-x-1" />
+                  </Link>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      })}
+
+      {/* Navigation Controls (Arrows) */}
+      {totalItems > 1 && (
+        <>
           <button
             type="button"
             onClick={() => {
               handlePrev();
               pauseAndScheduleResume(4000);
             }}
-            aria-label="Pengumuman sebelumnya"
-            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center text-white/80 hover:text-white transition-all shadow-sm flex-shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+            aria-label="Slide banner sebelumnya"
+            className="absolute left-2.5 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/40 hover:bg-black/70 border border-white/25 backdrop-blur-md flex items-center justify-center text-white/90 hover:text-white transition-all shadow-xl hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
-        )}
 
-        {/* Center: Icon, Badge, Text, and CTA Button */}
-        <div className="flex-1 min-w-0 flex flex-col sm:flex-row items-center justify-center sm:justify-start md:justify-center gap-2 sm:gap-3 text-center sm:text-left">
-          {/* Icon & Badge Row */}
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-7 h-7 rounded-lg bg-blue-500/25 border border-blue-400/40 flex items-center justify-center text-blue-300 shadow-inner">
-              <BellRing className="w-3.5 h-3.5 animate-pulse" />
-            </div>
+          <button
+            type="button"
+            onClick={() => {
+              handleNext();
+              pauseAndScheduleResume(4000);
+            }}
+            aria-label="Slide banner berikutnya"
+            className="absolute right-2.5 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/40 hover:bg-black/70 border border-white/25 backdrop-blur-md flex items-center justify-center text-white/90 hover:text-white transition-all shadow-xl hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+          >
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+          </button>
 
-            {current.badge && (
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-blue-400/20 text-blue-200 border border-blue-400/40">
-                {current.badge}
-              </span>
-            )}
+          {/* Bottom Dot Indicators */}
+          <div className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/15 shadow-lg">
+            {activeItems.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => {
+                  setCurrentIndex(idx);
+                  pauseAndScheduleResume(4000);
+                }}
+                aria-label={`Buka slide banner ${idx + 1}`}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  idx === currentIndex
+                    ? "w-5 sm:w-6 bg-blue-400 shadow-md"
+                    : "w-1.5 sm:w-2 bg-white/40 hover:bg-white/70"
+                }`}
+              />
+            ))}
           </div>
-
-          {/* Announcement Message */}
-          <div className="min-w-0 text-xs sm:text-sm font-medium text-white/95 leading-snug">
-            {current.text}
-          </div>
-
-          {/* CTA Action Button */}
-          {current.link && (
-            <Link
-              href={current.link.url}
-              onClick={() => pauseAndScheduleResume(5000)}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#1d4ed8] hover:bg-blue-600 active:bg-blue-700 text-white text-xs font-semibold shadow-md shadow-blue-900/50 transition-all flex-shrink-0 group/btn mt-1 sm:mt-0"
-            >
-              <span>{current.link.label}</span>
-              <ArrowRight className="w-3 h-3 transition-transform duration-200 group-hover/btn:translate-x-0.5" />
-            </Link>
-          )}
-        </div>
-
-        {/* Right: Dot Indicators & Next Button */}
-        {totalItems > 1 && (
-          <div className="flex items-center gap-2 flex-shrink-0">
-            {/* Dot Indicators on Desktop */}
-            <div className="hidden lg:flex items-center gap-1.5 mr-1">
-              {activeItems.map((_, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => {
-                    setCurrentIndex(idx);
-                    pauseAndScheduleResume(4000);
-                  }}
-                  aria-label={`Ke pengumuman ${idx + 1}`}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    idx === currentIndex
-                      ? "w-4 bg-blue-300 shadow-sm"
-                      : "w-1.5 bg-white/30 hover:bg-white/60"
-                  }`}
-                />
-              ))}
-            </div>
-
-            {/* Next button */}
-            <button
-              type="button"
-              onClick={() => {
-                handleNext();
-                pauseAndScheduleResume(4000);
-              }}
-              aria-label="Pengumuman berikutnya"
-              className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center text-white/80 hover:text-white transition-all shadow-sm flex-shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-        )}
-      </div>
-
-      {/* Mobile Dot Indicators Bar */}
-      {totalItems > 1 && (
-        <div className="flex sm:hidden items-center justify-center gap-1.5 pt-2 mt-1 border-t border-white/10">
-          {activeItems.map((_, idx) => (
-            <button
-              key={idx}
-              type="button"
-              onClick={() => {
-                setCurrentIndex(idx);
-                pauseAndScheduleResume(4000);
-              }}
-              aria-label={`Ke pengumuman ${idx + 1}`}
-              className={`h-1 rounded-full transition-all duration-300 ${
-                idx === currentIndex ? "w-5 bg-blue-300" : "w-2 bg-white/30"
-              }`}
-            />
-          ))}
-        </div>
+        </>
       )}
     </div>
   );

@@ -102,6 +102,25 @@ export default function Header() {
     }, 150);
   };
 
+  // Lock body scroll when mobile modal is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          setIsMobileMenuOpen(false);
+        }
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "unset";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isMobileMenuOpen]);
+
   return (
     <header className="w-full border-b border-white/10 bg-[#0a0c10]/90 backdrop-blur-md sticky top-0 z-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
@@ -127,15 +146,15 @@ export default function Header() {
             {/* Menu Layanan (Dropdown) */}
             <div
               ref={dropdownRef}
-              className="relative group"
+              className="relative"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
               <button
                 type="button"
-                id="nav-layanan-btn"
+                id="layanan-dropdown-btn"
                 onClick={() => setIsLayananOpen(!isLayananOpen)}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                   isLayananOpen
                     ? "text-white bg-white/10"
                     : "text-white/70 hover:text-white hover:bg-white/5"
@@ -145,78 +164,72 @@ export default function Header() {
                 <span>Layanan</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    isLayananOpen ? "rotate-180 text-blue-400" : "text-white/50 group-hover:text-white"
+                    isLayananOpen ? "rotate-180 text-blue-400" : "text-white/60"
                   }`}
                 />
               </button>
 
-              {/* Desktop Dropdown Panel */}
-              <div
-                className={`absolute top-full left-0 mt-2 w-80 rounded-2xl bg-[#0e131f] border border-white/15 p-2 shadow-2xl backdrop-blur-xl z-50 transition-all duration-150 ${
-                  isLayananOpen
-                    ? "opacity-100 visible translate-y-0 pointer-events-auto"
-                    : "opacity-0 invisible -translate-y-2 pointer-events-none md:group-hover:opacity-100 md:group-hover:visible md:group-hover:translate-y-0 md:group-hover:pointer-events-auto"
-                }`}
-              >
-                <div className="px-3 py-2 mb-1 border-b border-white/10 flex items-center justify-between">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-white/50">
-                    Layanan Pajak Daerah
-                  </span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-medium">
-                    7 Menu
-                  </span>
-                </div>
-                <div className="space-y-0.5">
-                  {servicesList.map((service) => {
-                    const Icon = service.icon;
-                    return (
-                      <Link
-                        key={service.name}
-                        href={service.href}
-                        onClick={() => setIsLayananOpen(false)}
-                        className="group/item flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/10 transition-colors"
-                      >
-                        <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400 group-hover/item:bg-[#1d4ed8] group-hover/item:text-white transition-colors mt-0.5 flex-shrink-0">
-                          <Icon className="w-4 h-4" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="text-xs font-semibold text-white group-hover/item:text-blue-300 transition-colors">
-                            {service.name}
+              {/* Dropdown Menu Container */}
+              {isLayananOpen && (
+                <div className="absolute top-full left-0 mt-2 w-80 rounded-2xl border border-white/10 bg-[#0d1017]/95 p-2 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-150 z-50">
+                  <div className="px-3 py-2 border-b border-white/10 mb-1">
+                    <span className="text-xs font-semibold text-white/50 uppercase tracking-wider">
+                      Layanan Pajak Daerah
+                    </span>
+                  </div>
+
+                  <div className="space-y-0.5 max-h-[380px] overflow-y-auto custom-scrollbar">
+                    {servicesList.map((service) => {
+                      const Icon = service.icon;
+                      return (
+                        <Link
+                          key={service.name}
+                          href={service.href}
+                          onClick={() => setIsLayananOpen(false)}
+                          className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-colors group"
+                        >
+                          <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400 group-hover:bg-[#1d4ed8] group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                            <Icon className="w-4 h-4" />
                           </div>
-                          <div className="text-[11px] text-white/50 truncate">
-                            {service.desc}
+                          <div>
+                            <div className="text-xs font-semibold text-white group-hover:text-blue-400 transition-colors">
+                              {service.name}
+                            </div>
+                            <div className="text-[11px] text-white/50 leading-snug mt-0.5">
+                              {service.desc}
+                            </div>
                           </div>
-                        </div>
-                      </Link>
-                    );
-                  })}
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Menu Panduan */}
             <Link
               href="/panduan"
-              id="nav-panduan-btn"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 transition-all"
+              className="px-3 py-1.5 rounded-lg text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 transition-colors"
             >
-              <BookOpen className="w-3.5 h-3.5 text-white/50" />
-              <span>Panduan</span>
+              Panduan
             </Link>
           </nav>
         </div>
 
-        {/* Right Side: Navbar Actions (Daftar & Masuk + Mobile Toggle) */}
-        <div className="flex items-center gap-2 sm:gap-2.5">
+        {/* Right Side: Action Buttons & Mobile Hamburger */}
+        <div className="flex items-center gap-3">
+          {/* Tombol Daftar (Desktop Only) */}
           <Link
             href="/register"
             id="header-register-btn"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-white/15 hover:border-white/30 text-xs font-medium text-white/80 hover:text-white transition-all hover:bg-white/5"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-white/15 text-xs sm:text-sm font-medium text-white/90 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all"
           >
             <UserPlus className="w-3.5 h-3.5" />
             <span>Daftar</span>
           </Link>
 
+          {/* Tombol Masuk (All Screens) */}
           <Link
             href="/login"
             id="header-login-btn"
@@ -230,94 +243,171 @@ export default function Header() {
           <button
             type="button"
             id="mobile-menu-toggle"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-colors border border-white/10 focus:outline-none"
-            aria-label="Toggle navigation menu"
+            onClick={() => setIsMobileMenuOpen(true)}
+            className="md:hidden inline-flex items-center justify-center p-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-colors border border-white/10 focus:outline-none"
+            aria-label="Buka menu navigasi modal"
           >
-            {isMobileMenuOpen ? (
-              <X className="w-4 h-4" />
-            ) : (
-              <Menu className="w-4 h-4" />
-            )}
+            <Menu className="w-4 h-4" />
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer Navigation */}
+      {/* Mobile Modal Overlay Navigation */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t border-white/10 bg-[#0a0c10] px-4 py-4 space-y-3 animate-in fade-in slide-in-from-top-1">
-          {/* Mobile Layanan Accordion */}
-          <div className="border border-white/10 rounded-2xl overflow-hidden bg-white/[0.02]">
-            <button
-              type="button"
-              onClick={() => setIsMobileLayananOpen(!isMobileLayananOpen)}
-              className="w-full flex items-center justify-between p-3.5 text-left text-sm font-medium text-white hover:bg-white/5 transition-colors"
-            >
-              <span className="flex items-center gap-2">
-                <span>Layanan</span>
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-normal">
-                  7 Menu
-                </span>
-              </span>
-              <ChevronDown
-                className={`w-4 h-4 text-white/60 transition-transform duration-200 ${
-                  isMobileLayananOpen ? "rotate-180 text-blue-400" : ""
-                }`}
-              />
-            </button>
-
-            {isMobileLayananOpen && (
-              <div className="p-2 pt-0 border-t border-white/10 space-y-1 bg-black/40">
-                {servicesList.map((service) => {
-                  const Icon = service.icon;
-                  return (
-                    <Link
-                      key={service.name}
-                      href={service.href}
-                      onClick={() => {
-                        setIsMobileMenuOpen(false);
-                        setIsMobileLayananOpen(false);
-                      }}
-                      className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/10 transition-colors text-xs text-white/90"
-                    >
-                      <div className="p-1.5 rounded-lg bg-blue-500/10 text-blue-400">
-                        <Icon className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <div className="font-medium text-white">
-                          {service.name}
-                        </div>
-                        <div className="text-[10px] text-white/50">
-                          {service.desc}
-                        </div>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-
-          {/* Mobile Panduan Link */}
-          <Link
-            href="/panduan"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="flex items-center gap-2.5 px-3.5 py-3 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/5 text-sm font-medium text-white transition-colors"
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu Navigasi SAPADA"
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200"
+        >
+          {/* Modal Content Box */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-lg bg-[#0e131f] border border-white/15 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-200"
           >
-            <BookOpen className="w-4 h-4 text-blue-400" />
-            <span>Panduan</span>
-          </Link>
+            {/* Modal Header */}
+            <div className="px-5 py-4 border-b border-white/10 flex items-center justify-between bg-white/[0.02]">
+              <div className="flex items-center gap-2.5">
+                <div className="relative w-7 h-7 flex-shrink-0">
+                  <Image
+                    src="/logo/logo.png"
+                    alt="SAPADA Logo"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <div>
+                  <h3 className="font-bold text-sm text-white tracking-tight">
+                    Navigasi SAPADA
+                  </h3>
+                  <p className="text-[10px] text-white/50">
+                    Bapenda Kab. Garut
+                  </p>
+                </div>
+              </div>
 
-          {/* Mobile Register Link if on small screen */}
-          <div className="pt-1 flex flex-col gap-2 sm:hidden">
-            <Link
-              href="/register"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-full border border-white/15 text-xs font-medium text-white/90 hover:bg-white/5"
-            >
-              <UserPlus className="w-4 h-4" />
-              <span>Daftar Akun Baru</span>
-            </Link>
+              {/* Close Button */}
+              <button
+                type="button"
+                onClick={() => setIsMobileMenuOpen(false)}
+                aria-label="Tutup menu navigasi"
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center text-white/70 hover:text-white transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Modal Body (Scrollable) */}
+            <div className="p-4 sm:p-5 overflow-y-auto space-y-4 flex-1 custom-scrollbar">
+              {/* Layanan Accordion / Section */}
+              <div className="border border-white/10 rounded-2xl overflow-hidden bg-white/[0.02]">
+                <button
+                  type="button"
+                  onClick={() => setIsMobileLayananOpen(!isMobileLayananOpen)}
+                  className="w-full flex items-center justify-between p-3.5 text-left text-sm font-medium text-white hover:bg-white/5 transition-colors"
+                >
+                  <span className="flex items-center gap-2 font-semibold">
+                    <span>Layanan Pajak Daerah</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-normal">
+                      7 Menu
+                    </span>
+                  </span>
+                  <ChevronDown
+                    className={`w-4 h-4 text-white/60 transition-transform duration-200 ${
+                      isMobileLayananOpen ? "rotate-180 text-blue-400" : ""
+                    }`}
+                  />
+                </button>
+
+                {isMobileLayananOpen && (
+                  <div className="p-2 pt-0 border-t border-white/10 space-y-1 bg-black/40">
+                    {servicesList.map((service) => {
+                      const Icon = service.icon;
+                      return (
+                        <Link
+                          key={service.name}
+                          href={service.href}
+                          onClick={() => {
+                            setIsMobileMenuOpen(false);
+                            setIsMobileLayananOpen(false);
+                          }}
+                          className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/10 transition-colors text-xs text-white/90"
+                        >
+                          <div className="p-2 rounded-lg bg-blue-500/15 text-blue-400 flex-shrink-0">
+                            <Icon className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <div className="font-semibold text-white">
+                              {service.name}
+                            </div>
+                            <div className="text-[10px] text-white/50">
+                              {service.desc}
+                            </div>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* Panduan Link */}
+              <Link
+                href="/panduan"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center gap-3 px-4 py-3 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/5 text-sm font-semibold text-white transition-colors"
+              >
+                <div className="p-2 rounded-lg bg-blue-500/15 text-blue-400">
+                  <BookOpen className="w-4 h-4" />
+                </div>
+                <div>
+                  <div>Panduan Penggunaan</div>
+                  <div className="text-[10px] text-white/50 font-normal">
+                    Petunjuk lengkap pendaftaran & pembayaran pajak
+                  </div>
+                </div>
+              </Link>
+
+              {/* Quick Links Section */}
+              <div className="grid grid-cols-2 gap-2 pt-1">
+                <Link
+                  href="/peta-pajak"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-3 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/5 text-xs text-white/80 hover:text-white transition-colors text-center"
+                >
+                  Peta Objek Pajak
+                </Link>
+                <Link
+                  href="/live-pajak"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-3 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/5 text-xs text-white/80 hover:text-white transition-colors text-center"
+                >
+                  Live Penerimaan Pajak
+                </Link>
+              </div>
+            </div>
+
+            {/* Modal Footer (Action Buttons) */}
+            <div className="p-4 border-t border-white/10 bg-white/[0.02] flex items-center gap-2.5">
+              <Link
+                href="/register"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-white/20 text-xs font-semibold text-white/90 hover:bg-white/5 transition-colors"
+              >
+                <UserPlus className="w-4 h-4" />
+                <span>Daftar Akun</span>
+              </Link>
+
+              <Link
+                href="/login"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#1d4ed8] hover:bg-blue-700 text-xs font-semibold text-white shadow-lg shadow-blue-950 transition-colors"
+              >
+                <LogIn className="w-4 h-4" />
+                <span>Masuk</span>
+              </Link>
+            </div>
           </div>
         </div>
       )}

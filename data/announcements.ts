@@ -1,7 +1,9 @@
 export interface Announcement {
   id: string;
   badge?: string;
-  text: string;
+  title: string;
+  description: string;
+  image: string;
   link?: {
     label: string;
     url: string;
@@ -12,30 +14,42 @@ export interface Announcement {
 export const announcementsData: Announcement[] = [
   {
     id: "announcement-1",
-    badge: "Jatuh Tempo",
-    text: "Batas akhir pembayaran PBB-P2 Tahun 2026 jatuh tempo pada tanggal 31 Agustus 2026.",
+    badge: "Info Pajak Garut",
+    title: "Batas Akhir Jatuh Tempo PBB-P2 2026",
+    description:
+      "Bayar tagihan PBB-P2 Anda tepat waktu sebelum 31 Agustus 2026 bebas antre melalui QRIS dan Virtual Account.",
+    image:
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80",
     link: {
-      label: "Cek Tagihan",
+      label: "Cek Tagihan Sekarang",
       url: "/layanan/cek-kode-bayar",
     },
     active: true,
   },
   {
     id: "announcement-2",
-    badge: "Pemutihan Denda",
-    text: "Program Penghapusan Sanksi Denda Administrasi Pajak Daerah diperpanjang hingga akhir bulan ini!",
+    badge: "Pemutihan 100%",
+    title: "Bebas Denda Keterlambatan Pajak Daerah",
+    description:
+      "Program khusus penghapusan sanksi denda administrasi pajak daerah Kabupaten Garut berlaku hingga akhir bulan ini.",
+    image:
+      "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1400&q=80",
     link: {
-      label: "Pelajari Syarat",
+      label: "Pelajari Syarat & Panduan",
       url: "/panduan",
     },
     active: true,
   },
   {
     id: "announcement-3",
-    badge: "Layanan Baru",
-    text: "Kini cetak e-SPPT PBB-P2 dan Surat Keterangan Bebas Pajak dapat diakses secara mandiri.",
+    badge: "Layanan Mandiri",
+    title: "Cetak e-SPPT & Surat Pajak Online",
+    description:
+      "Dapatkan salinan e-SPPT dan verifikasi status keabsahan dokumen pajak daerah instan langsung dari ponsel Anda.",
+    image:
+      "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1400&q=80",
     link: {
-      label: "Coba Sekarang",
+      label: "Akses Layanan Mandiri",
       url: "/layanan/cek-surat",
     },
     active: true,
