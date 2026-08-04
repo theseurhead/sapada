@@ -2,7 +2,13 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, ArrowRight, Megaphone } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ArrowRight,
+  BellRing,
+  Sparkles,
+} from "lucide-react";
 import { announcementsData, Announcement } from "@/data/announcements";
 
 interface AnnouncementBannerProps {
@@ -33,7 +39,7 @@ export default function AnnouncementBanner({
     setCurrentIndex((prev) => (prev - 1 + totalItems) % totalItems);
   }, [totalItems]);
 
-  // Auto-slide effect (4.5 detik jika lebih dari 1 item aktif)
+  // Auto-slide otomatis (4.5 detik jika > 1 item aktif)
   useEffect(() => {
     if (totalItems <= 1 || isPaused) return;
 
@@ -82,18 +88,14 @@ export default function AnnouncementBanner({
       const minSwipeDistance = 35; // Minimum px for swipe trigger
 
       if (deltaX > minSwipeDistance) {
-        // Swiped left -> Next
         handleNext();
       } else if (deltaX < -minSwipeDistance) {
-        // Swiped right -> Prev
         handlePrev();
       }
     }
 
     touchStartXRef.current = null;
     touchEndXRef.current = null;
-
-    // Resume auto-slide after touch interaction ends
     pauseAndScheduleResume(3000);
   };
 
@@ -110,10 +112,14 @@ export default function AnnouncementBanner({
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      className="w-full bg-gradient-to-r from-[#0d162a] via-[#16294d] to-[#0d162a] border-b border-blue-500/20 text-white select-none transition-colors"
+      className="w-full relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#0d1e48] via-[#17306e] to-[#0d1e48] border border-blue-500/40 shadow-xl shadow-blue-950/40 backdrop-blur-md p-3.5 sm:p-4 text-white select-none transition-all duration-300 hover:border-blue-400/60 group/banner"
     >
-      <div className="max-w-4xl mx-auto px-3 sm:px-6 py-1.5 sm:py-2 flex items-center justify-between gap-2 min-h-[36px] sm:min-h-[40px]">
-        {/* Left: Previous button (if > 1 item) */}
+      {/* Background Subtle Glow */}
+      <div className="absolute -left-12 -top-12 w-36 h-36 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -right-12 -bottom-12 w-36 h-36 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative z-10 flex items-center justify-between gap-2.5 sm:gap-4">
+        {/* Left: Previous button (Desktop & Tablet) */}
         {totalItems > 1 && (
           <button
             type="button"
@@ -122,47 +128,50 @@ export default function AnnouncementBanner({
               pauseAndScheduleResume(4000);
             }}
             aria-label="Pengumuman sebelumnya"
-            className="p-1 rounded-md text-white/50 hover:text-white hover:bg-white/10 transition-colors flex-shrink-0 focus:outline-none focus-visible:ring-1 focus-visible:ring-blue-400"
+            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center text-white/80 hover:text-white transition-all shadow-sm flex-shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
           >
-            <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            <ChevronLeft className="w-4 h-4" />
           </button>
         )}
 
-        {/* Center: Active Banner Content */}
-        <div className="flex-1 min-w-0 flex items-center justify-center gap-2 text-center text-xs sm:text-sm overflow-hidden">
-          {/* Announcement Icon / Badge */}
-          <div className="flex items-center gap-1.5 flex-shrink-0">
-            <Megaphone className="w-3.5 h-3.5 text-blue-400 hidden xs:inline-block flex-shrink-0 animate-pulse" />
+        {/* Center: Icon, Badge, Text, and CTA Button */}
+        <div className="flex-1 min-w-0 flex flex-col sm:flex-row items-center justify-center sm:justify-start md:justify-center gap-2 sm:gap-3 text-center sm:text-left">
+          {/* Icon & Badge Row */}
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <div className="w-7 h-7 rounded-lg bg-blue-500/25 border border-blue-400/40 flex items-center justify-center text-blue-300 shadow-inner">
+              <BellRing className="w-3.5 h-3.5 animate-pulse" />
+            </div>
+
             {current.badge && (
-              <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-blue-500/20 text-blue-300 border border-blue-500/30 flex-shrink-0">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-blue-400/20 text-blue-200 border border-blue-400/40">
                 {current.badge}
               </span>
             )}
           </div>
 
-          {/* Banner Text */}
-          <span className="text-white/90 truncate font-normal text-[11px] sm:text-xs md:text-sm">
+          {/* Announcement Message */}
+          <div className="min-w-0 text-xs sm:text-sm font-medium text-white/95 leading-snug">
             {current.text}
-          </span>
+          </div>
 
-          {/* Optional Action Link */}
+          {/* CTA Action Button */}
           {current.link && (
             <Link
               href={current.link.url}
               onClick={() => pauseAndScheduleResume(5000)}
-              className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-semibold text-blue-300 hover:text-white transition-colors underline underline-offset-2 flex-shrink-0 ml-1 group"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#1d4ed8] hover:bg-blue-600 active:bg-blue-700 text-white text-xs font-semibold shadow-md shadow-blue-900/50 transition-all flex-shrink-0 group/btn mt-1 sm:mt-0"
             >
               <span>{current.link.label}</span>
-              <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight className="w-3 h-3 transition-transform duration-200 group-hover/btn:translate-x-0.5" />
             </Link>
           )}
         </div>
 
-        {/* Right: Next button & Indicators (if > 1 item) */}
+        {/* Right: Dot Indicators & Next Button */}
         {totalItems > 1 && (
-          <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-            {/* Dot Indicators */}
-            <div className="hidden sm:flex items-center gap-1">
+          <div className="flex items-center gap-2 flex-shrink-0">
+            {/* Dot Indicators on Desktop */}
+            <div className="hidden lg:flex items-center gap-1.5 mr-1">
               {activeItems.map((_, idx) => (
                 <button
                   key={idx}
@@ -174,8 +183,8 @@ export default function AnnouncementBanner({
                   aria-label={`Ke pengumuman ${idx + 1}`}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
                     idx === currentIndex
-                      ? "w-4 bg-blue-400"
-                      : "w-1.5 bg-white/30 hover:bg-white/50"
+                      ? "w-4 bg-blue-300 shadow-sm"
+                      : "w-1.5 bg-white/30 hover:bg-white/60"
                   }`}
                 />
               ))}
@@ -189,13 +198,33 @@ export default function AnnouncementBanner({
                 pauseAndScheduleResume(4000);
               }}
               aria-label="Pengumuman berikutnya"
-              className="p-1 rounded-md text-white/50 hover:text-white hover:bg-white/10 transition-colors flex-shrink-0 focus:outline-none focus-visible:ring-1 focus-visible:ring-blue-400"
+              className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center text-white/80 hover:text-white transition-all shadow-sm flex-shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
             >
-              <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         )}
       </div>
+
+      {/* Mobile Dot Indicators Bar */}
+      {totalItems > 1 && (
+        <div className="flex sm:hidden items-center justify-center gap-1.5 pt-2 mt-1 border-t border-white/10">
+          {activeItems.map((_, idx) => (
+            <button
+              key={idx}
+              type="button"
+              onClick={() => {
+                setCurrentIndex(idx);
+                pauseAndScheduleResume(4000);
+              }}
+              aria-label={`Ke pengumuman ${idx + 1}`}
+              className={`h-1 rounded-full transition-all duration-300 ${
+                idx === currentIndex ? "w-5 bg-blue-300" : "w-2 bg-white/30"
+              }`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

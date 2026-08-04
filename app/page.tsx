@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { LogIn } from "lucide-react";
 import Header from "@/components/Header";
+import AnnouncementBanner from "@/components/AnnouncementBanner";
 import FeaturesSection from "@/components/FeaturesSection";
 import TaxRealizationSection from "@/components/TaxRealizationSection";
 import LegalBasisSection from "@/components/LegalBasisSection";
@@ -15,9 +16,12 @@ export default function Home() {
       <Header />
 
       {/* Main Content */}
-      <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-12 space-y-10 sm:space-y-14">
+      <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 py-5 sm:py-8 space-y-8 sm:space-y-12">
+        {/* Banner Carousel Promosi & Pengumuman */}
+        <AnnouncementBanner />
+
         {/* 2 & 3. Hero Section (Clean Solid Background) + Social Proof Stats */}
-        <section className="text-center flex flex-col items-center pt-2 sm:pt-4">
+        <section className="text-center flex flex-col items-center pt-1 sm:pt-2">
           {/* H1 Title (Responsive font size for mobile-first) */}
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight max-w-2xl">
             Sistem Administrasi<br />Pajak Daerah
