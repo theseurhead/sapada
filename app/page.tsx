@@ -1,17 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  LogIn,
-  MapPin,
-  MessageCircle,
-  Mail,
-  Sparkles,
-} from "lucide-react";
+import { LogIn } from "lucide-react";
 import Header from "@/components/Header";
 import FeaturesSection from "@/components/FeaturesSection";
 import TaxRealizationSection from "@/components/TaxRealizationSection";
 import LegalBasisSection from "@/components/LegalBasisSection";
+import ContactInfoSection from "@/components/ContactInfoSection";
 
 export default function Home() {
   return (
@@ -22,16 +17,7 @@ export default function Home() {
       {/* Main Content */}
       <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-12 space-y-10 sm:space-y-14">
         {/* 2 & 3. Hero Section (Clean Solid Background) + Social Proof Stats */}
-        <section className="text-center flex flex-col items-center">
-          {/* Badge Status */}
-          <div
-            id="hero-banner-badge"
-            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-4 sm:mb-6"
-          >
-            <Sparkles className="w-3 h-3 text-blue-400" />
-            <span>Terbaru • Pendataan PBB-P2</span>
-          </div>
-
+        <section className="text-center flex flex-col items-center pt-2 sm:pt-4">
           {/* H1 Title (Responsive font size for mobile-first) */}
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight max-w-2xl">
             Sistem Administrasi<br />Pajak Daerah
@@ -114,13 +100,15 @@ export default function Home() {
 
         {/* 6. Dasar Hukum — accordion / collapsible */}
         <LegalBasisSection />
+
+        {/* 7. Informasi Kontak, Jam Operasional & Ikuti Kami */}
+        <ContactInfoSection />
       </main>
 
-      {/* 7. Footer */}
-      <footer className="w-full border-t border-white/10 bg-[#0a0c10] mt-auto">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-8">
-          {/* Logo & Contact Info */}
-          <div className="space-y-4">
+      {/* 8. Footer */}
+      <footer className="w-full border-t border-white/10 bg-[#07090e] mt-12 sm:mt-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2.5">
               <div className="relative w-7 h-7 flex-shrink-0">
                 <Image
@@ -130,73 +118,45 @@ export default function Home() {
                   className="object-contain"
                 />
               </div>
-              <span className="font-semibold text-base tracking-tight text-white">
-                sapada
-              </span>
-            </div>
-
-            <div className="space-y-2.5 text-xs sm:text-sm text-white/70">
-              <div className="flex items-center gap-2.5">
-                <MapPin className="w-4 h-4 text-white/40 flex-shrink-0" />
-                <a
-                  href="https://maps.google.com/?q=Jl.+Otista+No.278,+Sukagalih,+Tarogong+Kidul,+Garut"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
-                >
-                  Jl. Otista No.278, Sukagalih, Tarogong Kidul, Garut
-                </a>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <MessageCircle className="w-4 h-4 text-white/40 flex-shrink-0" />
-                <a
-                  href="https://wa.me/6281315265538"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
-                >
-                  (0813) 1526 5538
-                </a>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-white/40 flex-shrink-0" />
-                <a
-                  href="mailto:admin@bapenda.garutkab.go.id"
-                  className="hover:text-white transition-colors"
-                >
-                  admin@bapenda.garutkab.go.id
-                </a>
+              <div className="flex flex-col">
+                <span className="font-bold text-base tracking-tight text-white leading-none">
+                  SAPADA
+                </span>
+                <span className="text-[11px] text-white/50 mt-0.5">
+                  Sistem Administrasi Pajak Daerah Garut
+                </span>
               </div>
             </div>
-          </div>
 
-          {/* Thin Divider & Bottom Bar */}
-          <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/40">
-            <div>
-              © 2026 Badan Pendapatan Daerah Kabupaten Garut
-            </div>
-
-            <div className="flex items-center gap-5 flex-wrap">
+            <div className="flex items-center gap-5 flex-wrap text-xs text-white/60">
               <Link
                 href="/kebijakan-privasi"
-                className="hover:text-white/80 transition-colors"
+                className="hover:text-white transition-colors"
               >
                 Kebijakan Privasi
               </Link>
               <Link
                 href="/peta-pajak"
-                className="hover:text-white/80 transition-colors"
+                className="hover:text-white transition-colors"
               >
                 Peta Pajak
               </Link>
               <Link
                 href="/live-pajak"
-                className="hover:text-white/80 transition-colors"
+                className="hover:text-white transition-colors"
               >
                 Live Pajak
               </Link>
+            </div>
+          </div>
+
+          {/* Thin Divider & Bottom Bar */}
+          <div className="pt-6 border-t border-white/10 text-center sm:text-left text-xs text-white/40 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div>
+              © 2026 Badan Pendapatan Daerah Kabupaten Garut. Hak Cipta Dilindungi.
+            </div>
+            <div className="text-[11px] text-white/30">
+              Pemerintah Kabupaten Garut
             </div>
           </div>
         </div>

@@ -1,34 +1,39 @@
-# Prompt: Tambah Menu "Panduan" dan "Layanan" di Header
+# Prompt: Revisi Landing Page SAPADA (Banner Carousel, Dasar Hukum, Footer Info)
 
-Tolong tambahkan 2 item baru di navbar/header landing page SAPADA (route utama `/`), ditaruh di antara logo dan tombol Daftar/Masuk yang sudah ada. **Jangan ubah warna, font, atau style navbar yang sudah ada** — item baru ini mengikuti style navbar existing.
-
-## 1. Menu "Panduan"
-- Tambahkan link/tombol "Panduan" di header.
-- Klik menuju halaman/section panduan (kalau sudah ada halaman Panduan di project, arahkan ke situ; kalau belum ada, buat sebagai placeholder link dulu — beri tahu saya kalau perlu saya sediakan konten/route-nya).
-
-## 2. Menu "Layanan" (dropdown, menggantikan konsep "Fitur")
-Buat 1 menu di header bernama **"Layanan"** yang saat diklik/hover membuka dropdown berisi sub-menu berikut (semua item **clickable**, masing-masing mengarah ke halaman/fungsinya sendiri):
-
-- Cek Surat
-- Cek Tiket BPHTB
-- Cek Kode Bayar
-- Kalender Pajak
-- Peta Pajak
-- Live Pajak
-- Kontributor
-
-**Detail teknis dropdown:**
-- Style dropdown: card/panel muncul di bawah menu "Layanan" saat diklik (atau hover, sesuaikan dengan pola interaksi navbar yang sudah ada di project — kalau menu lain pakai klik, ikut klik; kalau hover, ikut hover).
-- Tiap item dropdown idealnya punya ikon kecil di kiri teks (kalau sudah ada icon set/library yang dipakai di project, gunakan yang konsisten).
-- Setiap item adalah link — kalau route/halaman tujuannya belum ada di project (misal belum ada halaman "Cek Kode Bayar"), buat sebagai link placeholder dulu dan beri komentar TODO di kode, jangan bikin route baru yang isinya kosong tanpa penanda.
-- Dropdown harus responsive: di mobile, menu "Layanan" tetap bisa diakses (misal via menu hamburger yang sudah ada) dan sub-item-nya tetap bisa di-tap satu-satu.
+## Konteks
+Landing page SAPADA (sapada.vercel.app) sudah live. Ada beberapa revisi dan penambahan fitur yang perlu dikerjakan tanpa mengubah struktur/desain yang sudah ada di luar bagian yang disebutkan di bawah.
 
 ## Yang TIDAK boleh diubah
-- Warna, font, dan layout navbar yang sudah ada
-- Menu/tombol lain di header (Daftar, Masuk, hamburger menu)
+- Warna, font, dan layout navbar yang sudah ada (logo, tombol Masuk/Daftar, hamburger menu)
+- Struktur hero section (judul, deskripsi, stats card, CTA Masuk & Panduan) — kecuali poin revisi yang disebut eksplisit di bawah
+- Menu/tombol lain di header yang sudah berfungsi
 
-## Cara eksekusi
-1. Tambahkan menu "Panduan" dulu, pastikan link/placeholder-nya jalan.
-2. Baru bikin menu "Layanan" dengan dropdown-nya, pastikan semua 7 item di dalamnya clickable (meski sementara placeholder untuk yang belum ada halamannya).
-3. Cek tampilan di mobile dan desktop, pastikan dropdown tidak terpotong atau nabrak elemen lain.
-4.
+## Task 1: Announcement Banner Carousel
+1. Tambahkan strip banner tipis di **atas navbar** (di atas logo SAPADA), bukan menggantikan hero section.
+2. Konten banner harus dinamis (diambil dari array/data source terpisah), bukan hardcode — untuk sekarang pakai **data dummy** (2-3 item banner, isi bebas relevan dengan Bapenda/pajak, misal info jatuh tempo atau pengumuman).
+3. Banner auto-slide otomatis (berganti tiap ±4-5 detik) selama ada lebih dari 1 banner aktif. Kalau cuma 1 banner aktif, auto-slide otomatis nonaktif.
+4. User bisa geser banner secara manual (swipe di mobile, drag/klik navigasi di desktop).
+5. Auto-slide harus pause/tertahan saat user sedang berinteraksi (hover di desktop, touch/hold di mobile), dan resume otomatis setelah user berhenti berinteraksi beberapa detik.
+6. Struktur data dummy per banner minimal punya: `id`, `text`, `link` (opsional), `active` (boolean) — biar nanti gampang dikoneksikan ke data admin beneran.
+
+## Task 2: Hapus Badge "Terbaru • Pendataan PBB-P2"
+7. Hapus badge/label "Terbaru • Pendataan PBB-P2" yang ada di atas judul hero, karena tidak ada aksi/link apapun di situ (murni dekoratif, tidak fungsional).
+
+## Task 3: Dropdown "Dasar Hukum" — Collapsed by Default
+8. Section/dropdown "Dasar Hukum" defaultnya cuma menampilkan **1 item** saja.
+9. Sediakan tombol/link "Lihat Semua" (atau serupa) — saat diklik, baru semua item dasar hukum ditampilkan (expand).
+
+## Task 4: Tambahan Section di Bawah Konten (Sebelum Footer)
+10. Tambahkan section baru berisi:
+    - **Hubungi Kami** — alamat, nomor admin, nomor WhatsApp, email
+    - **Jam Operasional** — hari & jam kerja
+    - **Ikuti Kami** — ikon sosial media (Facebook, Instagram, YouTube, Twitter/X)
+11. Section ini diletakkan di **paling bawah konten**, tapi **jangan sampai tertimpa atau bertabrakan dengan footer** — pastikan ada spacing/margin yang jelas dan footer tetap terpisah rapi.
+12. Cek tampilan section ini di mobile dan desktop, pastikan tidak ada elemen yang terpotong atau overlap dengan footer.
+
+## Cara Eksekusi
+1. Kerjakan Task 2 (hapus badge) dan Task 3 (dropdown Dasar Hukum) dulu — perubahan kecil, cepat divalidasi.
+2. Lanjut Task 4 (section Hubungi Kami/Jam Operasional/Ikuti Kami) — pastikan tidak nabrak footer.
+3. Terakhir kerjakan Task 1 (Banner Carousel) — paling kompleks, butuh state management untuk auto-slide, swipe, dan pause-on-interaction.
+4. Setelah semua selesai, cek tampilan keseluruhan di mobile dan desktop, pastikan tidak ada elemen yang rusak dari perubahan-perubahan di atas.
+5.
