@@ -239,15 +239,24 @@ export default function Header() {
             <span>Masuk</span>
           </Link>
 
-          {/* Mobile Hamburger Toggle Button */}
+          {/* Mobile Hamburger Toggle Button (Toggle Open / Close) */}
           <button
             type="button"
             id="mobile-menu-toggle"
-            onClick={() => setIsMobileMenuOpen(true)}
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-colors border border-white/10 focus:outline-none"
-            aria-label="Buka menu navigasi modal"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className={`md:hidden inline-flex items-center justify-center p-2 rounded-xl transition-all border ${
+              isMobileMenuOpen
+                ? "text-white bg-white/15 border-white/30"
+                : "text-white/80 hover:text-white hover:bg-white/10 border-white/10"
+            } focus:outline-none`}
+            aria-label={isMobileMenuOpen ? "Tutup menu navigasi" : "Buka menu navigasi"}
+            aria-expanded={isMobileMenuOpen}
           >
-            <Menu className="w-4 h-4" />
+            {isMobileMenuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
           </button>
         </div>
       </div>
@@ -259,12 +268,12 @@ export default function Header() {
           aria-modal="true"
           aria-label="Menu Navigasi SAPADA"
           onClick={() => setIsMobileMenuOpen(false)}
-          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-40 bg-black/80 backdrop-blur-md pt-20 px-4 pb-8 flex items-start justify-center overflow-y-auto animate-in fade-in duration-200"
         >
           {/* Modal Content Box */}
           <div
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-lg bg-[#0e131f] border border-white/15 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-200"
+            className="w-full max-w-lg bg-[#0e131f] border border-white/15 rounded-3xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[85vh] animate-in zoom-in-95 duration-200"
           >
             {/* Modal Header */}
             <div className="px-5 py-4 border-b border-white/10 flex items-center justify-between bg-white/[0.02]">

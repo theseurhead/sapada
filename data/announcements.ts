@@ -1,6 +1,5 @@
 export interface Announcement {
   id: string;
-  badge?: string;
   title: string;
   description: string;
   image: string;
@@ -14,7 +13,6 @@ export interface Announcement {
 export const announcementsData: Announcement[] = [
   {
     id: "announcement-1",
-    badge: "Info Pajak Garut",
     title: "Batas Akhir Jatuh Tempo PBB-P2 2026",
     description:
       "Bayar tagihan PBB-P2 Anda tepat waktu sebelum 31 Agustus 2026 bebas antre melalui QRIS dan Virtual Account.",
@@ -28,7 +26,6 @@ export const announcementsData: Announcement[] = [
   },
   {
     id: "announcement-2",
-    badge: "Pemutihan 100%",
     title: "Bebas Denda Keterlambatan Pajak Daerah",
     description:
       "Program khusus penghapusan sanksi denda administrasi pajak daerah Kabupaten Garut berlaku hingga akhir bulan ini.",
@@ -42,7 +39,6 @@ export const announcementsData: Announcement[] = [
   },
   {
     id: "announcement-3",
-    badge: "Layanan Mandiri",
     title: "Cetak e-SPPT & Surat Pajak Online",
     description:
       "Dapatkan salinan e-SPPT dan verifikasi status keabsahan dokumen pajak daerah instan langsung dari ponsel Anda.",
