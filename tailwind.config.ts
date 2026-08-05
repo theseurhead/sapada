@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "475px",
+      },
       colors: {
         sapada: {
           blue: "#1d4ed8",
@@ -19,3 +22,4 @@ const config: Config = {
   plugins: [],
 };
 export default config;
+

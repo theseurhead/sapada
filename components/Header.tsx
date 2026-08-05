@@ -252,7 +252,7 @@ export default function Header() {
         </div>
 
         {/* Right Side: Action Buttons & Mobile Hamburger */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           {/* Tombol Daftar (Desktop Only) */}
           <Link
             href="/register"
@@ -267,18 +267,18 @@ export default function Header() {
           <Link
             href="/login"
             id="header-login-btn"
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#1d4ed8] hover:bg-blue-700 text-xs sm:text-sm font-medium text-white transition-all shadow-md shadow-blue-900/30 focus-visible:ring-2 focus-visible:ring-[#1d4ed8] focus-visible:outline-none"
+            className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full bg-[#1d4ed8] hover:bg-blue-700 text-xs sm:text-sm font-medium text-white transition-all shadow-md shadow-blue-900/30 focus-visible:ring-2 focus-visible:ring-[#1d4ed8] focus-visible:outline-none"
           >
             <LogIn className="w-3.5 h-3.5" />
-            <span>Masuk</span>
+            <span className="hidden xs:inline sm:inline">Masuk</span>
           </Link>
 
-          {/* Mobile Hamburger Toggle Button (Toggle Open / Close) */}
+          {/* Mobile Hamburger Toggle Button */}
           <button
             type="button"
             id="mobile-menu-toggle"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden inline-flex items-center justify-center p-2 rounded-xl transition-all border ${
+            className={`flex md:hidden items-center justify-center p-2 rounded-xl transition-all border ${
               isMobileMenuOpen
                 ? "text-white bg-white/15 border-white/30"
                 : "text-white/80 hover:text-white hover:bg-white/10 border-white/10"
@@ -294,6 +294,7 @@ export default function Header() {
           </button>
         </div>
       </div>
+
 
       {/* Mobile Modal Overlay Navigation */}
       {isMobileMenuOpen && (
