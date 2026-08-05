@@ -8,6 +8,7 @@ import {
   LogIn,
   UserPlus,
   ChevronDown,
+  ChevronRight,
   BookOpen,
   FileText,
   Receipt,
@@ -19,69 +20,76 @@ import {
   Menu,
   X,
   ArrowRight,
+  Home,
+  Wrench,
+  KeyRound,
+  LayoutList,
+  History,
 } from "lucide-react";
 import { announcementsData } from "@/data/announcements";
 
-// List 7 Sub-menu Layanan
-const servicesList = [
+// ── Menu groups sesuai referensi desain ──────────────────────────────────────
+const navMenuGroups = [
   {
-    name: "Cek Surat",
-    desc: "Cek keaslian & status surat keputusan pajak",
-    icon: FileText,
-    href: "/layanan/cek-surat",
+    label: "Navigasi",
+    items: [
+      { name: "Beranda", icon: Home, href: "/" },
+      { name: "Panduan", icon: BookOpen, href: "/panduan" },
+      { name: "Fitur", icon: LayoutList, href: "/#fitur" },
+      { name: "Kontributor", icon: Users, href: "/layanan/kontributor" },
+      { name: "Perubahan", icon: History, href: "/changelog" },
+    ],
   },
   {
-    name: "Cek Tiket BPHTB",
-    desc: "Verifikasi status validasi berkas BPHTB",
-    icon: Receipt,
-    href: "/layanan/cek-bphtb",
-  },
-  {
-    name: "Cek Kode Bayar",
-    desc: "Cek rincian tagihan via kode bayar",
-    icon: QrCode,
-    href: "/layanan/cek-kode-bayar",
-  },
-  {
-    name: "Kalender Pajak",
-    desc: "Jadwal jatuh tempo pembayaran & pelaporan",
-    icon: CalendarDays,
-    href: "/layanan/kalender-pajak",
-  },
-  {
-    name: "Peta Pajak",
-    desc: "Pemetaan spasial sebaran potensi objek pajak",
-    icon: Map,
-    href: "/peta-pajak",
-  },
-  {
-    name: "Live Pajak",
-    desc: "Pantau realisasi penerimaan pajak realtime",
-    icon: TrendingUp,
-    href: "/live-pajak",
-  },
-  {
-    name: "Kontributor",
-    desc: "Daftar kontributor pengembangan SAPADA",
-    icon: Users,
-    href: "/layanan/kontributor",
+    label: "Akun",
+    items: [
+      { name: "Masuk", icon: LogIn, href: "/login" },
+      { name: "Daftar", icon: UserPlus, href: "/register" },
+      { name: "Lupa Kata Sandi", icon: KeyRound, href: "/forgot-password" },
+    ],
   },
 ];
 
+// Sub-tool items under "Alat"
+const toolSubItems = [
+  { name: "Cek Surat", icon: FileText, href: "/layanan/cek-surat" },
+  { name: "Cek Tiket BPHTB", icon: Receipt, href: "/layanan/cek-bphtb" },
+  { name: "Cek Kode Bayar", icon: QrCode, href: "/layanan/cek-kode-bayar" },
+  { name: "Kalender Pajak", icon: CalendarDays, href: "/layanan/kalender-pajak" },
+  { name: "Peta Pajak", icon: Map, href: "/peta-pajak" },
+  { name: "Live Pajak", icon: TrendingUp, href: "/live-pajak" },
+];
+
+// List 7 Sub-menu Layanan (for desktop dropdown)
+const servicesList = [
+  { name: "Cek Surat", desc: "Cek keaslian & status surat keputusan pajak", icon: FileText, href: "/layanan/cek-surat" },
+  { name: "Cek Tiket BPHTB", desc: "Verifikasi status validasi berkas BPHTB", icon: Receipt, href: "/layanan/cek-bphtb" },
+  { name: "Cek Kode Bayar", desc: "Cek rincian tagihan via kode bayar", icon: QrCode, href: "/layanan/cek-kode-bayar" },
+  { name: "Kalender Pajak", desc: "Jadwal jatuh tempo pembayaran & pelaporan", icon: CalendarDays, href: "/layanan/kalender-pajak" },
+  { name: "Peta Pajak", desc: "Pemetaan spasial sebaran potensi objek pajak", icon: Map, href: "/peta-pajak" },
+  { name: "Live Pajak", desc: "Pantau realisasi penerimaan pajak realtime", icon: TrendingUp, href: "/live-pajak" },
+  { name: "Kontributor", desc: "Daftar kontributor pengembangan SAPADA", icon: Users, href: "/layanan/kontributor" },
+];
+
 export default function Header() {
+  // Desktop layanan dropdown
   const [isLayananOpen, setIsLayananOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMobileLayananOpen, setIsMobileLayananOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Track mounted state for portal (SSR-safe)
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // Mobile compact dropdown
+  const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
+  const [isToolExpanded, setIsToolExpanded] = useState(false);
+  const mobileDropdownRef = useRef<HTMLDivElement>(null);
 
-  // Mini carousel state inside mobile modal
+  // Mobile full modal (kept for future use, currently using compact dropdown)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileLayananOpen, setIsMobileLayananOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
+
+  // Mini carousel state
   const activeAnnouncements = announcementsData.filter((a) => a.active);
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [carouselPaused, setCarouselPaused] = useState(false);
@@ -96,9 +104,7 @@ export default function Header() {
 
   const carouselPrev = useCallback(() => {
     if (activeAnnouncements.length <= 1) return;
-    setCarouselIndex(
-      (prev) => (prev - 1 + activeAnnouncements.length) % activeAnnouncements.length
-    );
+    setCarouselIndex((prev) => (prev - 1 + activeAnnouncements.length) % activeAnnouncements.length);
   }, [activeAnnouncements.length]);
 
   useEffect(() => {
@@ -113,21 +119,30 @@ export default function Header() {
     carouselResumeRef.current = setTimeout(() => setCarouselPaused(false), delay);
   };
 
-  // Close desktop dropdown when clicked outside
+  // Close desktop dropdown on outside click
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsLayananOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  // Close mobile compact dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (mobileDropdownRef.current && !mobileDropdownRef.current.contains(event.target as Node)) {
+        setIsMobileDropdownOpen(false);
+        setIsToolExpanded(false);
+      }
+    }
+    if (isMobileDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [isMobileDropdownOpen]);
 
   const handleMouseEnter = () => {
     if (closeTimeoutRef.current) {
@@ -138,19 +153,15 @@ export default function Header() {
   };
 
   const handleMouseLeave = () => {
-    closeTimeoutRef.current = setTimeout(() => {
-      setIsLayananOpen(false);
-    }, 150);
+    closeTimeoutRef.current = setTimeout(() => setIsLayananOpen(false), 150);
   };
 
-  // Lock body scroll when mobile modal is open + ESC to close
+  // Body scroll lock for full modal
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
       const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === "Escape") {
-          setIsMobileMenuOpen(false);
-        }
+        if (e.key === "Escape") setIsMobileMenuOpen(false);
       };
       window.addEventListener("keydown", handleKeyDown);
       return () => {
@@ -162,8 +173,21 @@ export default function Header() {
     }
   }, [isMobileMenuOpen]);
 
-  // ── Mobile Nav Modal (rendered via portal to document.body) ──
-  const mobileModal = isMobileMenuOpen && mounted ? (
+  // ESC to close compact dropdown
+  useEffect(() => {
+    if (!isMobileDropdownOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsMobileDropdownOpen(false);
+        setIsToolExpanded(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileDropdownOpen]);
+
+  // ── Full modal (portal) ────────────────────────────────────────────────────
+  const fullModal = isMobileMenuOpen && mounted ? (
     <div
       role="dialog"
       aria-modal="true"
@@ -172,33 +196,20 @@ export default function Header() {
       className="fixed inset-0 bg-black/80 backdrop-blur-md pt-20 px-4 pb-8 flex items-start justify-center overflow-y-auto animate-in fade-in duration-200"
       style={{ zIndex: 9999 }}
     >
-      {/* Modal Content Box */}
       <div
         onClick={(e) => e.stopPropagation()}
         className="w-full max-w-lg bg-[#0e131f] border border-white/15 rounded-3xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[85vh] animate-in zoom-in-95 duration-200"
       >
-        {/* Modal Header */}
         <div className="px-5 py-4 border-b border-white/10 flex items-center justify-between bg-white/[0.02]">
           <div className="flex items-center gap-2.5">
             <div className="relative w-7 h-7 flex-shrink-0">
-              <Image
-                src="/logo/logo.png"
-                alt="SAPADA Logo"
-                fill
-                className="object-contain"
-              />
+              <Image src="/logo/logo.png" alt="SAPADA Logo" fill className="object-contain" />
             </div>
             <div>
-              <h3 className="font-bold text-sm text-white tracking-tight">
-                Navigasi SAPADA
-              </h3>
-              <p className="text-[10px] text-white/50">
-                Bapenda Kab. Garut
-              </p>
+              <h3 className="font-bold text-sm text-white tracking-tight">Navigasi SAPADA</h3>
+              <p className="text-[10px] text-white/50">Bapenda Kab. Garut</p>
             </div>
           </div>
-
-          {/* Close Button */}
           <button
             type="button"
             onClick={() => setIsMobileMenuOpen(false)}
@@ -209,10 +220,7 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Modal Body (Scrollable) */}
         <div className="p-4 sm:p-5 overflow-y-auto space-y-4 flex-1">
-
-          {/* ── Mini Banner Carousel ── */}
           {activeAnnouncements.length > 0 && (
             <div
               className="relative w-full overflow-hidden rounded-2xl border border-white/15 shadow-xl bg-[#0b1120] select-none"
@@ -223,14 +231,9 @@ export default function Header() {
                 carouselTouchStartX.current = e.touches[0].clientX;
                 carouselTouchEndX.current = null;
               }}
-              onTouchMove={(e) => {
-                carouselTouchEndX.current = e.touches[0].clientX;
-              }}
+              onTouchMove={(e) => { carouselTouchEndX.current = e.touches[0].clientX; }}
               onTouchEnd={() => {
-                if (
-                  carouselTouchStartX.current !== null &&
-                  carouselTouchEndX.current !== null
-                ) {
+                if (carouselTouchStartX.current !== null && carouselTouchEndX.current !== null) {
                   const delta = carouselTouchStartX.current - carouselTouchEndX.current;
                   if (delta > 35) carouselNext();
                   else if (delta < -35) carouselPrev();
@@ -245,37 +248,20 @@ export default function Header() {
                   key={item.id}
                   aria-hidden={idx !== carouselIndex}
                   className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                    idx === carouselIndex
-                      ? "opacity-100 pointer-events-auto z-10"
-                      : "opacity-0 pointer-events-none z-0"
+                    idx === carouselIndex ? "opacity-100 pointer-events-auto z-10" : "opacity-0 pointer-events-none z-0"
                   }`}
                 >
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover object-center"
-                    sizes="500px"
-                  />
-                  {/* Gradient overlay */}
+                  <Image src={item.image} alt={item.title} fill className="object-cover object-center" sizes="500px" />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/65 to-black/20" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/10" />
-                  {/* Content */}
                   <div className="relative h-full flex flex-col justify-center px-5 py-4 max-w-[75%] z-20 space-y-1.5">
-                    <h4 className="text-sm font-extrabold text-white leading-tight tracking-tight drop-shadow-md">
-                      {item.title}
-                    </h4>
-                    <p className="text-[11px] text-white/80 leading-snug line-clamp-2 drop-shadow">
-                      {item.description}
-                    </p>
+                    <h4 className="text-sm font-extrabold text-white leading-tight tracking-tight drop-shadow-md">{item.title}</h4>
+                    <p className="text-[11px] text-white/80 leading-snug line-clamp-2 drop-shadow">{item.description}</p>
                     {item.link && (
                       <div className="pt-1">
                         <Link
                           href={item.link.url}
-                          onClick={() => {
-                            setIsMobileMenuOpen(false);
-                            pauseCarousel(5000);
-                          }}
+                          onClick={() => { setIsMobileMenuOpen(false); pauseCarousel(5000); }}
                           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#1d4ed8] hover:bg-blue-600 text-white text-[11px] font-semibold shadow-lg shadow-blue-950/60 transition-all active:scale-95"
                         >
                           <span>{item.link.label}</span>
@@ -286,24 +272,11 @@ export default function Header() {
                   </div>
                 </div>
               ))}
-
-              {/* Dot indicators */}
               {activeAnnouncements.length > 1 && (
                 <div className="absolute bottom-2.5 right-3 z-30 flex items-center gap-1">
                   {activeAnnouncements.map((_, idx) => (
-                    <button
-                      key={idx}
-                      type="button"
-                      onClick={() => {
-                        setCarouselIndex(idx);
-                        pauseCarousel(4000);
-                      }}
-                      aria-label={`Slide ${idx + 1}`}
-                      className={`h-1.5 rounded-full transition-all duration-300 ${
-                        idx === carouselIndex
-                          ? "w-5 bg-blue-400 shadow-sm"
-                          : "w-1.5 bg-white/40 hover:bg-white/70"
-                      }`}
+                    <button key={idx} type="button" onClick={() => { setCarouselIndex(idx); pauseCarousel(4000); }} aria-label={`Slide ${idx + 1}`}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${idx === carouselIndex ? "w-5 bg-blue-400 shadow-sm" : "w-1.5 bg-white/40 hover:bg-white/70"}`}
                     />
                   ))}
                 </div>
@@ -311,7 +284,6 @@ export default function Header() {
             </div>
           )}
 
-          {/* Layanan Accordion / Section */}
           <div className="border border-white/10 rounded-2xl overflow-hidden bg-white/[0.02]">
             <button
               type="button"
@@ -320,41 +292,22 @@ export default function Header() {
             >
               <span className="flex items-center gap-2 font-semibold">
                 <span>Layanan Pajak Daerah</span>
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-normal">
-                  7 Menu
-                </span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-normal">7 Menu</span>
               </span>
-              <ChevronDown
-                className={`w-4 h-4 text-white/60 transition-transform duration-200 ${
-                  isMobileLayananOpen ? "rotate-180 text-blue-400" : ""
-                }`}
-              />
+              <ChevronDown className={`w-4 h-4 text-white/60 transition-transform duration-200 ${isMobileLayananOpen ? "rotate-180 text-blue-400" : ""}`} />
             </button>
-
             {isMobileLayananOpen && (
               <div className="p-2 pt-0 border-t border-white/10 space-y-1 bg-black/40">
                 {servicesList.map((service) => {
                   const Icon = service.icon;
                   return (
-                    <Link
-                      key={service.name}
-                      href={service.href}
-                      onClick={() => {
-                        setIsMobileMenuOpen(false);
-                        setIsMobileLayananOpen(false);
-                      }}
+                    <Link key={service.name} href={service.href} onClick={() => { setIsMobileMenuOpen(false); setIsMobileLayananOpen(false); }}
                       className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/10 transition-colors text-xs text-white/90"
                     >
-                      <div className="p-2 rounded-lg bg-blue-500/15 text-blue-400 flex-shrink-0">
-                        <Icon className="w-4 h-4" />
-                      </div>
+                      <div className="p-2 rounded-lg bg-blue-500/15 text-blue-400 flex-shrink-0"><Icon className="w-4 h-4" /></div>
                       <div>
-                        <div className="font-semibold text-white">
-                          {service.name}
-                        </div>
-                        <div className="text-[10px] text-white/50">
-                          {service.desc}
-                        </div>
+                        <div className="font-semibold text-white">{service.name}</div>
+                        <div className="text-[10px] text-white/50">{service.desc}</div>
                       </div>
                     </Link>
                   );
@@ -363,60 +316,36 @@ export default function Header() {
             )}
           </div>
 
-          {/* Panduan Link */}
-          <Link
-            href="/panduan"
-            onClick={() => setIsMobileMenuOpen(false)}
+          <Link href="/panduan" onClick={() => setIsMobileMenuOpen(false)}
             className="flex items-center gap-3 px-4 py-3 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/5 text-sm font-semibold text-white transition-colors"
           >
-            <div className="p-2 rounded-lg bg-blue-500/15 text-blue-400">
-              <BookOpen className="w-4 h-4" />
-            </div>
+            <div className="p-2 rounded-lg bg-blue-500/15 text-blue-400"><BookOpen className="w-4 h-4" /></div>
             <div>
               <div>Panduan Penggunaan</div>
-              <div className="text-[10px] text-white/50 font-normal">
-                Petunjuk lengkap pendaftaran & pembayaran pajak
-              </div>
+              <div className="text-[10px] text-white/50 font-normal">Petunjuk lengkap pendaftaran & pembayaran pajak</div>
             </div>
           </Link>
 
-          {/* Quick Links Section */}
           <div className="grid grid-cols-2 gap-2 pt-1">
-            <Link
-              href="/peta-pajak"
-              onClick={() => setIsMobileMenuOpen(false)}
+            <Link href="/peta-pajak" onClick={() => setIsMobileMenuOpen(false)}
               className="p-3 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/5 text-xs text-white/80 hover:text-white transition-colors text-center"
-            >
-              Peta Objek Pajak
-            </Link>
-            <Link
-              href="/live-pajak"
-              onClick={() => setIsMobileMenuOpen(false)}
+            >Peta Objek Pajak</Link>
+            <Link href="/live-pajak" onClick={() => setIsMobileMenuOpen(false)}
               className="p-3 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/5 text-xs text-white/80 hover:text-white transition-colors text-center"
-            >
-              Live Penerimaan Pajak
-            </Link>
+            >Live Penerimaan Pajak</Link>
           </div>
         </div>
 
-        {/* Modal Footer (Action Buttons) */}
         <div className="p-4 border-t border-white/10 bg-white/[0.02] flex items-center gap-2.5">
-          <Link
-            href="/register"
-            onClick={() => setIsMobileMenuOpen(false)}
+          <Link href="/register" onClick={() => setIsMobileMenuOpen(false)}
             className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-white/20 text-xs font-semibold text-white/90 hover:bg-white/5 transition-colors"
           >
-            <UserPlus className="w-4 h-4" />
-            <span>Daftar Akun</span>
+            <UserPlus className="w-4 h-4" /><span>Daftar Akun</span>
           </Link>
-
-          <Link
-            href="/login"
-            onClick={() => setIsMobileMenuOpen(false)}
+          <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}
             className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#1d4ed8] hover:bg-blue-700 text-xs font-semibold text-white shadow-lg shadow-blue-950 transition-colors"
           >
-            <LogIn className="w-4 h-4" />
-            <span>Masuk</span>
+            <LogIn className="w-4 h-4" /><span>Masuk</span>
           </Link>
         </div>
       </div>
@@ -427,26 +356,18 @@ export default function Header() {
     <>
       <header className="w-full border-b border-white/10 bg-[#0a0c10]/90 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+
           {/* Left Side: Brand Logo + Desktop Nav Links */}
           <div className="flex items-center gap-6 sm:gap-8">
             <Link href="/" className="flex items-center gap-2.5 group">
               <div className="relative w-8 h-8 flex-shrink-0 transition-transform duration-200 group-hover:scale-105">
-                <Image
-                  src="/logo/logo.png"
-                  alt="SAPADA Logo"
-                  fill
-                  className="object-contain"
-                  priority
-                />
+                <Image src="/logo/logo.png" alt="SAPADA Logo" fill className="object-contain" priority />
               </div>
-              <span className="font-bold text-lg tracking-tight text-white">
-                SAPADA
-              </span>
+              <span className="font-bold text-lg tracking-tight text-white">SAPADA</span>
             </Link>
 
-            {/* Desktop Navigation Items */}
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-1.5">
-              {/* Menu Layanan (Dropdown) */}
               <div
                 ref={dropdownRef}
                 className="relative"
@@ -458,49 +379,32 @@ export default function Header() {
                   id="layanan-dropdown-btn"
                   onClick={() => setIsLayananOpen(!isLayananOpen)}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                    isLayananOpen
-                      ? "text-white bg-white/10"
-                      : "text-white/70 hover:text-white hover:bg-white/5"
+                    isLayananOpen ? "text-white bg-white/10" : "text-white/70 hover:text-white hover:bg-white/5"
                   }`}
                   aria-expanded={isLayananOpen}
                 >
                   <span>Layanan</span>
-                  <ChevronDown
-                    className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                      isLayananOpen ? "rotate-180 text-blue-400" : "text-white/60"
-                    }`}
-                  />
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isLayananOpen ? "rotate-180 text-blue-400" : "text-white/60"}`} />
                 </button>
 
-                {/* Dropdown Menu Container */}
                 {isLayananOpen && (
                   <div className="absolute top-full left-0 mt-2 w-80 rounded-2xl border border-white/10 bg-[#0d1017]/95 p-2 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-150 z-50">
                     <div className="px-3 py-2 border-b border-white/10 mb-1">
-                      <span className="text-xs font-semibold text-white/50 uppercase tracking-wider">
-                        Layanan Pajak Daerah
-                      </span>
+                      <span className="text-xs font-semibold text-white/50 uppercase tracking-wider">Layanan Pajak Daerah</span>
                     </div>
-
                     <div className="space-y-0.5 max-h-[380px] overflow-y-auto">
                       {servicesList.map((service) => {
                         const Icon = service.icon;
                         return (
-                          <Link
-                            key={service.name}
-                            href={service.href}
-                            onClick={() => setIsLayananOpen(false)}
+                          <Link key={service.name} href={service.href} onClick={() => setIsLayananOpen(false)}
                             className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-colors group"
                           >
                             <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400 group-hover:bg-[#1d4ed8] group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
                               <Icon className="w-4 h-4" />
                             </div>
                             <div>
-                              <div className="text-xs font-semibold text-white group-hover:text-blue-400 transition-colors">
-                                {service.name}
-                              </div>
-                              <div className="text-[11px] text-white/50 leading-snug mt-0.5">
-                                {service.desc}
-                              </div>
+                              <div className="text-xs font-semibold text-white group-hover:text-blue-400 transition-colors">{service.name}</div>
+                              <div className="text-[11px] text-white/50 leading-snug mt-0.5">{service.desc}</div>
                             </div>
                           </Link>
                         );
@@ -510,19 +414,14 @@ export default function Header() {
                 )}
               </div>
 
-              {/* Menu Panduan */}
-              <Link
-                href="/panduan"
-                className="px-3 py-1.5 rounded-lg text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 transition-colors"
-              >
+              <Link href="/panduan" className="px-3 py-1.5 rounded-lg text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 transition-colors">
                 Panduan
               </Link>
             </nav>
           </div>
 
-          {/* Right Side: Action Buttons & Mobile Hamburger */}
+          {/* Right Side */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Tombol Daftar (Desktop Only) */}
             <Link
               href="/register"
               id="header-register-btn"
@@ -532,7 +431,6 @@ export default function Header() {
               <span>Daftar</span>
             </Link>
 
-            {/* Tombol Masuk (All Screens) */}
             <Link
               href="/login"
               id="header-login-btn"
@@ -542,32 +440,135 @@ export default function Header() {
               <span className="hidden xs:inline sm:inline">Masuk</span>
             </Link>
 
-            {/* Mobile Hamburger Toggle Button — 44×44px touch target */}
-            <button
-              type="button"
-              id="mobile-menu-toggle"
-              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-              className={`flex md:hidden items-center justify-center rounded-xl transition-all border ${
-                isMobileMenuOpen
-                  ? "text-white bg-white/15 border-white/30"
-                  : "text-white/80 hover:text-white hover:bg-white/10 border-white/10"
-              } focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400`}
-              style={{ width: 44, height: 44 }}
-              aria-label={isMobileMenuOpen ? "Tutup menu navigasi" : "Buka menu navigasi"}
-              aria-expanded={isMobileMenuOpen}
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
+            {/* ── Mobile Hamburger + Compact Dropdown ──────────────────────── */}
+            <div ref={mobileDropdownRef} className="relative flex md:hidden">
+              {/* Hamburger Button — 44×44px touch target */}
+              <button
+                type="button"
+                id="mobile-menu-toggle"
+                onClick={() => {
+                  setIsMobileDropdownOpen((prev) => !prev);
+                  setIsToolExpanded(false);
+                }}
+                className={`flex items-center justify-center rounded-xl transition-all border ${
+                  isMobileDropdownOpen
+                    ? "text-white bg-white/15 border-white/30"
+                    : "text-white/80 hover:text-white hover:bg-white/10 border-white/10"
+                } focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400`}
+                style={{ width: 44, height: 44 }}
+                aria-label={isMobileDropdownOpen ? "Tutup menu navigasi" : "Buka menu navigasi"}
+                aria-expanded={isMobileDropdownOpen}
+                aria-haspopup="true"
+              >
+                {isMobileDropdownOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+
+              {/* ── Compact Dropdown Panel ──────────────────────────────────── */}
+              {isMobileDropdownOpen && (
+                <div
+                  className="absolute top-[calc(100%+10px)] right-0 w-56 rounded-2xl border border-white/15 bg-[#0e131f]/98 shadow-2xl backdrop-blur-xl overflow-hidden animate-in fade-in slide-in-from-top-3 duration-200"
+                  style={{ zIndex: 9999 }}
+                  role="menu"
+                  aria-label="Menu navigasi mobile"
+                >
+                  {/* Group: Navigasi */}
+                  <div className="px-2 pt-2 pb-1">
+                    <p className="px-2 py-1 text-[10px] font-semibold text-white/30 uppercase tracking-wider">Navigasi</p>
+                    {navMenuGroups[0].items.map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          role="menuitem"
+                          onClick={() => setIsMobileDropdownOpen(false)}
+                          className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-sm text-white/80 hover:text-white hover:bg-white/8 transition-colors"
+                        >
+                          <div className="w-7 h-7 rounded-lg bg-white/6 flex items-center justify-center text-white/50 flex-shrink-0">
+                            <Icon className="w-3.5 h-3.5" />
+                          </div>
+                          <span className="font-medium">{item.name}</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+
+                  {/* Divider */}
+                  <div className="mx-3 border-t border-white/10" />
+
+                  {/* Group: Akun */}
+                  <div className="px-2 py-1">
+                    <p className="px-2 py-1 text-[10px] font-semibold text-white/30 uppercase tracking-wider">Akun</p>
+                    {navMenuGroups[1].items.map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          role="menuitem"
+                          onClick={() => setIsMobileDropdownOpen(false)}
+                          className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-sm text-white/80 hover:text-white hover:bg-white/8 transition-colors"
+                        >
+                          <div className="w-7 h-7 rounded-lg bg-white/6 flex items-center justify-center text-white/50 flex-shrink-0">
+                            <Icon className="w-3.5 h-3.5" />
+                          </div>
+                          <span className="font-medium">{item.name}</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+
+                  {/* Divider */}
+                  <div className="mx-3 border-t border-white/10" />
+
+                  {/* Group: Alat (expandable submenu) */}
+                  <div className="px-2 pt-1 pb-2">
+                    <p className="px-2 py-1 text-[10px] font-semibold text-white/30 uppercase tracking-wider">Alat</p>
+                    <button
+                      type="button"
+                      onClick={() => setIsToolExpanded((prev) => !prev)}
+                      className="w-full flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-sm text-white/80 hover:text-white hover:bg-white/8 transition-colors"
+                      aria-expanded={isToolExpanded}
+                    >
+                      <div className="w-7 h-7 rounded-lg bg-white/6 flex items-center justify-center text-white/50 flex-shrink-0">
+                        <Wrench className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="font-medium flex-1 text-left">Alat</span>
+                      <ChevronRight
+                        className={`w-3.5 h-3.5 text-white/40 transition-transform duration-200 ${isToolExpanded ? "rotate-90" : ""}`}
+                      />
+                    </button>
+
+                    {/* Submenu items */}
+                    {isToolExpanded && (
+                      <div className="mt-1 ml-3 space-y-0.5 border-l border-white/10 pl-3 animate-in slide-in-from-top-1 fade-in duration-150">
+                        {toolSubItems.map((tool) => {
+                          const Icon = tool.icon;
+                          return (
+                            <Link
+                              key={tool.name}
+                              href={tool.href}
+                              role="menuitem"
+                              onClick={() => setIsMobileDropdownOpen(false)}
+                              className="flex items-center gap-2 px-2 py-1.5 rounded-lg text-xs text-white/70 hover:text-white hover:bg-white/8 transition-colors"
+                            >
+                              <Icon className="w-3 h-3 text-blue-400 flex-shrink-0" />
+                              <span>{tool.name}</span>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                </div>
               )}
-            </button>
+            </div>
           </div>
         </div>
       </header>
 
-      {/* Mobile Modal rendered via portal to document.body (bypasses header stacking context) */}
-      {mounted && createPortal(mobileModal, document.body)}
+      {/* Full modal via portal (kept, triggered by isMobileMenuOpen if needed) */}
+      {mounted && createPortal(fullModal, document.body)}
     </>
   );
 }
