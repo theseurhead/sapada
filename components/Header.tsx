@@ -466,14 +466,13 @@ export default function Header() {
               {/* ── Compact Dropdown Panel ──────────────────────────────────── */}
               {isMobileDropdownOpen && (
                 <div
-                  className="absolute top-[calc(100%+10px)] right-0 w-56 rounded-2xl border border-white/15 bg-[#0e131f]/98 shadow-2xl backdrop-blur-xl overflow-hidden animate-in fade-in slide-in-from-top-3 duration-200"
-                  style={{ zIndex: 9999 }}
+                  className="absolute top-[calc(100%+10px)] right-0 w-56 rounded-2xl border border-white/10 overflow-hidden animate-in fade-in slide-in-from-top-3 duration-200"
+                  style={{ zIndex: 9999, backgroundColor: '#0e131f', boxShadow: '0 20px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06)' }}
                   role="menu"
                   aria-label="Menu navigasi mobile"
                 >
                   {/* Group: Navigasi */}
                   <div className="px-2 pt-2 pb-1">
-                    <p className="px-2 py-1 text-[10px] font-semibold text-white/30 uppercase tracking-wider">Navigasi</p>
                     {navMenuGroups[0].items.map((item) => {
                       const Icon = item.icon;
                       return (
