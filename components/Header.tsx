@@ -466,102 +466,120 @@ export default function Header() {
               {/* ── Compact Dropdown Panel ──────────────────────────────────── */}
               {isMobileDropdownOpen && (
                 <div
-                  className="absolute top-[calc(100%+10px)] right-0 w-56 rounded-2xl border border-white/10 overflow-hidden animate-in fade-in slide-in-from-top-3 duration-200"
+                  className="absolute top-[calc(100%+10px)] right-0 w-64 rounded-2xl border border-white/10 overflow-hidden animate-in fade-in slide-in-from-top-3 duration-200"
                   style={{ zIndex: 9999, backgroundColor: '#0e131f', boxShadow: '0 20px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06)' }}
                   role="menu"
                   aria-label="Menu navigasi mobile"
                 >
-                  {/* Group: Navigasi */}
-                  <div className="px-2 pt-2 pb-1">
-                    {navMenuGroups[0].items.map((item) => {
-                      const Icon = item.icon;
-                      return (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          role="menuitem"
-                          onClick={() => setIsMobileDropdownOpen(false)}
-                          className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-sm text-white/80 hover:text-white hover:bg-white/8 transition-colors"
-                        >
-                          <div className="w-7 h-7 rounded-lg bg-white/6 flex items-center justify-center text-white/50 flex-shrink-0">
-                            <Icon className="w-3.5 h-3.5" />
-                          </div>
-                          <span className="font-medium">{item.name}</span>
-                        </Link>
-                      );
-                    })}
-                  </div>
+                  <div className="p-2 space-y-0.5">
 
-                  {/* Divider */}
-                  <div className="mx-3 border-t border-white/10" />
-
-                  {/* Group: Akun */}
-                  <div className="px-2 py-1">
-                    <p className="px-2 py-1 text-[10px] font-semibold text-white/30 uppercase tracking-wider">Akun</p>
-                    {navMenuGroups[1].items.map((item) => {
-                      const Icon = item.icon;
-                      return (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          role="menuitem"
-                          onClick={() => setIsMobileDropdownOpen(false)}
-                          className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-sm text-white/80 hover:text-white hover:bg-white/8 transition-colors"
-                        >
-                          <div className="w-7 h-7 rounded-lg bg-white/6 flex items-center justify-center text-white/50 flex-shrink-0">
-                            <Icon className="w-3.5 h-3.5" />
-                          </div>
-                          <span className="font-medium">{item.name}</span>
-                        </Link>
-                      );
-                    })}
-                  </div>
-
-                  {/* Divider */}
-                  <div className="mx-3 border-t border-white/10" />
-
-                  {/* Group: Alat (expandable submenu) */}
-                  <div className="px-2 pt-1 pb-2">
-                    <p className="px-2 py-1 text-[10px] font-semibold text-white/30 uppercase tracking-wider">Alat</p>
+                    {/* Item: Layanan (with accordion submenu) */}
                     <button
                       type="button"
                       onClick={() => setIsToolExpanded((prev) => !prev)}
-                      className="w-full flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-sm text-white/80 hover:text-white hover:bg-white/8 transition-colors"
+                      className="w-full flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-sm text-white/80 hover:text-white hover:bg-white/8 transition-colors"
                       aria-expanded={isToolExpanded}
                     >
-                      <div className="w-7 h-7 rounded-lg bg-white/6 flex items-center justify-center text-white/50 flex-shrink-0">
-                        <Wrench className="w-3.5 h-3.5" />
+                      <div className="w-7 h-7 rounded-lg bg-blue-500/15 flex items-center justify-center text-blue-400 flex-shrink-0">
+                        <LayoutList className="w-3.5 h-3.5" />
                       </div>
-                      <span className="font-medium flex-1 text-left">Alat</span>
-                      <ChevronRight
-                        className={`w-3.5 h-3.5 text-white/40 transition-transform duration-200 ${isToolExpanded ? "rotate-90" : ""}`}
+                      <span className="font-medium flex-1 text-left">Layanan</span>
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 text-white/40 transition-transform duration-200 ${isToolExpanded ? "rotate-180 text-blue-400" : ""}`}
                       />
                     </button>
 
-                    {/* Submenu items */}
+                    {/* Submenu Layanan */}
                     {isToolExpanded && (
-                      <div className="mt-1 ml-3 space-y-0.5 border-l border-white/10 pl-3 animate-in slide-in-from-top-1 fade-in duration-150">
-                        {toolSubItems.map((tool) => {
-                          const Icon = tool.icon;
-                          return (
-                            <Link
-                              key={tool.name}
-                              href={tool.href}
-                              role="menuitem"
-                              onClick={() => setIsMobileDropdownOpen(false)}
-                              className="flex items-center gap-2 px-2 py-1.5 rounded-lg text-xs text-white/70 hover:text-white hover:bg-white/8 transition-colors"
-                            >
-                              <Icon className="w-3 h-3 text-blue-400 flex-shrink-0" />
-                              <span>{tool.name}</span>
-                            </Link>
-                          );
-                        })}
+                      <div
+                        className="mx-1 mb-1 rounded-xl border border-white/8 overflow-y-auto animate-in slide-in-from-top-1 fade-in duration-150"
+                        style={{ backgroundColor: '#080c14', maxHeight: '260px' }}
+                      >
+                        {/* Submenu header */}
+                        <div className="px-3 py-2 border-b border-white/8">
+                          <span className="text-[10px] font-semibold text-white/35 uppercase tracking-wider">
+                            Layanan Pajak Daerah
+                          </span>
+                        </div>
+                        {/* Submenu items */}
+                        <div className="p-1.5 space-y-0.5">
+                          {servicesList.map((service) => {
+                            const Icon = service.icon;
+                            return (
+                              <Link
+                                key={service.name}
+                                href={service.href}
+                                role="menuitem"
+                                onClick={() => {
+                                  setIsMobileDropdownOpen(false);
+                                  setIsToolExpanded(false);
+                                }}
+                                className="flex items-start gap-2.5 px-2.5 py-2 rounded-lg hover:bg-white/6 transition-colors group"
+                              >
+                                <div className="w-7 h-7 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:bg-blue-500/20 transition-colors flex-shrink-0 mt-0.5">
+                                  <Icon className="w-3.5 h-3.5" />
+                                </div>
+                                <div className="min-w-0">
+                                  <div className="text-xs font-semibold text-white/90 group-hover:text-white transition-colors">{service.name}</div>
+                                  <div className="text-[10px] text-white/40 leading-snug mt-0.5 line-clamp-1">{service.desc}</div>
+                                </div>
+                              </Link>
+                            );
+                          })}
+                        </div>
                       </div>
                     )}
+
+                    {/* Divider */}
+                    <div className="mx-1 border-t border-white/8 my-1" />
+
+                    {/* Item: Panduan */}
+                    <Link
+                      href="/panduan"
+                      role="menuitem"
+                      onClick={() => setIsMobileDropdownOpen(false)}
+                      className="flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-sm text-white/80 hover:text-white hover:bg-white/8 transition-colors"
+                    >
+                      <div className="w-7 h-7 rounded-lg bg-white/6 flex items-center justify-center text-white/50 flex-shrink-0">
+                        <BookOpen className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="font-medium">Panduan</span>
+                    </Link>
+
+                    {/* Divider */}
+                    <div className="mx-1 border-t border-white/8 my-1" />
+
+                    {/* Item: Masuk */}
+                    <Link
+                      href="/login"
+                      role="menuitem"
+                      onClick={() => setIsMobileDropdownOpen(false)}
+                      className="flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-sm text-white/80 hover:text-white hover:bg-white/8 transition-colors"
+                    >
+                      <div className="w-7 h-7 rounded-lg bg-white/6 flex items-center justify-center text-white/50 flex-shrink-0">
+                        <LogIn className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="font-medium">Masuk</span>
+                    </Link>
+
+                    {/* Item: Daftar */}
+                    <Link
+                      href="/register"
+                      role="menuitem"
+                      onClick={() => setIsMobileDropdownOpen(false)}
+                      className="flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-sm text-white/80 hover:text-white hover:bg-white/8 transition-colors"
+                    >
+                      <div className="w-7 h-7 rounded-lg bg-white/6 flex items-center justify-center text-white/50 flex-shrink-0">
+                        <UserPlus className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="font-medium">Daftar</span>
+                    </Link>
+
                   </div>
                 </div>
               )}
             </div>
+
           </div>
         </div>
       </header>
