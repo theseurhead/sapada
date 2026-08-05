@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -17,7 +17,9 @@ import {
   Users,
   Menu,
   X,
+  ArrowRight,
 } from "lucide-react";
+import { announcementsData } from "@/data/announcements";
 
 // List 7 Sub-menu Layanan
 const servicesList = [
@@ -71,6 +73,38 @@ export default function Header() {
   const [isMobileLayananOpen, setIsMobileLayananOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Mini carousel state inside mobile modal
+  const activeAnnouncements = announcementsData.filter((a) => a.active);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const [carouselPaused, setCarouselPaused] = useState(false);
+  const carouselResumeRef = useRef<NodeJS.Timeout | null>(null);
+  const carouselTouchStartX = useRef<number | null>(null);
+  const carouselTouchEndX = useRef<number | null>(null);
+
+  const carouselNext = useCallback(() => {
+    if (activeAnnouncements.length <= 1) return;
+    setCarouselIndex((prev) => (prev + 1) % activeAnnouncements.length);
+  }, [activeAnnouncements.length]);
+
+  const carouselPrev = useCallback(() => {
+    if (activeAnnouncements.length <= 1) return;
+    setCarouselIndex(
+      (prev) => (prev - 1 + activeAnnouncements.length) % activeAnnouncements.length
+    );
+  }, [activeAnnouncements.length]);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen || activeAnnouncements.length <= 1 || carouselPaused) return;
+    const timer = setInterval(carouselNext, 4000);
+    return () => clearInterval(timer);
+  }, [isMobileMenuOpen, activeAnnouncements.length, carouselPaused, carouselNext]);
+
+  const pauseCarousel = (delay = 3500) => {
+    if (carouselResumeRef.current) clearTimeout(carouselResumeRef.current);
+    setCarouselPaused(true);
+    carouselResumeRef.current = setTimeout(() => setCarouselPaused(false), delay);
+  };
 
   // Close desktop dropdown when clicked outside
   useEffect(() => {
@@ -309,6 +343,106 @@ export default function Header() {
 
             {/* Modal Body (Scrollable) */}
             <div className="p-4 sm:p-5 overflow-y-auto space-y-4 flex-1 custom-scrollbar">
+
+              {/* ── Mini Banner Carousel ── */}
+              {activeAnnouncements.length > 0 && (
+                <div
+                  className="relative w-full overflow-hidden rounded-2xl border border-white/15 shadow-xl bg-[#0b1120] select-none"
+                  style={{ aspectRatio: "16/7" }}
+                  onTouchStart={(e) => {
+                    if (carouselResumeRef.current) clearTimeout(carouselResumeRef.current);
+                    setCarouselPaused(true);
+                    carouselTouchStartX.current = e.touches[0].clientX;
+                    carouselTouchEndX.current = null;
+                  }}
+                  onTouchMove={(e) => {
+                    carouselTouchEndX.current = e.touches[0].clientX;
+                  }}
+                  onTouchEnd={() => {
+                    if (
+                      carouselTouchStartX.current !== null &&
+                      carouselTouchEndX.current !== null
+                    ) {
+                      const delta = carouselTouchStartX.current - carouselTouchEndX.current;
+                      if (delta > 35) carouselNext();
+                      else if (delta < -35) carouselPrev();
+                    }
+                    carouselTouchStartX.current = null;
+                    carouselTouchEndX.current = null;
+                    pauseCarousel(3000);
+                  }}
+                >
+                  {activeAnnouncements.map((item, idx) => (
+                    <div
+                      key={item.id}
+                      aria-hidden={idx !== carouselIndex}
+                      className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                        idx === carouselIndex
+                          ? "opacity-100 pointer-events-auto z-10"
+                          : "opacity-0 pointer-events-none z-0"
+                      }`}
+                    >
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-cover object-center"
+                        sizes="500px"
+                      />
+                      {/* Gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/65 to-black/20" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/10" />
+                      {/* Content */}
+                      <div className="relative h-full flex flex-col justify-center px-5 py-4 max-w-[75%] z-20 space-y-1.5">
+                        <h4 className="text-sm font-extrabold text-white leading-tight tracking-tight drop-shadow-md">
+                          {item.title}
+                        </h4>
+                        <p className="text-[11px] text-white/80 leading-snug line-clamp-2 drop-shadow">
+                          {item.description}
+                        </p>
+                        {item.link && (
+                          <div className="pt-1">
+                            <Link
+                              href={item.link.url}
+                              onClick={() => {
+                                setIsMobileMenuOpen(false);
+                                pauseCarousel(5000);
+                              }}
+                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#1d4ed8] hover:bg-blue-600 text-white text-[11px] font-semibold shadow-lg shadow-blue-950/60 transition-all active:scale-95"
+                            >
+                              <span>{item.link.label}</span>
+                              <ArrowRight className="w-3 h-3" />
+                            </Link>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* Dot indicators */}
+                  {activeAnnouncements.length > 1 && (
+                    <div className="absolute bottom-2.5 right-3 z-30 flex items-center gap-1">
+                      {activeAnnouncements.map((_, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => {
+                            setCarouselIndex(idx);
+                            pauseCarousel(4000);
+                          }}
+                          aria-label={`Slide ${idx + 1}`}
+                          className={`h-1.5 rounded-full transition-all duration-300 ${
+                            idx === carouselIndex
+                              ? "w-5 bg-blue-400 shadow-sm"
+                              : "w-1.5 bg-white/40 hover:bg-white/70"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
               {/* Layanan Accordion / Section */}
               <div className="border border-white/10 rounded-2xl overflow-hidden bg-white/[0.02]">
                 <button
