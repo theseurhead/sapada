@@ -57,8 +57,8 @@ const regulations: Regulation[] = [
 export default function LegalBasisSection() {
   const [showAll, setShowAll] = useState(false);
 
-  // Tampilkan 1 regulasi utama jika belum dibuka (default collapsed)
-  const previewCount = 1;
+  // Tampilkan 3 regulasi utama jika belum dibuka (default collapsed)
+  const previewCount = 3;
   const initialRegulations = regulations.slice(0, previewCount);
   const remainingRegulations = regulations.slice(previewCount);
 

@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { LogIn } from "lucide-react";
+import { LogIn, ShieldCheck } from "lucide-react";
 import Header from "@/components/Header";
 import AnnouncementBanner from "@/components/AnnouncementBanner";
 import FeaturesSection from "@/components/FeaturesSection";
@@ -17,12 +17,16 @@ export default function Home() {
 
       {/* Main Content */}
       <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 py-5 sm:py-8 space-y-8 sm:space-y-12">
-        {/* Banner Carousel Promosi & Pengumuman */}
-        <AnnouncementBanner />
 
-        {/* 2 & 3. Hero Section (Clean Solid Background) + Social Proof Stats */}
+        {/* 2. Hero Section (moved above carousel) + Social Proof Stats */}
         <section className="text-center flex flex-col items-center pt-1 sm:pt-2">
-          {/* H1 Title (Responsive font size for mobile-first) */}
+          {/* Trust badge */}
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-[11px] sm:text-xs font-medium mb-4">
+            <ShieldCheck className="w-3.5 h-3.5 flex-shrink-0" />
+            <span>Resmi Pemerintah Kabupaten Garut</span>
+          </div>
+
+          {/* H1 Title */}
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight max-w-2xl">
             Sistem Administrasi<br />Pajak Daerah
           </h1>
@@ -34,7 +38,7 @@ export default function Home() {
             kantor Bapenda.
           </p>
 
-          {/* Stats Card (First-fold Social Proof) */}
+          {/* Stats Card */}
           <div className="w-full max-w-2xl mt-6 sm:mt-8 bg-white/[0.03] border border-white/10 rounded-2xl p-3.5 sm:p-5 backdrop-blur-sm shadow-xl grid grid-cols-3 divide-x divide-white/10">
             <div className="px-1 sm:px-3 text-center">
               <div className="text-lg sm:text-2xl md:text-3xl font-bold text-white tracking-tight">
@@ -96,13 +100,16 @@ export default function Home() {
           </p>
         </section>
 
-        {/* 4. Fitur (Cepat, Mudah, Lengkap) — posisi di atas setelah hero */}
+        {/* 3. Banner Carousel Promosi & Pengumuman (moved below hero) */}
+        <AnnouncementBanner />
+
+        {/* 4. Fitur Layanan — real features grid with id="fitur" */}
         <FeaturesSection />
 
-        {/* 5. Realisasi Pajak per Jenis — diringkas dengan ringkasan & collapsible detail */}
+        {/* 5. Realisasi Pajak per Jenis */}
         <TaxRealizationSection />
 
-        {/* 6. Dasar Hukum — accordion / collapsible */}
+        {/* 6. Dasar Hukum — accordion / collapsible (3 default) */}
         <LegalBasisSection />
 
         {/* 7. Informasi Kontak, Jam Operasional & Ikuti Kami */}
