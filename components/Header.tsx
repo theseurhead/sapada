@@ -466,8 +466,8 @@ export default function Header() {
               {/* ── Compact Dropdown Panel ──────────────────────────────────── */}
               {isMobileDropdownOpen && (
                 <div
-                  className="absolute top-[calc(100%+10px)] right-0 w-64 rounded-2xl border border-white/10 overflow-hidden animate-in fade-in slide-in-from-top-3 duration-200"
-                  style={{ zIndex: 9999, backgroundColor: '#0e131f', boxShadow: '0 20px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06)' }}
+                  className="absolute top-[calc(100%+10px)] right-0 w-64 rounded-2xl overflow-hidden animate-in fade-in slide-in-from-top-3 duration-200"
+                  style={{ zIndex: 9999, backgroundColor: '#0e131f', boxShadow: '0 8px 32px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.4)' }}
                   role="menu"
                   aria-label="Menu navigasi mobile"
                 >
@@ -492,16 +492,10 @@ export default function Header() {
                     {/* Submenu Layanan */}
                     {isToolExpanded && (
                       <div
-                        className="mx-1 mb-1 rounded-xl border border-white/8 overflow-y-auto animate-in slide-in-from-top-1 fade-in duration-150"
-                        style={{ backgroundColor: '#080c14', maxHeight: '260px' }}
+                        className="mx-1 mb-1 rounded-xl overflow-y-auto animate-in slide-in-from-top-1 fade-in duration-150"
+                        style={{ backgroundColor: '#080c14', maxHeight: '260px', boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.04)' }}
                       >
-                        {/* Submenu header */}
-                        <div className="px-3 py-2 border-b border-white/8">
-                          <span className="text-[10px] font-semibold text-white/35 uppercase tracking-wider">
-                            Layanan Pajak Daerah
-                          </span>
-                        </div>
-                        {/* Submenu items */}
+                        {/* Submenu items — no header label */}
                         <div className="p-1.5 space-y-0.5">
                           {servicesList.map((service) => {
                             const Icon = service.icon;
@@ -531,7 +525,7 @@ export default function Header() {
                     )}
 
                     {/* Divider */}
-                    <div className="mx-1 border-t border-white/8 my-1" />
+                    <div style={{ height: 1, backgroundColor: 'rgba(255,255,255,0.06)', margin: '2px 4px' }} />
 
                     {/* Item: Panduan */}
                     <Link
@@ -547,7 +541,7 @@ export default function Header() {
                     </Link>
 
                     {/* Divider */}
-                    <div className="mx-1 border-t border-white/8 my-1" />
+                    <div style={{ height: 1, backgroundColor: 'rgba(255,255,255,0.06)', margin: '2px 4px' }} />
 
                     {/* Item: Masuk */}
                     <Link
