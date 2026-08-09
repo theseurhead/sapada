@@ -216,7 +216,7 @@ export default function ContactInfoSection() {
         </div>
 
         {/* Kolom 3: Ikuti Kami */}
-        <div className="flex flex-col justify-start px-2 sm:px-4">
+        <div className="flex flex-col justify-start px-2 sm:px-4 col-span-2 md:col-span-1">
           <div className="space-y-4">
             <div className="text-center">
               <h3 className="font-bold text-base sm:text-lg text-white">
