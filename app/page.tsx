@@ -6,8 +6,8 @@ import Header from "@/components/Header";
 import AnnouncementBanner from "@/components/AnnouncementBanner";
 import TestimonialSection from "@/components/TestimonialSection";
 import FAQSection from "@/components/FAQSection";
-import TaxRealizationSection from "@/components/TaxRealizationSection";
-import LegalBasisSection from "@/components/LegalBasisSection";
+import HowToUseSection from "@/components/HowToUseSection";
+import ClosingCTASection from "@/components/ClosingCTASection";
 import ContactInfoSection from "@/components/ContactInfoSection";
 
 export default function Home() {
@@ -67,20 +67,19 @@ export default function Home() {
           {/* CTA Buttons */}
           <div className="flex flex-row items-center justify-center gap-3 mt-6 sm:mt-8">
             <Link
-              href="/login"
-              id="hero-login-btn"
-              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-[#1d4ed8] hover:bg-blue-700 text-white font-medium text-sm sm:text-base transition-all shadow-lg shadow-blue-900/30 focus-visible:ring-2 focus-visible:ring-[#1d4ed8] focus-visible:outline-none"
+              href="/register"
+              id="hero-register-btn"
+              className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#1d4ed8] hover:bg-blue-700 text-white font-medium text-sm sm:text-base transition-all shadow-lg shadow-blue-900/30 focus-visible:ring-2 focus-visible:ring-[#1d4ed8] focus-visible:outline-none"
             >
-              <LogIn className="w-4 h-4" />
-              <span>Masuk</span>
+              <span>Daftar</span>
             </Link>
 
             <Link
-              href="/panduan"
-              id="hero-guide-btn"
-              className="inline-flex items-center justify-center px-5 py-2.5 rounded-full text-white/80 hover:text-white font-medium text-sm sm:text-base transition-colors hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-[#1d4ed8] focus-visible:outline-none border border-white/10"
+              href="/login"
+              id="hero-login-btn"
+              className="inline-flex items-center justify-center px-6 py-2.5 rounded-full text-white/80 hover:text-white font-medium text-sm sm:text-base transition-colors hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-[#1d4ed8] focus-visible:outline-none border border-white/10"
             >
-              <span>Panduan</span>
+              <span>Masuk</span>
             </Link>
           </div>
 
@@ -96,20 +95,20 @@ export default function Home() {
           </p>
         </section>
 
-        {/* 3. Banner Carousel Promosi & Pengumuman (moved below hero) */}
+        {/* 3. Banner Urgent (moved below hero) */}
         <AnnouncementBanner />
 
-        {/* 4. Testimoni & FAQ menggantikan Fitur */}
+        {/* 4. Cara Pakai (baru) */}
+        <HowToUseSection />
+
+        {/* 5. Testimoni (2 card) & 6. FAQ */}
         <TestimonialSection />
         <FAQSection />
 
-        {/* 5. Realisasi Pajak per Jenis */}
-        <TaxRealizationSection />
+        {/* 7. CTA Penutup (baru) */}
+        <ClosingCTASection />
 
-        {/* 6. Dasar Hukum — accordion / collapsible (3 default) */}
-        <LegalBasisSection />
-
-        {/* 7. Informasi Kontak, Jam Operasional & Ikuti Kami */}
+        {/* 8. Footer (compact) */}
         <ContactInfoSection />
       </main>
 

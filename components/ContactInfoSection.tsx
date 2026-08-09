@@ -107,7 +107,7 @@ export default function ContactInfoSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 sm:gap-8 bg-white/[0.02] border border-white/10 rounded-3xl p-6 sm:p-8">
         {/* Kolom 1: Hubungi Kami */}
         <div className="flex flex-col justify-start px-2 sm:px-4">
           <div className="space-y-4">
