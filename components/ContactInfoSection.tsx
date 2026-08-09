@@ -197,7 +197,7 @@ export default function ContactInfoSection() {
               </div>
 
               <div className="flex flex-col xl:flex-row xl:items-center justify-between px-1 text-xs text-white/50 gap-0.5">
-                <span>Sabtu, Minggu & Libur</span>
+                <span>Sabtu, Minggu & Tanggal Merah</span>
                 <span className="text-rose-400 font-medium">Tutup</span>
               </div>
 
