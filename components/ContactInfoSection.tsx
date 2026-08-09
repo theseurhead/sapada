@@ -227,7 +227,7 @@ export default function ContactInfoSection() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 pt-1">
+            <div className="flex flex-row justify-center gap-3 sm:grid sm:grid-cols-1 lg:grid-cols-2 sm:gap-2 pt-1">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
@@ -236,15 +236,16 @@ export default function ContactInfoSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex flex-col items-start gap-1 p-2.5 rounded-xl bg-black/30 border border-white/5 text-white/80 transition-all ${social.color}`}
+                    title={social.name}
+                    className={`flex flex-col items-center sm:items-start gap-1 p-3 sm:p-2.5 rounded-xl bg-black/30 border border-white/5 text-white/80 transition-all ${social.color}`}
                   >
                     <div className="flex items-center gap-2">
                       <Icon />
-                      <span className="text-xs font-semibold text-white">
+                      <span className="hidden sm:inline text-xs font-semibold text-white">
                         {social.name}
                       </span>
                     </div>
-                    <span className="text-[10px] text-white/50 truncate w-full">
+                    <span className="hidden sm:inline text-[10px] text-white/50 truncate w-full">
                       {social.handle}
                     </span>
                   </a>
@@ -252,7 +253,7 @@ export default function ContactInfoSection() {
               })}
             </div>
 
-            <p className="text-[11px] text-white/40 pt-1 leading-relaxed">
+            <p className="text-[11px] text-white/40 pt-2 sm:pt-1 leading-relaxed text-center">
               Dapatkan berita terbaru, sosialisasi perda, dan pengumuman jatuh tempo pajak.
             </p>
           </div>
