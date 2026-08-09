@@ -11,13 +11,15 @@ Landing page SAPADA (sapada.vercel.app) saat ini terlalu panjang dan section-nya
 ## Urutan Section Baru (Landing Page)
 
 ### 1. Header
-- Tidak ada perubahan struktur.
-- **Toggle biru** di sebelah hamburger menu: jika ini adalah dark/light mode switch, tambahkan icon (matahari/bulan) sebagai indikator. Jika tidak punya fungsi aktif saat ini, hapus dari UI.
+- Logo SAPADA tetap di kiri, hamburger menu tetap di kanan.
+- **Toggle biru** yang saat ini kosong tanpa label diganti jadi **tombol "Masuk"** yang proper (bentuk tombol biasa dengan teks "Masuk", bukan pill/toggle kosong).
+- Di dalam **menu hamburger**, hapus tombol **"Masuk"** dan **"Daftar"** jika ada — sudah redundant karena "Masuk" sudah ada di header dan "Daftar" sudah ada di hero. Isi menu hamburger cukup navigasi halaman (Layanan, Panduan, dll), tanpa duplikat CTA auth.
 
 ### 2. Hero
 - Pertahankan: judul "Sistem Administrasi Pajak Daerah", deskripsi, dan 3 stat card (Pengguna Aktif, Wajib Pajak Terdaftar, Kode Bayar Terbayar).
-- **Urutan tombol CTA dibalik**: tombol **"Daftar"** jadi primary/solid (tampil pertama), tombol **"Masuk"** jadi secondary/outline (tampil kedua).
-- **Hapus icon panah pada kedua tombol Daftar dan Masuk.** Tombol cukup berisi teks saja, tanpa icon apa pun.
+- Tombol CTA hero: **"Daftar"** (primary/solid, tampil pertama) dan **"Panduan"** (secondary/outline, tampil kedua — menggantikan tombol "Masuk" yang lama, karena fungsi Masuk sudah dipindah ke header).
+- **Kedua tombol tanpa icon.** Tombol cukup berisi teks saja, tanpa icon apa pun.
+- Hapus teks **"Belum punya akun? Daftar dulu di sini"** yang ada di bawah tombol CTA — sudah redundant dengan tombol "Daftar" di atasnya.
 - Hapus label "Resmi Pemerintah Kabupaten Garut" (akan pakai domain resmi pemerintah nanti).
 
 ### 3. Banner Urgent (Jatuh Tempo Pajak)
@@ -50,6 +52,9 @@ Section pendek sebelum footer:
 - Gabungkan 3 blok ("Hubungi Kami", "Jam Operasional", "Ikuti Kami") menjadi **1 section compact** dengan grid 2 kolom di mobile (bukan 3 blok terpisah dengan jarak besar antar blok).
 - Judul masing-masing sub-section dibuat **center-aligned dan tanpa icon**.
 - Pastikan spacing antar sub-section rapat dan konsisten, tidak ada gap kosong yang berlebihan.
+- **BUG KRITIS — perbaiki overlap konten:**
+  - Section "Hubungi Kami" & "Jam Operasional" (grid 2 kolom) saat ini elemen-elemennya saling numpuk/overlap — contoh: judul "Jam Operasional" ketiban jadwal "Senin-Kamis", teks "Jumat" ketiban jam "07.30-16.30". Ini kemungkinan disebabkan container/card tidak punya `min-height` yang cukup atau ada elemen dengan `position: absolute`/negative margin yang salah. Pastikan tiap card jadwal & kontak punya container sendiri dengan tinggi otomatis mengikuti konten (auto height), bukan fixed height yang kepotong.
+  - Grid "Ikuti Kami" (Instagram/Facebook/YouTube/Twitter, 2x2 card) juga overlap — icon dan nama platform pada card yang berdekatan saling tabrakan/tumpang tindih (contoh: icon Facebook menimpa teks "Instagram", icon Twitter menimpa teks "YouTube"). Perbaiki dengan memastikan gap/grid-gap yang cukup antar card, dan setiap card punya width/padding yang konsisten agar tidak overflow ke card sebelahnya.
 
 ## Section yang Dipindah Keluar dari Landing Page
 Section berikut **dihapus dari landing page** dan dipindahkan ke halaman terpisah (tetap bisa diakses via link, tidak dihapus datanya):
@@ -65,13 +70,13 @@ Section berikut **dihapus dari landing page** dan dipindahkan ke halaman terpisa
 - Gunakan satu skala spacing yang konsisten (misal step 24px/32px/48px) untuk semua jarak antar section, jangan campur nilai custom.
 
 ## Ringkasan Urutan Final
-1. Header
-2. Hero (CTA: Daftar → Masuk, tanpa icon)
+1. Header (tombol "Masuk" menggantikan toggle biru kosong; menu hamburger tanpa duplikat Masuk/Daftar)
+2. Hero (CTA: Daftar → Panduan, tanpa icon; teks "Belum punya akun" dihapus)
 3. Banner Urgent (1 card statis)
 4. Cara Pakai (baru)
 5. Testimoni (2 card, avatar inisial)
 6. FAQ
 7. CTA Penutup (baru)
-8. Footer (compact, grid 2 kolom)
+8. Footer (compact, grid 2 kolom, overlap di "Hubungi Kami/Jam Operasional" dan "Ikuti Kami" diperbaiki)
 
 Halaman terpisah baru/dipindah: `/live-pajak` (Realisasi Pajak), `/dasar-hukum` (Dasar Hukum).

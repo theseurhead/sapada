@@ -185,18 +185,18 @@ export default function ContactInfoSection() {
             </div>
 
             <div className="space-y-2.5 pt-1 text-xs sm:text-sm">
-              <div className="p-2.5 rounded-xl bg-black/30 border border-white/5 space-y-1.5">
-                <div className="flex items-center justify-between">
+              <div className="p-2.5 rounded-xl bg-black/30 border border-white/5 space-y-2">
+                <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-0.5">
                   <span className="text-white/80 font-medium">Senin – Kamis</span>
                   <span className="text-white font-semibold">07.30 – 16.00</span>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-0.5">
                   <span className="text-white/80 font-medium">Jumat</span>
                   <span className="text-white font-semibold">07.30 – 16.30</span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between px-1 text-xs text-white/50">
+              <div className="flex flex-col xl:flex-row xl:items-center justify-between px-1 text-xs text-white/50 gap-0.5">
                 <span>Sabtu, Minggu & Libur</span>
                 <span className="text-rose-400 font-medium">Tutup</span>
               </div>
@@ -227,7 +227,7 @@ export default function ContactInfoSection() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-2 pt-1">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 pt-1">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (

@@ -75,24 +75,13 @@ export default function Home() {
             </Link>
 
             <Link
-              href="/login"
-              id="hero-login-btn"
+              href="/panduan"
+              id="hero-guide-btn"
               className="inline-flex items-center justify-center px-6 py-2.5 rounded-full text-white/80 hover:text-white font-medium text-sm sm:text-base transition-colors hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-[#1d4ed8] focus-visible:outline-none border border-white/10"
             >
-              <span>Masuk</span>
+              <span>Panduan</span>
             </Link>
           </div>
-
-          {/* Micro-guidance */}
-          <p className="text-xs text-white/50 mt-3 sm:mt-4">
-            Belum punya akun?{" "}
-            <Link
-              href="/register"
-              className="text-white/80 underline underline-offset-4 hover:text-white transition-colors"
-            >
-              Daftar dulu di sini.
-            </Link>
-          </p>
         </section>
 
         {/* 3. Banner Urgent (moved below hero) */}

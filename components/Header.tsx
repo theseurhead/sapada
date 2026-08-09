@@ -436,7 +436,7 @@ export default function Header() {
               id="header-login-btn"
               className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full bg-[#1d4ed8] hover:bg-blue-700 text-xs sm:text-sm font-medium text-white transition-all shadow-md shadow-blue-900/30 focus-visible:ring-2 focus-visible:ring-[#1d4ed8] focus-visible:outline-none"
             >
-              <span className="hidden xs:inline sm:inline">Masuk</span>
+              <span>Masuk</span>
             </Link>
 
             {/* ── Mobile Hamburger + Compact Dropdown ──────────────────────── */}
@@ -539,31 +539,7 @@ export default function Header() {
                       <span className="font-medium">Panduan</span>
                     </Link>
 
-                    {/* Divider */}
-                    <div style={{ height: 1, backgroundColor: 'rgba(255,255,255,0.06)', margin: '2px 4px' }} />
 
-                    {/* Item: Masuk */}
-                    <Link
-                      href="/login"
-                      role="menuitem"
-                      onClick={() => setIsMobileDropdownOpen(false)}
-                      className="flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-sm text-white/80 hover:text-white hover:bg-white/8 transition-colors"
-                    >
-                      <span className="font-medium">Masuk</span>
-                    </Link>
-
-                    {/* Item: Daftar */}
-                    <Link
-                      href="/register"
-                      role="menuitem"
-                      onClick={() => setIsMobileDropdownOpen(false)}
-                      className="flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-sm text-white/80 hover:text-white hover:bg-white/8 transition-colors"
-                    >
-                      <div className="w-7 h-7 rounded-lg bg-white/6 flex items-center justify-center text-white/50 flex-shrink-0">
-                        <UserPlus className="w-3.5 h-3.5" />
-                      </div>
-                      <span className="font-medium">Daftar</span>
-                    </Link>
 
                   </div>
                 </div>
