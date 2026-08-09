@@ -422,14 +422,6 @@ export default function Header() {
 
           {/* Right Side */}
           <div className="flex items-center gap-2 sm:gap-3">
-            <Link
-              href="/register"
-              id="header-register-btn"
-              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-white/15 text-xs sm:text-sm font-medium text-white/90 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all"
-            >
-              <UserPlus className="w-3.5 h-3.5" />
-              <span>Daftar</span>
-            </Link>
 
             <Link
               href="/login"

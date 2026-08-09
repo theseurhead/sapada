@@ -7,7 +7,6 @@ import AnnouncementBanner from "@/components/AnnouncementBanner";
 import TestimonialSection from "@/components/TestimonialSection";
 import FAQSection from "@/components/FAQSection";
 import HowToUseSection from "@/components/HowToUseSection";
-import ClosingCTASection from "@/components/ClosingCTASection";
 import ContactInfoSection from "@/components/ContactInfoSection";
 
 export default function Home() {
@@ -93,9 +92,6 @@ export default function Home() {
         {/* 5. Testimoni (2 card) & 6. FAQ */}
         <TestimonialSection />
         <FAQSection />
-
-        {/* 7. CTA Penutup (baru) */}
-        <ClosingCTASection />
 
         {/* 8. Footer (compact) */}
         <ContactInfoSection />
