@@ -1,0 +1,33 @@
+import React from "react";
+import Link from "next/link";
+import { ArrowLeft, Wrench } from "lucide-react";
+
+export default function PlaceholderPage() {
+  return (
+    <div className="min-h-screen bg-[#0a0c10] text-white flex flex-col items-center justify-center p-4 selection:bg-[#1d4ed8] selection:text-white">
+      <div className="text-center space-y-6 max-w-md w-full bg-white/[0.02] border border-white/10 rounded-3xl p-8 backdrop-blur-md shadow-2xl">
+        <div className="w-16 h-16 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <Wrench className="w-8 h-8" />
+        </div>
+        
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+          Fitur Sedang Dikembangkan
+        </h1>
+        
+        <p className="text-sm sm:text-base text-white/60 leading-relaxed">
+          Mohon maaf, halaman atau fitur ini sedang dalam tahap pengembangan dan akan segera hadir.
+        </p>
+
+        <div className="pt-4">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#1d4ed8] hover:bg-blue-700 text-white font-medium text-sm transition-all shadow-lg shadow-blue-900/30 focus-visible:ring-2 focus-visible:ring-[#1d4ed8] focus-visible:outline-none"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Kembali ke Beranda</span>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}

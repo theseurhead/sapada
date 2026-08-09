@@ -109,20 +109,15 @@ export default function ContactInfoSection() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
         {/* Kolom 1: Hubungi Kami */}
-        <div className="border border-white/10 rounded-2xl bg-white/[0.02] p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04]">
+        <div className="flex flex-col justify-start px-2 sm:px-4">
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400">
-                <MessageCircle className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="font-bold text-base sm:text-lg text-white">
-                  Hubungi Kami
-                </h3>
-                <p className="text-[11px] text-white/50">
-                  Layanan & bantuan perpajakan
-                </p>
-              </div>
+            <div className="text-center">
+              <h3 className="font-bold text-base sm:text-lg text-white">
+                Hubungi Kami
+              </h3>
+              <p className="text-[11px] text-white/50 mt-1">
+                Layanan & bantuan perpajakan
+              </p>
             </div>
 
             <div className="space-y-3 pt-1 text-xs sm:text-sm text-white/70">
@@ -178,20 +173,15 @@ export default function ContactInfoSection() {
         </div>
 
         {/* Kolom 2: Jam Operasional */}
-        <div className="border border-white/10 rounded-2xl bg-white/[0.02] p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04]">
+        <div className="flex flex-col justify-start px-2 sm:px-4">
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400">
-                <Clock className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="font-bold text-base sm:text-lg text-white">
-                  Jam Operasional
-                </h3>
-                <p className="text-[11px] text-white/50">
-                  Waktu pelayanan kantor Bapenda
-                </p>
-              </div>
+            <div className="text-center">
+              <h3 className="font-bold text-base sm:text-lg text-white">
+                Jam Operasional
+              </h3>
+              <p className="text-[11px] text-white/50 mt-1">
+                Waktu pelayanan kantor Bapenda
+              </p>
             </div>
 
             <div className="space-y-2.5 pt-1 text-xs sm:text-sm">
@@ -226,20 +216,15 @@ export default function ContactInfoSection() {
         </div>
 
         {/* Kolom 3: Ikuti Kami */}
-        <div className="border border-white/10 rounded-2xl bg-white/[0.02] p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04]">
+        <div className="flex flex-col justify-start px-2 sm:px-4">
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400">
-                <Share2 className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="font-bold text-base sm:text-lg text-white">
-                  Ikuti Kami
-                </h3>
-                <p className="text-[11px] text-white/50">
-                  Kanal resmi media sosial
-                </p>
-              </div>
+            <div className="text-center">
+              <h3 className="font-bold text-base sm:text-lg text-white">
+                Ikuti Kami
+              </h3>
+              <p className="text-[11px] text-white/50 mt-1">
+                Kanal resmi media sosial
+              </p>
             </div>
 
             <div className="grid grid-cols-2 gap-2 pt-1">

@@ -345,7 +345,7 @@ export default function Header() {
           <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}
             className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#1d4ed8] hover:bg-blue-700 text-xs font-semibold text-white shadow-lg shadow-blue-950 transition-colors"
           >
-            <LogIn className="w-4 h-4" /><span>Masuk</span>
+            <span>Masuk</span>
           </Link>
         </div>
       </div>
@@ -436,7 +436,6 @@ export default function Header() {
               id="header-login-btn"
               className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full bg-[#1d4ed8] hover:bg-blue-700 text-xs sm:text-sm font-medium text-white transition-all shadow-md shadow-blue-900/30 focus-visible:ring-2 focus-visible:ring-[#1d4ed8] focus-visible:outline-none"
             >
-              <LogIn className="w-3.5 h-3.5" />
               <span className="hidden xs:inline sm:inline">Masuk</span>
             </Link>
 
@@ -550,9 +549,6 @@ export default function Header() {
                       onClick={() => setIsMobileDropdownOpen(false)}
                       className="flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-sm text-white/80 hover:text-white hover:bg-white/8 transition-colors"
                     >
-                      <div className="w-7 h-7 rounded-lg bg-white/6 flex items-center justify-center text-white/50 flex-shrink-0">
-                        <LogIn className="w-3.5 h-3.5" />
-                      </div>
                       <span className="font-medium">Masuk</span>
                     </Link>
 

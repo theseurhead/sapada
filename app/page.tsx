@@ -4,7 +4,8 @@ import Image from "next/image";
 import { LogIn, ShieldCheck } from "lucide-react";
 import Header from "@/components/Header";
 import AnnouncementBanner from "@/components/AnnouncementBanner";
-import FeaturesSection from "@/components/FeaturesSection";
+import TestimonialSection from "@/components/TestimonialSection";
+import FAQSection from "@/components/FAQSection";
 import TaxRealizationSection from "@/components/TaxRealizationSection";
 import LegalBasisSection from "@/components/LegalBasisSection";
 import ContactInfoSection from "@/components/ContactInfoSection";
@@ -20,12 +21,7 @@ export default function Home() {
 
         {/* 2. Hero Section (moved above carousel) + Social Proof Stats */}
         <section className="text-center flex flex-col items-center pt-1 sm:pt-2">
-          {/* Trust badge */}
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-[11px] sm:text-xs font-medium mb-4">
-            <ShieldCheck className="w-3.5 h-3.5 flex-shrink-0" />
-            <span>Resmi Pemerintah Kabupaten Garut</span>
-          </div>
-
+          {/* Trust badge removed */}
           {/* H1 Title */}
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight max-w-2xl">
             Sistem Administrasi<br />Pajak Daerah
@@ -103,8 +99,9 @@ export default function Home() {
         {/* 3. Banner Carousel Promosi & Pengumuman (moved below hero) */}
         <AnnouncementBanner />
 
-        {/* 4. Fitur Layanan — real features grid with id="fitur" */}
-        <FeaturesSection />
+        {/* 4. Testimoni & FAQ menggantikan Fitur */}
+        <TestimonialSection />
+        <FAQSection />
 
         {/* 5. Realisasi Pajak per Jenis */}
         <TaxRealizationSection />
