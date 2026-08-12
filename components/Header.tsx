@@ -423,14 +423,6 @@ export default function Header() {
           {/* Right Side */}
           <div className="flex items-center gap-2 sm:gap-3">
 
-            <Link
-              href="/login"
-              id="header-login-btn"
-              className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full bg-[#1d4ed8] hover:bg-blue-700 text-xs sm:text-sm font-medium text-white transition-all shadow-md shadow-blue-900/30 focus-visible:ring-2 focus-visible:ring-[#1d4ed8] focus-visible:outline-none"
-            >
-              <span>Masuk</span>
-            </Link>
-
             {/* ── Mobile Hamburger + Compact Dropdown ──────────────────────── */}
             <div ref={mobileDropdownRef} className="relative flex md:hidden">
               {/* Hamburger Button — 44×44px touch target */}

@@ -23,10 +23,6 @@ export default function Home() {
           
           {/* Left Column */}
           <div className="flex-1 w-full text-center md:text-left flex flex-col items-center md:items-start">
-            {/* Eyebrow */}
-            <div className="inline-block px-3 py-1 mb-4 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-blue-400">
-              Aplikasi Resmi Bapenda Garut
-            </div>
             
             {/* H1 Title */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
@@ -79,14 +75,39 @@ export default function Home() {
                 <p className="text-sm text-white/60 mt-1">Masuk atau daftar akun baru</p>
               </div>
 
-              <div className="flex flex-col space-y-4">
-                <Link
-                  href="/login"
-                  id="hero-login-btn"
-                  className="w-full inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium text-sm transition-all focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:outline-none"
+              <form action="/login" className="flex flex-col space-y-4">
+                <div className="space-y-3">
+                  <div>
+                    <label className="sr-only" htmlFor="username">Username / NIK</label>
+                    <input 
+                      type="text" 
+                      id="username" 
+                      name="username" 
+                      placeholder="Username atau NIK" 
+                      className="w-full px-4 py-3 bg-[#0a0c10] border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-white/40"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="sr-only" htmlFor="password">Kata Sandi</label>
+                    <input 
+                      type="password" 
+                      id="password" 
+                      name="password" 
+                      placeholder="Kata Sandi" 
+                      className="w-full px-4 py-3 bg-[#0a0c10] border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-white/40"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  id="hero-login-submit"
+                  className="w-full inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-[#1d4ed8] hover:bg-blue-700 text-white font-medium text-sm transition-all shadow-lg shadow-blue-900/30 focus-visible:ring-2 focus-visible:ring-[#1d4ed8] focus-visible:outline-none"
                 >
-                  Masuk ke Akun
-                </Link>
+                  Masuk
+                </button>
 
                 <div className="relative flex items-center py-2">
                   <div className="flex-grow border-t border-white/10"></div>
@@ -97,11 +118,11 @@ export default function Home() {
                 <Link
                   href="/register"
                   id="hero-register-btn"
-                  className="w-full inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-[#1d4ed8] hover:bg-blue-700 text-white font-medium text-sm transition-all shadow-lg shadow-blue-900/30 focus-visible:ring-2 focus-visible:ring-[#1d4ed8] focus-visible:outline-none"
+                  className="w-full inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium text-sm transition-all focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:outline-none"
                 >
                   Daftar
                 </Link>
-              </div>
+              </form>
             </div>
           </div>
 
