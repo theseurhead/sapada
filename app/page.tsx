@@ -16,71 +16,95 @@ export default function Home() {
       <Header />
 
       {/* Main Content */}
-      <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 py-5 sm:py-8 space-y-8 sm:space-y-12">
+      <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 py-5 sm:py-8 space-y-8 sm:space-y-12">
 
-        {/* 2. Hero Section (moved above carousel) + Social Proof Stats */}
-        <section className="text-center flex flex-col items-center pt-1 sm:pt-2">
-          {/* Trust badge removed */}
-          {/* H1 Title */}
-          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight max-w-2xl">
-            Sistem Administrasi<br />Pajak Daerah
-          </h1>
-
-          {/* Description */}
-          <p className="text-sm sm:text-base md:text-lg text-white/70 max-w-xl mx-auto mt-3 sm:mt-4 leading-relaxed px-2">
-            Aplikasi resmi Bapenda Garut untuk urus pajak daerah — daftar objek pajak,
-            cek tagihan, dan bayar langsung via QR, semua dari HP tanpa perlu antre ke
-            kantor Bapenda.
-          </p>
-
-          {/* Stats Card */}
-          <div className="w-full max-w-2xl mt-6 sm:mt-8 bg-white/[0.03] border border-white/10 rounded-2xl p-3.5 sm:p-5 backdrop-blur-sm shadow-xl grid grid-cols-3 divide-x divide-white/10">
-            <div className="px-1 sm:px-3 text-center">
-              <div className="text-lg sm:text-2xl md:text-3xl font-bold text-white tracking-tight">
-                3.708
-              </div>
-              <div className="text-[10px] sm:text-xs text-white/50 mt-0.5 sm:mt-1 font-medium">
-                Pengguna Aktif
-              </div>
+        {/* 2. Hero Section (Split-Screen) */}
+        <section className="flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-16 pt-4 sm:pt-8 w-full">
+          
+          {/* Left Column */}
+          <div className="flex-1 w-full text-center md:text-left flex flex-col items-center md:items-start">
+            {/* Eyebrow */}
+            <div className="inline-block px-3 py-1 mb-4 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-blue-400">
+              Aplikasi Resmi Bapenda Garut
             </div>
+            
+            {/* H1 Title */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+              Sistem Administrasi<br />Pajak Daerah
+            </h1>
 
-            <div className="px-1 sm:px-3 text-center">
-              <div className="text-lg sm:text-2xl md:text-3xl font-bold text-white tracking-tight">
-                1.127
-              </div>
-              <div className="text-[10px] sm:text-xs text-white/50 mt-0.5 sm:mt-1 font-medium">
-                Wajib Pajak Terdaftar
-              </div>
-            </div>
+            {/* Description */}
+            <p className="text-sm sm:text-base md:text-lg text-white/70 max-w-xl mt-4 leading-relaxed">
+              Aplikasi resmi Bapenda Garut untuk urus pajak daerah — daftar objek pajak,
+              cek tagihan, dan bayar langsung via QR, semua dari HP tanpa perlu antre ke
+              kantor Bapenda.
+            </p>
 
-            <div className="px-1 sm:px-3 text-center">
-              <div className="text-lg sm:text-2xl md:text-3xl font-bold text-white tracking-tight">
-                +51rb
+            {/* Stats Card */}
+            <div className="w-full max-w-xl mt-8 bg-white/[0.03] border border-white/10 rounded-2xl p-4 sm:p-5 backdrop-blur-sm shadow-xl grid grid-cols-3 divide-x divide-white/10">
+              <div className="px-2 sm:px-3 text-center md:text-left">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight">
+                  3.708
+                </div>
+                <div className="text-[10px] sm:text-xs text-white/50 mt-1 font-medium">
+                  Pengguna Aktif
+                </div>
               </div>
-              <div className="text-[10px] sm:text-xs text-white/50 mt-0.5 sm:mt-1 font-medium">
-                Kode Bayar Terbayar
+
+              <div className="px-2 sm:px-3 text-center md:text-left">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight">
+                  1.127
+                </div>
+                <div className="text-[10px] sm:text-xs text-white/50 mt-1 font-medium">
+                  Wajib Pajak Terdaftar
+                </div>
+              </div>
+
+              <div className="px-2 sm:px-3 text-center md:text-left">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight">
+                  +51rb
+                </div>
+                <div className="text-[10px] sm:text-xs text-white/50 mt-1 font-medium">
+                  Kode Bayar Terbayar
+                </div>
               </div>
             </div>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-row items-center justify-center gap-3 mt-6 sm:mt-8">
-            <Link
-              href="/register"
-              id="hero-register-btn"
-              className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#1d4ed8] hover:bg-blue-700 text-white font-medium text-sm sm:text-base transition-all shadow-lg shadow-blue-900/30 focus-visible:ring-2 focus-visible:ring-[#1d4ed8] focus-visible:outline-none"
-            >
-              <span>Daftar</span>
-            </Link>
+          {/* Right Column: Auth Card */}
+          <div className="w-full md:w-[380px] lg:w-[420px] flex-shrink-0">
+            <div className="bg-[#12141a] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl flex flex-col space-y-6">
+              <div className="text-center">
+                <h2 className="text-xl font-semibold text-white">Mulai Gunakan SAPADA</h2>
+                <p className="text-sm text-white/60 mt-1">Masuk atau daftar akun baru</p>
+              </div>
 
-            <Link
-              href="/panduan"
-              id="hero-guide-btn"
-              className="inline-flex items-center justify-center px-6 py-2.5 rounded-full text-white/80 hover:text-white font-medium text-sm sm:text-base transition-colors hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-[#1d4ed8] focus-visible:outline-none border border-white/10"
-            >
-              <span>Panduan</span>
-            </Link>
+              <div className="flex flex-col space-y-4">
+                <Link
+                  href="/login"
+                  id="hero-login-btn"
+                  className="w-full inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium text-sm transition-all focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:outline-none"
+                >
+                  Masuk ke Akun
+                </Link>
+
+                <div className="relative flex items-center py-2">
+                  <div className="flex-grow border-t border-white/10"></div>
+                  <span className="flex-shrink-0 mx-4 text-xs text-white/40">atau</span>
+                  <div className="flex-grow border-t border-white/10"></div>
+                </div>
+
+                <Link
+                  href="/register"
+                  id="hero-register-btn"
+                  className="w-full inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-[#1d4ed8] hover:bg-blue-700 text-white font-medium text-sm transition-all shadow-lg shadow-blue-900/30 focus-visible:ring-2 focus-visible:ring-[#1d4ed8] focus-visible:outline-none"
+                >
+                  Daftar
+                </Link>
+              </div>
+            </div>
           </div>
+
         </section>
 
         {/* 3. Banner Urgent (moved below hero) */}
@@ -99,7 +123,7 @@ export default function Home() {
 
       {/* 8. Footer */}
       <footer className="w-full border-t border-white/10 bg-[#07090e] mt-12 sm:mt-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2.5">
               <div className="relative w-7 h-7 flex-shrink-0">

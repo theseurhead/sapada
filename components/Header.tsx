@@ -355,7 +355,7 @@ export default function Header() {
   return (
     <>
       <header className="w-full border-b border-white/10 bg-[#0a0c10]/90 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
 
           {/* Left Side: Brand Logo + Desktop Nav Links */}
           <div className="flex items-center gap-6 sm:gap-8">
