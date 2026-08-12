@@ -1,44 +1,46 @@
-# Task: Revisi Layout Landing Page SAPADA (Split-Screen ala Facebook)
+# Task: Revisi Card Login (Kolom Kanan) — Sesuai Referensi Baru
 
-Landing page sudah di-split jadi 2 kolom (kiri: hero/branding, kanan: card
-"Mulai Gunakan SAPADA"). Sekarang lakukan revisi kecil berikut di atas
-implementasi yang sudah ada. **Jangan ubah bagian lain di luar poin di bawah.**
+Ubah **isi card di kolom kanan saja** (yang sekarang judulnya "Mulai Gunakan
+SAPADA"). Bagian lain di landing page (navbar, kolom kiri/hero, section di
+bawahnya) **tidak diubah**.
 
-## Revisi yang diminta
+## Struktur card baru (urut dari atas ke bawah)
 
-### 1. Hapus tombol "Masuk" di navbar/header
-- Tombol biru "Masuk" yang ada di pojok kanan atas navbar **dihapus**.
-- Navbar cukup berisi: logo SAPADA, menu Layanan, menu Panduan. Tidak ada
-  CTA lagi di navbar (karena aksi masuk/daftar sudah dipindah ke card kanan).
+1. **Judul**: "Selamat datang" — (dari referensi tertulis "Selamat datang
+   kembali", tapi kata **"kembali" dihapus**, jadi cukup "Selamat datang").
+2. **Subjudul**: "Masuk ke SAPADA dengan Google atau akun yang sudah terdaftar."
+3. **Tombol "Masuk dengan Google"**
+   - Full width, style outline (border tipis, background sedikit lebih terang dari card, teks putih/terang — sesuaikan ke dark theme situs, jangan pakai background putih polos seperti di referensi).
+   - Ada icon Google di kiri teks.
+4. **Divider** dengan teks di tengah: "atau gunakan email"
+5. **Field Email**
+   - Label: "Email"
+   - Input placeholder: "email@kamu.com"
+6. **Field Password**
+   - Label: "Password" di kiri, dan link **"Lupa kata sandi?"** di kanan (sejajar, dalam satu baris yang sama dengan label).
+   - Input placeholder: "Password"
+7. **Tombol "Masuk"**
+   - Full width, warna biru (accent yang sudah dipakai di situs), teks putih, bold.
+8. **Teks bantuan** di bawah tombol, center-align:
+   - Baris 1: "Belum punya akun? **Daftar sekarang**" — "Daftar sekarang" jadi link/teks bold, sisanya teks biasa.
+   - Baris 2 (di bawahnya, ukuran lebih kecil): "Sudah memiliki NPWPD?" — sebagai link.
 
-### 2. Card "Mulai Gunakan SAPADA" — ganti isi jadi form login langsung
-Saat ini isinya: judul, subjudul, tombol "Masuk ke Akun", divider "atau",
-tombol "Daftar". Ganti jadi **form login langsung** (bukan tombol yang
-membuka halaman lain):
-
-- Judul & subjudul ("Mulai Gunakan SAPADA" / "Masuk atau daftar akun baru") — tetap, tidak berubah.
-- Tambahkan 2 input field:
-  - **Username** (atau NIK/email — sesuaikan dengan field auth yang sudah dipakai di sistem, jangan invent field baru di luar yang sudah ada di backend/auth logic)
-  - **Password**
-- Tombol utama: teks **"Masuk"**, warna **biru** (pakai warna accent biru yang sudah dipakai di komponen lain), full width, di bawah 2 input tadi.
-- Di bawah tombol "Masuk", tetap ada divider "atau".
-- Tombol kedua: teks **"Daftar"**, warna **abu-abu** (bukan biru lagi — biar tidak bersaing secara visual sama tombol "Masuk" yang jadi aksi utama), full width, style solid abu-abu gelap konsisten sama dark theme.
-- Fungsi/logic dari tombol Masuk & Daftar **tetap connect ke handler/route yang sudah ada sekarang** (login submit & navigasi ke halaman daftar) — ini murni perubahan tampilan, bukan bikin flow baru.
-
-### 3. Hapus badge/eyebrow "Aplikasi Resmi Bapenda Garut" di konten kiri atas
-- Di kolom kiri, di atas headline "Sistem Administrasi Pajak Daerah", kalau
-  ada text/badge kecil "Aplikasi Resmi Bapenda Garut" (atau sejenis) —
-  **hapus elemen ini sepenuhnya**.
-- Headline langsung jadi elemen paling atas di kolom kiri, disusul paragraf
-  deskripsi dan stats seperti sekarang (tidak berubah).
-
-## Yang TIDAK berubah (pastikan tetap sama)
-- Konten paragraf deskripsi & angka statistik (3.708 / 1.127 / +51rb) tetap sama persis.
-- Warna dark theme + accent biru tetap sama.
-- Struktur split-screen 2 kolom (kiri hero, kanan card) tetap dipertahankan.
-- Section di bawahnya (banner "Batas Akhir Jatuh Tempo PBB-P2 2026" dst) tidak disentuh.
+## Catatan penting
+- Ini styling & struktur field **login**, bukan bikin flow baru. Kalau di
+  kode sekarang sudah ada handler untuk submit login / redirect ke Google
+  OAuth / link ke halaman daftar, **pakai fungsi yang sudah ada**, cuma
+  tampilannya yang disesuaikan ke struktur di atas.
+- Tetap pakai dark theme yang sudah dipakai di seluruh situs (background
+  gelap, teks terang, accent biru) — referensi gambar pakai card putih,
+  tapi itu cuma acuan **layout/struktur**, bukan acuan warna.
+- Tombol "Daftar" abu-abu yang sebelumnya berdiri sendiri di card **tidak
+  perlu lagi** sebagai tombol terpisah, karena sekarang sudah terwakili
+  lewat teks "Daftar sekarang" di bagian bawah card.
+- Kalau field "Sudah memiliki NPWPD?" belum ada halaman/route tujuannya di
+  sistem, buat sebagai link placeholder saja (jangan invent logic baru),
+  atau tanyakan dulu ke saya sebelum lanjut kalau ragu.
 
 ## Deliverable
-- Edit komponen/file landing page yang sudah ada, jangan buat halaman baru.
+- Edit komponen card login yang sudah ada, jangan bikin komponen baru dari nol kalau tidak perlu.
 - Pastikan build tetap jalan.
-- Verifikasi hasil di dev server sebelum selesai (cek: navbar tanpa tombol Masuk, card kanan sudah jadi form dengan tombol Masuk biru + Daftar abu-abu, eyebrow text di kiri atas sudah hilang).
+- Verifikasi di dev server: judul "Selamat datang" (tanpa "kembali"), tombol Google, divider "atau gunakan email", field Email & Password dengan "Lupa kata sandi?" sejajar label Password, tombol Masuk biru, dan 2 baris teks bantuan di bawahnya.
