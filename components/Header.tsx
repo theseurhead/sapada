@@ -336,25 +336,14 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="p-4 border-t border-white/10 bg-white/[0.02] flex items-center gap-2.5">
-          <Link href="/register" onClick={() => setIsMobileMenuOpen(false)}
-            className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-white/20 text-xs font-semibold text-white/90 hover:bg-white/5 transition-colors"
-          >
-            <UserPlus className="w-4 h-4" /><span>Daftar Akun</span>
-          </Link>
-          <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}
-            className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#1d4ed8] hover:bg-blue-700 text-xs font-semibold text-white shadow-lg shadow-blue-950 transition-colors"
-          >
-            <span>Masuk</span>
-          </Link>
-        </div>
+        {/* Auth buttons removed from mobile modal as requested */}
       </div>
     </div>
   ) : null;
 
   return (
     <>
-      <header className="w-full border-b border-white/10 bg-[#0a0c10]/90 backdrop-blur-md sticky top-0 z-50">
+      <header className="w-full border-b border-white/10 md:border-gray-200 bg-[#0a0c10]/90 md:bg-white/90 backdrop-blur-md sticky top-0 z-50 transition-colors duration-300">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
 
           {/* Left Side: Brand Logo + Desktop Nav Links */}
@@ -363,7 +352,7 @@ export default function Header() {
               <div className="relative w-8 h-8 flex-shrink-0 transition-transform duration-200 group-hover:scale-105">
                 <Image src="/logo/logo.png" alt="SAPADA Logo" fill className="object-contain" priority />
               </div>
-              <span className="font-bold text-lg tracking-tight text-white">SAPADA</span>
+              <span className="font-bold text-lg tracking-tight text-white md:text-gray-900">SAPADA</span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -379,12 +368,12 @@ export default function Header() {
                   id="layanan-dropdown-btn"
                   onClick={() => setIsLayananOpen(!isLayananOpen)}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                    isLayananOpen ? "text-white bg-white/10" : "text-white/70 hover:text-white hover:bg-white/5"
+                    isLayananOpen ? "text-white bg-white/10 md:text-blue-600 md:bg-blue-50" : "text-white/70 hover:text-white hover:bg-white/5 md:text-gray-600 md:hover:text-gray-900 md:hover:bg-gray-100"
                   }`}
                   aria-expanded={isLayananOpen}
                 >
                   <span>Layanan</span>
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isLayananOpen ? "rotate-180 text-blue-400" : "text-white/60"}`} />
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isLayananOpen ? "rotate-180 text-blue-400 md:text-blue-600" : "text-white/60 md:text-gray-500"}`} />
                 </button>
 
                 {isLayananOpen && (
@@ -414,7 +403,7 @@ export default function Header() {
                 )}
               </div>
 
-              <Link href="/panduan" className="px-3 py-1.5 rounded-lg text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+              <Link href="/panduan" className="px-3 py-1.5 rounded-lg text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 md:text-gray-600 md:hover:text-gray-900 md:hover:bg-gray-100 transition-colors">
                 Panduan
               </Link>
             </nav>
@@ -422,6 +411,9 @@ export default function Header() {
 
           {/* Right Side */}
           <div className="flex items-center gap-2 sm:gap-3">
+            <Link href="/login" className="px-4 py-2 bg-[#1d4ed8] hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm">
+              Masuk
+            </Link>
 
             {/* ── Mobile Hamburger + Compact Dropdown ──────────────────────── */}
             <div ref={mobileDropdownRef} className="relative flex md:hidden">
@@ -435,8 +427,8 @@ export default function Header() {
                 }}
                 className={`flex items-center justify-center rounded-xl transition-all border ${
                   isMobileDropdownOpen
-                    ? "text-white bg-white/15 border-white/30"
-                    : "text-white/80 hover:text-white hover:bg-white/10 border-white/10"
+                    ? "text-white bg-white/15 border-white/30 md:text-gray-900 md:bg-gray-100 md:border-gray-300"
+                    : "text-white/80 hover:text-white hover:bg-white/10 border-white/10 md:text-gray-600 md:hover:text-gray-900 md:hover:bg-gray-100 md:border-gray-200"
                 } focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400`}
                 style={{ width: 44, height: 44 }}
                 aria-label={isMobileDropdownOpen ? "Tutup menu navigasi" : "Buka menu navigasi"}

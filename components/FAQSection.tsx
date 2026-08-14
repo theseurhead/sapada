@@ -32,10 +32,10 @@ export default function FAQSection() {
   return (
     <section className="space-y-6 pt-6 sm:pt-8" id="faq">
       <div className="text-center flex flex-col items-center">
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white md:text-gray-900">
           Pertanyaan Umum
         </h2>
-        <p className="text-sm sm:text-base text-white/60 mt-2 max-w-lg">
+        <p className="text-sm sm:text-base text-white/60 md:text-gray-500 mt-2 max-w-lg">
           Informasi yang sering ditanyakan seputar layanan SAPADA
         </p>
       </div>
@@ -46,22 +46,22 @@ export default function FAQSection() {
           return (
             <div 
               key={faq.id} 
-              className={`border rounded-2xl overflow-hidden transition-colors duration-300 ${isOpen ? 'border-white/20 bg-white/[0.04]' : 'border-white/10 bg-white/[0.02] hover:bg-white/[0.03]'}`}
+              className={`border rounded-2xl overflow-hidden transition-colors duration-300 ${isOpen ? 'border-white/20 md:border-gray-300 bg-white/[0.04] md:bg-gray-50' : 'border-white/10 md:border-gray-200 bg-white/[0.02] md:bg-white hover:bg-white/[0.03] md:hover:bg-gray-50'}`}
             >
               <button
                 onClick={() => setOpenId(isOpen ? null : faq.id)}
                 className="w-full flex items-center justify-between p-5 text-left"
               >
-                <span className="font-semibold text-white/90 text-sm sm:text-base pr-4">
+                <span className="font-semibold text-white/90 md:text-gray-800 text-sm sm:text-base pr-4">
                   {faq.question}
                 </span>
-                <ChevronDown className={`w-5 h-5 flex-shrink-0 text-white/50 transition-transform duration-300 ${isOpen ? 'rotate-180 text-white' : ''}`} />
+                <ChevronDown className={`w-5 h-5 flex-shrink-0 text-white/50 md:text-gray-400 transition-transform duration-300 ${isOpen ? 'rotate-180 text-white md:text-blue-600' : ''}`} />
               </button>
               
               <div 
                 className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}
               >
-                <div className="p-5 pt-0 text-sm text-white/60 leading-relaxed">
+                <div className="p-5 pt-0 text-sm text-white/60 md:text-gray-600 leading-relaxed">
                   {faq.answer}
                 </div>
               </div>

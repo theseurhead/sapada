@@ -107,7 +107,7 @@ export default function ContactInfoSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 sm:gap-8 bg-white/[0.02] border border-white/10 rounded-3xl p-6 sm:p-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-10 sm:gap-8 pt-4">
         {/* Kolom 1: Hubungi Kami */}
         <div className="flex flex-col justify-start px-2 sm:px-4">
           <div className="space-y-4">
@@ -122,20 +122,20 @@ export default function ContactInfoSection() {
 
             <div className="space-y-3 pt-1 text-xs sm:text-sm text-white/70">
               {/* Alamat */}
-              <div className="flex items-start gap-2.5 group">
-                <MapPin className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-3 group">
+                <MapPin className="w-4 h-4 text-blue-400 mt-1 flex-shrink-0" />
                 <a
                   href="https://maps.google.com/?q=Jl.+Otista+No.278,+Sukagalih,+Tarogong+Kidul,+Garut"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white leading-relaxed transition-colors group-hover:underline underline-offset-2"
+                  className="hover:text-blue-300 leading-relaxed transition-colors group-hover:underline underline-offset-2 flex-1"
                 >
                   Jl. Otista No.278, Sukagalih, Tarogong Kidul, Garut 44151
                 </a>
               </div>
 
               {/* WhatsApp */}
-              <div className="flex items-center gap-2.5 group">
+              <div className="flex items-center gap-3 group">
                 <MessageCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
                 <a
                   href="https://wa.me/6281315265538"
@@ -143,27 +143,27 @@ export default function ContactInfoSection() {
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors group-hover:underline underline-offset-2"
                 >
-                  (0813) 1526 5538 <span className="text-[11px] text-emerald-400/80 font-medium">(WhatsApp)</span>
+                  (0813) 1526 5538 <span className="text-[11px] text-emerald-400/80 font-medium ml-1">(WhatsApp)</span>
                 </a>
               </div>
 
               {/* Telepon Admin */}
-              <div className="flex items-center gap-2.5 group">
+              <div className="flex items-center gap-3 group">
                 <Phone className="w-4 h-4 text-blue-400 flex-shrink-0" />
                 <a
                   href="tel:0262233456"
-                  className="hover:text-white transition-colors group-hover:underline underline-offset-2"
+                  className="hover:text-blue-300 transition-colors group-hover:underline underline-offset-2"
                 >
-                  (0262) 233 456 <span className="text-[11px] text-white/40">(Kantor)</span>
+                  (0262) 233 456 <span className="text-[11px] text-white/40 ml-1">(Kantor)</span>
                 </a>
               </div>
 
               {/* Email */}
-              <div className="flex items-center gap-2.5 group">
+              <div className="flex items-center gap-3 group">
                 <Mail className="w-4 h-4 text-blue-400 flex-shrink-0" />
                 <a
                   href="mailto:admin@bapenda.garutkab.go.id"
-                  className="hover:text-white transition-colors break-all group-hover:underline underline-offset-2"
+                  className="hover:text-blue-300 transition-colors break-all group-hover:underline underline-offset-2"
                 >
                   admin@bapenda.garutkab.go.id
                 </a>
@@ -184,20 +184,16 @@ export default function ContactInfoSection() {
               </p>
             </div>
 
-            <div className="space-y-2.5 pt-1 text-xs sm:text-sm">
-              <div className="p-2.5 rounded-xl bg-black/30 border border-white/5 space-y-2">
-                <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-0.5">
-                  <span className="text-white/80 font-medium">Senin – Kamis</span>
-                  <span className="text-white font-semibold">07.30 – 16.00</span>
-                </div>
-                <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-0.5">
-                  <span className="text-white/80 font-medium">Jumat</span>
-                  <span className="text-white font-semibold">07.30 – 16.30</span>
+            <div className="space-y-3 pt-1 text-xs sm:text-sm">
+              <div className="space-y-3 px-2">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                  <span className="text-white/80 font-medium">Senin – Jumat</span>
+                  <span className="text-white font-semibold">08.00 – 16.00 WIB</span>
                 </div>
               </div>
 
-              <div className="flex flex-col xl:flex-row xl:items-center justify-between px-1 text-xs text-white/50 gap-0.5">
-                <span>Sabtu, Minggu & Tanggal Merah</span>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between px-2 text-xs text-white/50 gap-1 mt-2">
+                <span>Sabtu, Minggu & Libur Nasional</span>
                 <span className="text-rose-400 font-medium">Tutup</span>
               </div>
 
@@ -227,7 +223,7 @@ export default function ContactInfoSection() {
               </p>
             </div>
 
-            <div className="flex flex-row justify-center gap-3 sm:grid sm:grid-cols-1 lg:grid-cols-2 sm:gap-2 pt-1">
+            <div className="flex flex-row justify-center gap-4 sm:grid sm:grid-cols-2 sm:gap-4 pt-1">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
@@ -237,7 +233,7 @@ export default function ContactInfoSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     title={social.name}
-                    className={`flex flex-col items-center sm:items-start gap-1 p-3 sm:p-2.5 rounded-xl bg-black/30 border border-white/5 text-white/80 transition-all ${social.color}`}
+                    className={`flex flex-col items-center sm:items-start gap-1 p-2 sm:p-3 rounded-xl transition-all ${social.color}`}
                   >
                     <div className="flex items-center gap-2">
                       <Icon />
@@ -245,7 +241,7 @@ export default function ContactInfoSection() {
                         {social.name}
                       </span>
                     </div>
-                    <span className="hidden sm:inline text-[10px] text-white/50 truncate w-full">
+                    <span className="hidden sm:inline text-[11px] text-white/50 truncate w-full">
                       {social.handle}
                     </span>
                   </a>

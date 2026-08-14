@@ -30,9 +30,9 @@ export default function DasarHukumPage() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full border-t border-white/10 bg-[#07090e] mt-12 sm:mt-16">
+      <footer className="w-full border-t border-white/10 md:border-gray-200 bg-[#07090e] md:bg-gray-50 mt-12 sm:mt-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col md:flex-row items-start justify-between gap-8 md:gap-4">
             <div className="flex items-center gap-2.5">
               <div className="relative w-7 h-7 flex-shrink-0">
                 <Image
@@ -43,43 +43,60 @@ export default function DasarHukumPage() {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-bold text-base tracking-tight text-white leading-none">
+                <span className="font-bold text-base tracking-tight text-white md:text-gray-900 leading-none">
                   SAPADA
                 </span>
-                <span className="text-[11px] text-white/50 mt-0.5">
+                <span className="text-[11px] text-white/50 md:text-gray-500 mt-0.5">
                   Sistem Administrasi Pajak Daerah Garut
                 </span>
               </div>
             </div>
 
-            <div className="flex items-center gap-5 flex-wrap text-xs text-white/60">
-              <Link
-                href="/kebijakan-privasi"
-                className="hover:text-white transition-colors"
-              >
-                Kebijakan Privasi
-              </Link>
-              <Link
-                href="/peta-pajak"
-                className="hover:text-white transition-colors"
-              >
-                Peta Pajak
-              </Link>
-              <Link
-                href="/live-pajak"
-                className="hover:text-white transition-colors"
-              >
-                Live Pajak
-              </Link>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10">
+              <div className="flex flex-col gap-2.5 text-xs text-white/60 md:text-gray-500">
+                <span className="font-semibold text-white/90 md:text-gray-800 mb-1">Layanan Utama</span>
+                <Link href="/peta-pajak" className="hover:text-white md:hover:text-blue-600 transition-colors">
+                  Peta Pajak
+                </Link>
+                <Link href="/live-pajak" className="hover:text-white md:hover:text-blue-600 transition-colors">
+                  Live Pajak
+                </Link>
+                <Link href="/layanan/lupa-npwpd" className="hover:text-white md:hover:text-blue-600 transition-colors">
+                  Lupa NPWPD
+                </Link>
+              </div>
+
+              <div className="flex flex-col gap-2.5 text-xs text-white/60 md:text-gray-500">
+                <span className="font-semibold text-white/90 md:text-gray-800 mb-1">Informasi</span>
+                <Link href="/dasar-hukum" className="hover:text-white md:hover:text-blue-600 transition-colors">
+                  Dasar Hukum
+                </Link>
+                <Link href="/kebijakan-privasi" className="hover:text-white md:hover:text-blue-600 transition-colors">
+                  Kebijakan Privasi
+                </Link>
+                <Link href="#" className="hover:text-white md:hover:text-blue-600 transition-colors">
+                  Kritik & Saran
+                </Link>
+              </div>
+
+              <div className="flex flex-col gap-2.5 text-xs text-white/60 md:text-gray-500">
+                <span className="font-semibold text-white/90 md:text-gray-800 mb-1">Bapenda Garut</span>
+                <a href="https://bapenda.garutkab.go.id" target="_blank" rel="noopener noreferrer" className="hover:text-white md:hover:text-blue-600 transition-colors">
+                  Beranda Website
+                </a>
+                <a href="https://bapenda.garutkab.go.id/informasi" target="_blank" rel="noopener noreferrer" className="hover:text-white md:hover:text-blue-600 transition-colors">
+                  Informasi Publik
+                </a>
+              </div>
             </div>
           </div>
 
           {/* Thin Divider & Bottom Bar */}
-          <div className="pt-6 border-t border-white/10 text-center sm:text-left text-xs text-white/40 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <div className="pt-6 border-t border-white/10 md:border-gray-200 text-center sm:text-left text-xs text-white/40 md:text-gray-400 flex flex-col sm:flex-row items-center justify-between gap-2">
             <div>
               © 2026 Badan Pendapatan Daerah Kabupaten Garut. Hak Cipta Dilindungi.
             </div>
-            <div className="text-[11px] text-white/30">
+            <div className="text-[11px] text-white/30 md:text-gray-400">
               Pemerintah Kabupaten Garut
             </div>
           </div>

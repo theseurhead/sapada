@@ -26,10 +26,10 @@ export default function HowToUseSection() {
   return (
     <section className="space-y-6 pt-6 sm:pt-8" id="cara-pakai">
       <div className="text-center flex flex-col items-center">
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white md:text-gray-900">
           Cara Pakai SAPADA
         </h2>
-        <p className="text-sm sm:text-base text-white/60 mt-2 max-w-lg">
+        <p className="text-sm sm:text-base text-white/60 md:text-gray-500 mt-2 max-w-lg">
           Tiga langkah mudah mengurus pajak daerah Anda
         </p>
       </div>
@@ -40,16 +40,16 @@ export default function HowToUseSection() {
           return (
             <div 
               key={step.id} 
-              className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 flex flex-col items-center text-center hover:bg-white/[0.04] hover:border-white/20 transition-all duration-300 relative overflow-hidden"
+              className="bg-white/[0.02] md:bg-white border border-white/10 md:border-gray-200 rounded-2xl p-6 flex flex-col items-center text-center hover:bg-white/[0.04] md:hover:bg-gray-50 hover:border-white/20 md:hover:border-gray-300 md:shadow-sm transition-all duration-300 relative overflow-hidden group"
             >
-              <div className="absolute -right-4 -top-4 text-[100px] font-black text-white/[0.02] select-none leading-none">
+              <div className="absolute -right-4 -top-4 text-[100px] font-black text-white/[0.02] md:text-gray-50 select-none leading-none group-hover:text-white/[0.04] md:group-hover:text-gray-100 transition-colors">
                 {step.id}
               </div>
               <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-5 relative z-10">
                 <Icon className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2 relative z-10">{step.title}</h3>
-              <p className="text-sm text-white/60 leading-relaxed relative z-10">
+              <h3 className="text-lg font-bold text-white md:text-gray-900 mb-2 relative z-10">{step.title}</h3>
+              <p className="text-sm text-white/60 md:text-gray-600 leading-relaxed relative z-10">
                 {step.description}
               </p>
             </div>
