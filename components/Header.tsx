@@ -411,10 +411,6 @@ export default function Header() {
 
           {/* Right Side */}
           <div className="flex items-center gap-2 sm:gap-3">
-            <Link href="/login" className="px-4 py-2 bg-[#1d4ed8] hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm">
-              Masuk
-            </Link>
-
             {/* ── Mobile Hamburger + Compact Dropdown ──────────────────────── */}
             <div ref={mobileDropdownRef} className="relative flex md:hidden">
               {/* Hamburger Button — 44×44px touch target */}

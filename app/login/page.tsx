@@ -4,28 +4,77 @@ import Image from "next/image";
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen bg-[#0a0c10] md:bg-white flex flex-col items-center justify-center p-4 selection:bg-blue-600 selection:text-white transition-colors duration-300">
-      
-      <Link href="/" className="absolute top-6 left-6 flex items-center gap-2 group">
-        <div className="relative w-8 h-8 flex-shrink-0 transition-transform duration-200 group-hover:scale-105">
-          <Image src="/logo/logo.png" alt="SAPADA Logo" fill className="object-contain" priority />
+    <div className="min-h-screen bg-[#f0f2f5] dark:bg-[#18191a] flex items-center justify-center p-4 transition-colors duration-300">
+      <div className="w-full max-w-[980px] flex flex-col md:flex-row items-center justify-between gap-10 lg:gap-16 pt-10 pb-20">
+        
+        {/* Left Side: Brand & Text */}
+        <div className="w-full md:w-[500px] flex flex-col items-center md:items-start text-center md:text-left pt-0 md:pt-12">
+          <Link href="/" className="mb-4 inline-block">
+            <div className="flex items-center justify-center md:justify-start gap-3">
+              <div className="relative w-14 h-14 md:w-16 md:h-16 flex-shrink-0">
+                <Image src="/logo/logo.png" alt="SAPADA Logo" fill className="object-contain" priority />
+              </div>
+              <span className="text-[2.5rem] md:text-[3.5rem] font-bold tracking-tighter text-[#1877f2]">
+                SAPADA
+              </span>
+            </div>
+          </Link>
+          <h2 className="text-2xl md:text-[28px] font-normal text-gray-800 dark:text-gray-200 leading-tight md:leading-normal max-w-[400px]">
+            Sistem Administrasi Pajak Daerah untuk memudahkan pelaporan Anda.
+          </h2>
         </div>
-        <span className="font-bold text-lg tracking-tight text-white md:text-gray-900">SAPADA</span>
-      </Link>
 
-      <div className="w-full max-w-[420px]">
-        <div className="bg-[#12141a] md:bg-white border border-white/10 md:border-gray-200 rounded-3xl p-8 sm:p-10 shadow-2xl md:shadow-xl flex flex-col space-y-8">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-white md:text-gray-900 tracking-tight">Selamat datang kembali</h2>
-            <p className="text-sm text-white/60 md:text-gray-500 mt-2 leading-relaxed">
-              Masuk ke SAPADA dengan Google atau akun yang sudah terdaftar.
-            </p>
-          </div>
+        {/* Right Side: Login Form */}
+        <div className="w-full md:w-[400px]">
+          <div className="bg-white dark:bg-[#242526] rounded-xl p-4 shadow-xl flex flex-col space-y-4">
+            
+            <form className="flex flex-col space-y-3">
+              <div>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  placeholder="Email atau nomor telepon" 
+                  className="w-full px-4 py-3.5 bg-white dark:bg-[#3a3b3c] border border-gray-300 dark:border-[#3a3b3c] rounded-md text-gray-900 dark:text-gray-200 text-[17px] focus:outline-none focus:ring-1 focus:ring-[#1877f2] focus:border-[#1877f2] placeholder-gray-500 dark:placeholder-gray-400 transition-all"
+                  required
+                />
+              </div>
+              <div>
+                <input 
+                  type="password" 
+                  id="password" 
+                  name="password" 
+                  placeholder="Kata sandi" 
+                  className="w-full px-4 py-3.5 bg-white dark:bg-[#3a3b3c] border border-gray-300 dark:border-[#3a3b3c] rounded-md text-gray-900 dark:text-gray-200 text-[17px] focus:outline-none focus:ring-1 focus:ring-[#1877f2] focus:border-[#1877f2] placeholder-gray-500 dark:placeholder-gray-400 transition-all"
+                  required
+                />
+              </div>
 
-          <div className="flex flex-col space-y-5">
+              <button
+                type="submit"
+                className="w-full mt-2 inline-flex items-center justify-center px-6 py-3 rounded-md bg-[#1877f2] hover:bg-[#166fe5] text-white font-bold text-xl transition-all focus-visible:outline-none"
+              >
+                Log In
+              </button>
+            </form>
+
+            <div className="text-center mt-3">
+              <Link href="/forgot-password" className="text-[14px] font-medium text-[#1877f2] hover:underline transition-colors">
+                Lupa kata sandi?
+              </Link>
+            </div>
+
+            <div className="border-t border-gray-200 dark:border-[#3a3b3c] my-4"></div>
+
+            <div className="flex justify-center mb-2">
+              <Link href="/register" className="inline-flex items-center justify-center px-4 py-3 rounded-md bg-[#42b72a] hover:bg-[#36a420] text-white font-bold text-[17px] transition-all focus-visible:outline-none">
+                Buat akun baru
+              </Link>
+            </div>
+            
             <button
               type="button"
-              className="w-full inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-white/5 md:bg-white hover:bg-white/10 md:hover:bg-gray-50 border border-white/10 md:border-gray-200 text-white md:text-gray-700 font-medium text-sm transition-all focus-visible:ring-2 focus-visible:ring-white/20 md:focus-visible:ring-gray-200 focus-visible:outline-none shadow-sm"
+              className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-white dark:bg-[#242526] hover:bg-gray-50 dark:hover:bg-[#3a3b3c] border border-gray-300 dark:border-gray-500 text-gray-700 dark:text-gray-200 font-semibold text-sm transition-all focus-visible:outline-none mt-2"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -35,64 +84,9 @@ export default function LoginPage() {
               </svg>
               Masuk dengan Google
             </button>
-
-            <div className="relative flex items-center py-2">
-              <div className="flex-grow border-t border-white/10 md:border-gray-200"></div>
-              <span className="flex-shrink-0 mx-4 text-xs font-medium text-white/40 md:text-gray-400">ATAU GUNAKAN EMAIL</span>
-              <div className="flex-grow border-t border-white/10 md:border-gray-200"></div>
-            </div>
-
-            <form className="flex flex-col space-y-6">
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <label className="block text-xs font-semibold text-white/80 md:text-gray-700" htmlFor="email">
-                    EMAIL
-                  </label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    placeholder="nama@email.com" 
-                    className="w-full px-4 py-3.5 bg-[#0a0c10] md:bg-white border border-white/10 md:border-gray-300 rounded-xl text-white md:text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-white/30 md:placeholder-gray-400 transition-all"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <label className="block text-xs font-semibold text-white/80 md:text-gray-700" htmlFor="password">
-                      KATA SANDI
-                    </label>
-                    <Link href="/forgot-password" className="text-xs font-medium text-blue-400 md:text-blue-600 hover:text-blue-300 md:hover:text-blue-700 transition-colors">
-                      Lupa?
-                    </Link>
-                  </div>
-                  <input 
-                    type="password" 
-                    id="password" 
-                    name="password" 
-                    placeholder="••••••••" 
-                    className="w-full px-4 py-3.5 bg-[#0a0c10] md:bg-white border border-white/10 md:border-gray-300 rounded-xl text-white md:text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-white/30 md:placeholder-gray-400 transition-all"
-                    required
-                  />
-                </div>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full inline-flex items-center justify-center px-6 py-4 rounded-xl bg-[#1d4ed8] hover:bg-blue-700 text-white font-bold text-sm transition-all shadow-lg shadow-blue-900/30 md:shadow-blue-600/20 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-              >
-                Masuk ke Akun
-              </button>
-            </form>
-
-            <div className="pt-4 text-center flex flex-col space-y-3 border-t border-white/10 md:border-gray-200 mt-4">
-              <div className="text-sm text-white/60 md:text-gray-500 mt-4">
-                Belum punya akun?{" "}
-                <Link href="/register" className="text-white md:text-gray-900 font-bold hover:text-blue-400 md:hover:text-blue-600 transition-colors">
-                  Daftar sekarang
-                </Link>
-              </div>
-            </div>
+          </div>
+          <div className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
+            <Link href="/" className="font-bold hover:underline text-gray-800 dark:text-gray-200">Panduan SAPADA</Link> untuk wajib pajak daerah.
           </div>
         </div>
       </div>
