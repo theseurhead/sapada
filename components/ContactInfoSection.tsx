@@ -99,10 +99,10 @@ export default function ContactInfoSection() {
   return (
     <section className="space-y-6 pt-2">
       <div className="text-center flex flex-col items-center">
-        <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+        <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white md:text-gray-900">
           Informasi & Bantuan
         </h2>
-        <p className="text-xs sm:text-sm text-white/60 mt-1 max-w-md">
+        <p className="text-xs sm:text-sm text-white/60 md:text-gray-500 mt-1 max-w-md">
           Hubungi kami, cek jam operasional, atau terhubung melalui media sosial resmi
         </p>
       </div>
@@ -112,23 +112,23 @@ export default function ContactInfoSection() {
         <div className="flex flex-col justify-start px-2 sm:px-4">
           <div className="space-y-4">
             <div className="text-center">
-              <h3 className="font-bold text-base sm:text-lg text-white">
+              <h3 className="font-bold text-base sm:text-lg text-white md:text-gray-900">
                 Hubungi Kami
               </h3>
-              <p className="text-[11px] text-white/50 mt-1">
+              <p className="text-[11px] text-white/50 md:text-gray-500 mt-1">
                 Layanan & bantuan perpajakan
               </p>
             </div>
 
-            <div className="space-y-3 pt-1 text-xs sm:text-sm text-white/70">
+            <div className="space-y-3 pt-1 text-xs sm:text-sm text-white/70 md:text-gray-600">
               {/* Alamat */}
               <div className="flex items-start gap-3 group">
-                <MapPin className="w-4 h-4 text-blue-400 mt-1 flex-shrink-0" />
+                <MapPin className="w-4 h-4 text-blue-400 md:text-blue-600 mt-1 flex-shrink-0" />
                 <a
                   href="https://maps.google.com/?q=Jl.+Otista+No.278,+Sukagalih,+Tarogong+Kidul,+Garut"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-blue-300 leading-relaxed transition-colors group-hover:underline underline-offset-2 flex-1"
+                  className="hover:text-blue-300 md:hover:text-blue-800 leading-relaxed transition-colors group-hover:underline underline-offset-2 flex-1"
                 >
                   Jl. Otista No.278, Sukagalih, Tarogong Kidul, Garut 44151
                 </a>
@@ -136,34 +136,34 @@ export default function ContactInfoSection() {
 
               {/* WhatsApp */}
               <div className="flex items-center gap-3 group">
-                <MessageCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                <MessageCircle className="w-4 h-4 text-emerald-400 md:text-emerald-600 flex-shrink-0" />
                 <a
                   href="https://wa.me/6281315265538"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors group-hover:underline underline-offset-2"
+                  className="hover:text-white md:hover:text-gray-900 transition-colors group-hover:underline underline-offset-2"
                 >
-                  (0813) 1526 5538 <span className="text-[11px] text-emerald-400/80 font-medium ml-1">(WhatsApp)</span>
+                  (0813) 1526 5538 <span className="text-[11px] text-emerald-400/80 md:text-emerald-600 font-medium ml-1">(WhatsApp)</span>
                 </a>
               </div>
 
               {/* Telepon Admin */}
               <div className="flex items-center gap-3 group">
-                <Phone className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                <Phone className="w-4 h-4 text-blue-400 md:text-blue-600 flex-shrink-0" />
                 <a
                   href="tel:0262233456"
-                  className="hover:text-blue-300 transition-colors group-hover:underline underline-offset-2"
+                  className="hover:text-blue-300 md:hover:text-blue-800 transition-colors group-hover:underline underline-offset-2"
                 >
-                  (0262) 233 456 <span className="text-[11px] text-white/40 ml-1">(Kantor)</span>
+                  (0262) 233 456 <span className="text-[11px] text-white/40 md:text-gray-400 ml-1">(Kantor)</span>
                 </a>
               </div>
 
               {/* Email */}
               <div className="flex items-center gap-3 group">
-                <Mail className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                <Mail className="w-4 h-4 text-blue-400 md:text-blue-600 flex-shrink-0" />
                 <a
                   href="mailto:admin@bapenda.garutkab.go.id"
-                  className="hover:text-blue-300 transition-colors break-all group-hover:underline underline-offset-2"
+                  className="hover:text-blue-300 md:hover:text-blue-800 transition-colors break-all group-hover:underline underline-offset-2"
                 >
                   admin@bapenda.garutkab.go.id
                 </a>
@@ -176,10 +176,10 @@ export default function ContactInfoSection() {
         <div className="flex flex-col justify-start px-2 sm:px-4">
           <div className="space-y-4">
             <div className="text-center">
-              <h3 className="font-bold text-base sm:text-lg text-white">
+              <h3 className="font-bold text-base sm:text-lg text-white md:text-gray-900">
                 Jam Operasional
               </h3>
-              <p className="text-[11px] text-white/50 mt-1">
+              <p className="text-[11px] text-white/50 md:text-gray-500 mt-1">
                 Waktu pelayanan kantor Bapenda
               </p>
             </div>
@@ -187,21 +187,21 @@ export default function ContactInfoSection() {
             <div className="space-y-3 pt-1 text-xs sm:text-sm">
               <div className="space-y-3 px-2">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                  <span className="text-white/80 font-medium">Senin – Jumat</span>
-                  <span className="text-white font-semibold">08.00 – 16.00 WIB</span>
+                  <span className="text-white/80 md:text-gray-700 font-medium">Senin – Jumat</span>
+                  <span className="text-white md:text-gray-900 font-semibold">08.00 – 16.00 WIB</span>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between px-2 text-xs text-white/50 gap-1 mt-2">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between px-2 text-xs text-white/50 md:text-gray-500 gap-1 mt-2">
                 <span>Sabtu, Minggu & Libur Nasional</span>
-                <span className="text-rose-400 font-medium">Tutup</span>
+                <span className="text-rose-400 md:text-rose-600 font-medium">Tutup</span>
               </div>
 
               {/* Online SAPADA 24/7 Badge */}
-              <div className="mt-3 p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center gap-2.5 text-xs text-blue-300">
+              <div className="mt-3 p-2.5 rounded-xl bg-blue-500/10 md:bg-blue-50 border border-blue-500/20 md:border-blue-200 flex items-center gap-2.5 text-xs text-blue-300 md:text-blue-700">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 md:bg-emerald-500 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 md:bg-emerald-600"></span>
                 </span>
                 <span className="font-medium leading-tight">
                   Layanan Online SAPADA aktif 24 jam nonstop.
@@ -212,13 +212,13 @@ export default function ContactInfoSection() {
         </div>
 
         {/* Kolom 3: Ikuti Kami */}
-        <div className="flex flex-col justify-start px-2 sm:px-4 col-span-2 md:col-span-1">
+        <div className="flex flex-col justify-start px-2 sm:px-4 col-span-1 md:col-span-1">
           <div className="space-y-4">
             <div className="text-center">
-              <h3 className="font-bold text-base sm:text-lg text-white">
+              <h3 className="font-bold text-base sm:text-lg text-white md:text-gray-900">
                 Ikuti Kami
               </h3>
-              <p className="text-[11px] text-white/50 mt-1">
+              <p className="text-[11px] text-white/50 md:text-gray-500 mt-1">
                 Kanal resmi media sosial
               </p>
             </div>
@@ -237,11 +237,11 @@ export default function ContactInfoSection() {
                   >
                     <div className="flex items-center gap-2">
                       <Icon />
-                      <span className="hidden sm:inline text-xs font-semibold text-white">
+                      <span className="hidden sm:inline text-xs font-semibold text-white md:text-gray-700">
                         {social.name}
                       </span>
                     </div>
-                    <span className="hidden sm:inline text-[11px] text-white/50 truncate w-full">
+                    <span className="hidden sm:inline text-[11px] text-white/50 md:text-gray-500 truncate w-full">
                       {social.handle}
                     </span>
                   </a>
@@ -249,7 +249,7 @@ export default function ContactInfoSection() {
               })}
             </div>
 
-            <p className="text-[11px] text-white/40 pt-2 sm:pt-1 leading-relaxed text-center">
+            <p className="text-[11px] text-white/40 md:text-gray-400 pt-2 sm:pt-1 leading-relaxed text-center">
               Dapatkan berita terbaru, sosialisasi perda, dan pengumuman jatuh tempo pajak.
             </p>
           </div>
