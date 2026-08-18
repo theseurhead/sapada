@@ -4,10 +4,7 @@ import Image from "next/image";
 import { LogIn, ShieldCheck } from "lucide-react";
 import Header from "@/components/Header";
 import AnnouncementBanner from "@/components/AnnouncementBanner";
-import TestimonialSection from "@/components/TestimonialSection";
-import FAQSection from "@/components/FAQSection";
-import HowToUseSection from "@/components/HowToUseSection";
-import ContactInfoSection from "@/components/ContactInfoSection";
+
 
 export default function Home() {
   return (
@@ -156,12 +153,6 @@ export default function Home() {
 
         {/* 3. Banner Urgent (moved below hero) */}
         <AnnouncementBanner />
-
-        {/* 4. FAQ */}
-        <FAQSection />
-
-        {/* 5. Footer (compact) */}
-        <ContactInfoSection />
       </main>
 
       {/* 8. Footer */}
@@ -189,20 +180,7 @@ export default function Home() {
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10">
               <div className="flex flex-col gap-2.5 text-xs text-white/60 md:text-gray-500">
-                <span className="font-semibold text-white/90 md:text-gray-800 mb-1">Layanan Utama</span>
-                <Link href="/peta-pajak" className="hover:text-white md:hover:text-blue-600 transition-colors">
-                  Peta Pajak
-                </Link>
-                <Link href="/live-pajak" className="hover:text-white md:hover:text-blue-600 transition-colors">
-                  Live Pajak
-                </Link>
-                <Link href="/layanan/lupa-npwpd" className="hover:text-white md:hover:text-blue-600 transition-colors">
-                  Lupa NPWPD
-                </Link>
-              </div>
-
-              <div className="flex flex-col gap-2.5 text-xs text-white/60 md:text-gray-500">
-                <span className="font-semibold text-white/90 md:text-gray-800 mb-1">Informasi</span>
+                <span className="font-semibold text-white/90 md:text-gray-800 mb-1">Informasi & Bantuan</span>
                 <Link href="/dasar-hukum" className="hover:text-white md:hover:text-blue-600 transition-colors">
                   Dasar Hukum
                 </Link>
@@ -210,18 +188,8 @@ export default function Home() {
                   Kebijakan Privasi
                 </Link>
                 <Link href="#" className="hover:text-white md:hover:text-blue-600 transition-colors">
-                  Kritik & Saran
+                  Kontak Lengkap
                 </Link>
-              </div>
-
-              <div className="flex flex-col gap-2.5 text-xs text-white/60 md:text-gray-500">
-                <span className="font-semibold text-white/90 md:text-gray-800 mb-1">Bapenda Garut</span>
-                <a href="https://bapenda.garutkab.go.id" target="_blank" rel="noopener noreferrer" className="hover:text-white md:hover:text-blue-600 transition-colors">
-                  Beranda Website
-                </a>
-                <a href="https://bapenda.garutkab.go.id/informasi" target="_blank" rel="noopener noreferrer" className="hover:text-white md:hover:text-blue-600 transition-colors">
-                  Informasi Publik
-                </a>
               </div>
             </div>
           </div>

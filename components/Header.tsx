@@ -25,6 +25,7 @@ import {
   KeyRound,
   LayoutList,
   History,
+  HelpCircle,
 } from "lucide-react";
 import { announcementsData } from "@/data/announcements";
 
@@ -412,7 +413,7 @@ export default function Header() {
           {/* Right Side */}
           <div className="flex items-center gap-2 sm:gap-3">
             {/* ── Mobile Hamburger + Compact Dropdown ──────────────────────── */}
-            <div ref={mobileDropdownRef} className="relative flex md:hidden">
+            <div ref={mobileDropdownRef} className="relative flex">
               {/* Hamburger Button — 44×44px touch target */}
               <button
                 type="button"
@@ -511,7 +512,18 @@ export default function Header() {
                       <span className="font-medium">Panduan</span>
                     </Link>
 
-
+                    {/* Item: FAQ */}
+                    <Link
+                      href="/faq"
+                      role="menuitem"
+                      onClick={() => setIsMobileDropdownOpen(false)}
+                      className="flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-sm text-white/80 hover:text-white hover:bg-white/8 transition-colors"
+                    >
+                      <div className="w-7 h-7 rounded-lg bg-white/6 flex items-center justify-center text-white/50 flex-shrink-0">
+                        <HelpCircle className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="font-medium">Pertanyaan Umum</span>
+                    </Link>
 
                   </div>
                 </div>
