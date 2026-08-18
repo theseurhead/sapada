@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { LogIn, ShieldCheck } from "lucide-react";
 import Header from "@/components/Header";
-import AnnouncementBanner from "@/components/AnnouncementBanner";
 
 
 export default function Home() {
@@ -151,8 +150,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 3. Banner Urgent (moved below hero) */}
-        <AnnouncementBanner />
       </main>
 
       {/* 8. Footer */}
@@ -175,21 +172,6 @@ export default function Home() {
                 <span className="text-[11px] text-white/50 md:text-gray-500 mt-0.5">
                   Sistem Administrasi Pajak Daerah Garut
                 </span>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10">
-              <div className="flex flex-col gap-2.5 text-xs text-white/60 md:text-gray-500">
-                <span className="font-semibold text-white/90 md:text-gray-800 mb-1">Informasi & Bantuan</span>
-                <Link href="/dasar-hukum" className="hover:text-white md:hover:text-blue-600 transition-colors">
-                  Dasar Hukum
-                </Link>
-                <Link href="/kebijakan-privasi" className="hover:text-white md:hover:text-blue-600 transition-colors">
-                  Kebijakan Privasi
-                </Link>
-                <Link href="#" className="hover:text-white md:hover:text-blue-600 transition-colors">
-                  Kontak Lengkap
-                </Link>
               </div>
             </div>
           </div>
