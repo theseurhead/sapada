@@ -22,17 +22,17 @@ export default function LoginPage() {
         </div>
 
         {/* Right Side: Login Form */}
-        <div className="w-full md:w-[400px]">
-          <div className="bg-white dark:bg-[#242526] rounded-xl p-4 shadow-xl flex flex-col space-y-4">
+        <div className="w-full md:w-[420px]">
+          <div className="bg-white dark:bg-[#242526] rounded-2xl p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-none flex flex-col space-y-5 border border-gray-100 dark:border-[#3a3b3c]">
             
-            <form className="flex flex-col space-y-3">
+            <form className="flex flex-col space-y-4">
               <div>
                 <input 
                   type="email" 
                   id="email" 
                   name="email" 
                   placeholder="Email atau nomor telepon" 
-                  className="w-full px-4 py-3.5 bg-white dark:bg-[#3a3b3c] border border-gray-300 dark:border-[#3a3b3c] rounded-md text-gray-900 dark:text-gray-200 text-[17px] focus:outline-none focus:ring-1 focus:ring-[#1877f2] focus:border-[#1877f2] placeholder-gray-500 dark:placeholder-gray-400 transition-all"
+                  className="w-full px-4 py-3.5 bg-gray-50 dark:bg-[#3a3b3c] border border-gray-200 dark:border-[#4e4f50] rounded-xl text-gray-900 dark:text-gray-200 text-[17px] focus:outline-none focus:ring-2 focus:ring-[#1877f2]/50 focus:border-[#1877f2] transition-all placeholder-gray-400 dark:placeholder-gray-400"
                   required
                 />
               </div>
@@ -42,46 +42,46 @@ export default function LoginPage() {
                   id="password" 
                   name="password" 
                   placeholder="Kata sandi" 
-                  className="w-full px-4 py-3.5 bg-white dark:bg-[#3a3b3c] border border-gray-300 dark:border-[#3a3b3c] rounded-md text-gray-900 dark:text-gray-200 text-[17px] focus:outline-none focus:ring-1 focus:ring-[#1877f2] focus:border-[#1877f2] placeholder-gray-500 dark:placeholder-gray-400 transition-all"
+                  className="w-full px-4 py-3.5 bg-gray-50 dark:bg-[#3a3b3c] border border-gray-200 dark:border-[#4e4f50] rounded-xl text-gray-900 dark:text-gray-200 text-[17px] focus:outline-none focus:ring-2 focus:ring-[#1877f2]/50 focus:border-[#1877f2] transition-all placeholder-gray-400 dark:placeholder-gray-400"
                   required
                 />
               </div>
 
               <div className="flex flex-col space-y-3 mt-1">
                 <div className="flex justify-start">
-                  <Link href="/forgot-password" className="text-sm font-medium text-[#1877f2] hover:underline transition-colors">
+                  <Link href="/forgot-password" className="text-sm font-semibold text-[#1877f2] hover:text-blue-700 transition-colors">
                     Lupa kata sandi?
                   </Link>
                 </div>
                 <div className="flex items-center">
-                  <label className="relative inline-flex items-center cursor-pointer">
+                  <label className="relative inline-flex items-center cursor-pointer group">
                     <input type="checkbox" value="" className="sr-only peer" />
-                    <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-[#1877f2] rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-[#1877f2]"></div>
-                    <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Ingat saya di perangkat ini</span>
+                    <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-[#1877f2]/40 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-[#1877f2] group-hover:after:scale-95"></div>
+                    <span className="ml-3 text-sm font-medium text-gray-600 dark:text-gray-300 cursor-pointer">Ingat saya di perangkat ini</span>
                   </label>
                 </div>
               </div>
 
               <button
                 type="submit"
-                className="w-full mt-4 inline-flex items-center justify-center px-6 py-3 rounded-md bg-[#1877f2] hover:bg-[#166fe5] text-white font-bold text-xl transition-all focus-visible:outline-none"
+                className="w-full mt-4 inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-[#1877f2] hover:bg-[#166fe5] active:bg-[#1460c4] text-white font-bold text-[17px] transition-all focus-visible:outline-none shadow-lg shadow-blue-500/25"
               >
                 Log In
               </button>
             </form>
 
-            <div className="relative flex items-center justify-center w-full my-4">
+            <div className="relative flex items-center justify-center w-full my-1">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-200 dark:border-[#3a3b3c]"></div>
               </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white dark:bg-[#242526] text-gray-500">ATAU</span>
+              <div className="relative flex justify-center text-[13px] font-medium">
+                <span className="px-3 bg-white dark:bg-[#242526] text-gray-400">ATAU</span>
               </div>
             </div>
 
             <button
               type="button"
-              className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-white dark:bg-[#242526] hover:bg-gray-50 dark:hover:bg-[#3a3b3c] border border-gray-300 dark:border-gray-500 text-gray-700 dark:text-gray-200 font-semibold text-sm transition-all focus-visible:outline-none"
+              className="w-full inline-flex items-center justify-center gap-3 px-4 py-3 rounded-xl bg-white dark:bg-[#242526] hover:bg-gray-50 dark:hover:bg-[#3a3b3c] border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-semibold text-[15px] transition-all shadow-sm focus-visible:outline-none"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>

@@ -352,6 +352,7 @@ export default function Header() {
               <div className="relative w-8 h-8 flex-shrink-0 transition-transform duration-200 group-hover:scale-105">
                 <Image src="/logo/logo.png" alt="SAPADA Logo" fill className="object-contain" priority />
               </div>
+              <span className="font-bold text-lg tracking-tight text-white md:text-gray-900">SAPADA</span>
             </Link>
 
             {/* Desktop Navigation */}

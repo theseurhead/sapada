@@ -24,12 +24,9 @@ export default function Home() {
           {/* Left Side: Text & Label */}
           <div className="flex-1 w-full flex flex-col items-center lg:items-start text-center lg:text-left">
             
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white md:text-blue-600 leading-tight">
-              SAPADA
-            </h1>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-white md:text-gray-800 mt-3 md:mt-4 leading-snug max-w-xl">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white md:text-gray-900 leading-tight max-w-xl">
               Sistem Administrasi Pajak Daerah Kabupaten Garut.
-            </h2>
+            </h1>
 
             <p className="text-sm sm:text-base md:text-lg text-white/70 md:text-gray-600 max-w-xl mt-3 md:mt-4 leading-relaxed">
               Daftar objek pajak, cek tagihan, dan bayar langsung via QR. Semua dari HP tanpa perlu antre.
@@ -54,56 +51,56 @@ export default function Home() {
 
           {/* Right Side: Login Form */}
           <div className="w-full max-w-[420px] shrink-0">
-            <div className="bg-[#12141a] md:bg-white border border-white/10 md:border-gray-200 rounded-xl p-6 sm:p-8 shadow-2xl md:shadow-xl flex flex-col space-y-4">
-              <form className="flex flex-col space-y-3">
+            <div className="bg-[#12141a] md:bg-white border border-white/10 md:border-gray-100 rounded-2xl p-6 sm:p-8 shadow-2xl md:shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col space-y-5">
+              <form className="flex flex-col space-y-4">
                 <input 
                   type="email" 
                   placeholder="Email atau nomor telepon" 
-                  className="w-full px-4 py-3.5 bg-white/5 md:bg-white border border-white/10 md:border-gray-300 rounded-md text-white md:text-gray-900 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all placeholder-white/30 md:placeholder-gray-500"
+                  className="w-full px-4 py-3.5 bg-white/5 md:bg-gray-50 border border-white/10 md:border-gray-200 rounded-xl text-white md:text-gray-900 text-base focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all placeholder-white/30 md:placeholder-gray-400"
                   required
                 />
                 <input 
                   type="password" 
                   placeholder="Kata sandi" 
-                  className="w-full px-4 py-3.5 bg-white/5 md:bg-white border border-white/10 md:border-gray-300 rounded-md text-white md:text-gray-900 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all placeholder-white/30 md:placeholder-gray-500"
+                  className="w-full px-4 py-3.5 bg-white/5 md:bg-gray-50 border border-white/10 md:border-gray-200 rounded-xl text-white md:text-gray-900 text-base focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all placeholder-white/30 md:placeholder-gray-400"
                   required
                 />
 
                 <div className="flex flex-col space-y-3 mt-1">
                   <div className="flex justify-start">
-                    <Link href="/forgot-password" className="text-sm font-medium text-[#1877f2] hover:underline transition-colors">
+                    <Link href="/forgot-password" className="text-sm font-semibold text-[#1877f2] hover:text-blue-700 transition-colors">
                       Lupa kata sandi?
                     </Link>
                   </div>
                   <div className="flex items-center">
-                    <label className="relative inline-flex items-center cursor-pointer">
+                    <label className="relative inline-flex items-center cursor-pointer group">
                       <input type="checkbox" value="" className="sr-only peer" />
-                      <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-[#1877f2] rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-[#1877f2]"></div>
-                      <span className="ml-3 text-sm font-medium text-white md:text-gray-700 dark:text-gray-300">Ingat saya di perangkat ini</span>
+                      <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-[#1877f2]/40 rounded-full peer dark:bg-white/10 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-[#1877f2] group-hover:after:scale-95"></div>
+                      <span className="ml-3 text-sm font-medium text-white/90 md:text-gray-600 cursor-pointer">Ingat saya di perangkat ini</span>
                     </label>
                   </div>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full mt-4 inline-flex items-center justify-center px-6 py-3.5 rounded-md bg-[#1877f2] hover:bg-[#166fe5] text-white font-bold text-lg transition-all focus-visible:outline-none shadow-md shadow-blue-500/20"
+                  className="w-full mt-4 inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-[#1877f2] hover:bg-[#166fe5] active:bg-[#1460c4] text-white font-bold text-[17px] transition-all focus-visible:outline-none shadow-lg shadow-blue-500/25"
                 >
                   Log In
                 </button>
               </form>
 
-              <div className="relative flex items-center justify-center w-full my-4">
+              <div className="relative flex items-center justify-center w-full my-1">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-white/10 md:border-gray-200"></div>
                 </div>
-                <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-[#12141a] md:bg-white text-white/50 md:text-gray-500">ATAU</span>
+                <div className="relative flex justify-center text-[13px] font-medium">
+                  <span className="px-3 bg-[#12141a] md:bg-white text-white/50 md:text-gray-400">ATAU</span>
                 </div>
               </div>
 
               <button
                 type="button"
-                className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-white/5 md:bg-gray-50 hover:bg-white/10 md:hover:bg-gray-100 border border-white/10 md:border-gray-300 text-white md:text-gray-700 font-semibold text-sm transition-all"
+                className="w-full inline-flex items-center justify-center gap-3 px-4 py-3 rounded-xl bg-white/5 md:bg-white hover:bg-white/10 md:hover:bg-gray-50 border border-white/10 md:border-gray-200 text-white md:text-gray-700 font-semibold text-[15px] transition-all shadow-sm"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -130,14 +127,10 @@ export default function Home() {
         {/* 3. Banner Urgent (moved below hero) */}
         <AnnouncementBanner />
 
-        {/* 4. Cara Pakai (baru) */}
-        <HowToUseSection />
-
-        {/* 5. Testimoni (2 card) & 6. FAQ */}
-        <TestimonialSection />
+        {/* 4. FAQ */}
         <FAQSection />
 
-        {/* 8. Footer (compact) */}
+        {/* 5. Footer (compact) */}
         <ContactInfoSection />
       </main>
 
