@@ -118,9 +118,6 @@ export default function LoginPage() {
               </Link>
             </div>
           </div>
-          <div className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
-            <Link href="/" className="font-bold hover:underline text-gray-800 dark:text-gray-200">Panduan SAPADA</Link> untuk wajib pajak daerah.
-          </div>
         </div>
       </div>
     </div>

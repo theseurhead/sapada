@@ -116,9 +116,6 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="mt-6 text-center text-sm text-white/60 md:text-gray-600">
-              <Link href="/panduan" className="font-bold text-white md:text-gray-800 hover:underline">Panduan SAPADA</Link> untuk wajib pajak daerah.
-            </div>
           </div>
         </section>
 
@@ -126,8 +123,8 @@ export default function Home() {
 
       {/* 8. Footer */}
       <footer className="w-full border-t border-white/10 md:border-gray-200 bg-[#07090e] md:bg-gray-50 mt-12 sm:mt-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10 flex flex-col items-center text-center space-y-6">
-          <div className="flex flex-col items-center">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10 flex flex-col items-center text-center space-y-2">
+          <div className="flex flex-col items-center mb-2">
             <span className="font-bold text-base tracking-tight text-white md:text-gray-900 leading-none">
               SAPADA
             </span>
@@ -135,15 +132,11 @@ export default function Home() {
               Sistem Administrasi Pajak Daerah Garut
             </span>
           </div>
-
-          {/* Thin Divider & Bottom Bar */}
-          <div className="pt-6 border-t border-white/10 md:border-gray-200 w-full max-w-sm mx-auto flex flex-col items-center gap-2">
-            <div className="text-xs text-white/40 md:text-gray-400">
-              © 2026 Badan Pendapatan Daerah Kabupaten Garut. Hak Cipta Dilindungi.
-            </div>
-            <div className="text-[11px] text-white/30 md:text-gray-400">
-              Pemerintah Kabupaten Garut
-            </div>
+          <div className="text-xs text-white/40 md:text-gray-400">
+            © 2026 Badan Pendapatan Daerah Kabupaten Garut. Hak Cipta Dilindungi.
+          </div>
+          <div className="text-[11px] text-white/30 md:text-gray-400">
+            Pemerintah Kabupaten Garut
           </div>
         </div>
       </footer>
