@@ -389,11 +389,11 @@ export default function Header() {
                           <Link key={service.name} href={service.href} onClick={() => setIsLayananOpen(false)}
                             className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-colors group"
                           >
-                            <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400 group-hover:bg-[#1d4ed8] group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                            <div className="p-2 rounded-lg bg-blue-600/15 text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
                               <Icon className="w-4 h-4" />
                             </div>
                             <div>
-                              <div className="text-xs font-semibold text-white group-hover:text-blue-400 transition-colors">{service.name}</div>
+                              <div className="text-xs font-semibold text-white group-hover:text-blue-500 transition-colors">{service.name}</div>
                               <div className="text-[11px] text-white/50 leading-snug mt-0.5">{service.desc}</div>
                             </div>
                           </Link>
@@ -452,12 +452,12 @@ export default function Header() {
                       className="w-full flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-sm text-white/80 hover:text-white hover:bg-white/8 transition-colors"
                       aria-expanded={isToolExpanded}
                     >
-                      <div className="w-7 h-7 rounded-lg bg-blue-500/15 flex items-center justify-center text-blue-400 flex-shrink-0">
+                      <div className="w-7 h-7 rounded-lg bg-blue-600/20 flex items-center justify-center text-blue-500 flex-shrink-0">
                         <LayoutList className="w-3.5 h-3.5" />
                       </div>
                       <span className="font-medium flex-1 text-left">Layanan</span>
                       <ChevronDown
-                        className={`w-3.5 h-3.5 text-white/40 transition-transform duration-200 ${isToolExpanded ? "rotate-180 text-blue-400" : ""}`}
+                        className={`w-3.5 h-3.5 text-white/40 transition-transform duration-200 ${isToolExpanded ? "rotate-180 text-blue-500" : ""}`}
                       />
                     </button>
 
@@ -482,7 +482,7 @@ export default function Header() {
                                 }}
                                 className="flex items-start gap-2.5 px-2.5 py-2 rounded-lg hover:bg-white/6 transition-colors group"
                               >
-                                <div className="w-7 h-7 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:bg-blue-500/20 transition-colors flex-shrink-0 mt-0.5">
+                                <div className="w-7 h-7 rounded-lg bg-blue-600/15 flex items-center justify-center text-blue-500 group-hover:bg-blue-600/30 transition-colors flex-shrink-0 mt-0.5">
                                   <Icon className="w-3.5 h-3.5" />
                                 </div>
                                 <div className="min-w-0">

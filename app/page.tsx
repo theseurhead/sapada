@@ -131,7 +131,7 @@ export default function Home() {
 
                 <button
                   type="submit"
-                  className="w-full mt-2 inline-flex items-center justify-center px-6 py-3 md:py-3.5 rounded-[12px] md:rounded-[14px] bg-gradient-to-r from-[#22c55e] to-[#16a34a] hover:from-[#20b958] hover:to-[#15803d] active:scale-[0.98] text-white font-bold text-[15px] md:text-[16px] transition-all focus-visible:outline-none shadow-[0_0_20px_rgba(34,197,94,0.2)]"
+                  className="w-full mt-2 inline-flex items-center justify-center px-6 py-3 md:py-3.5 rounded-[12px] md:rounded-[14px] bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 active:scale-[0.98] text-white font-bold text-[15px] md:text-[16px] transition-all focus-visible:outline-none shadow-[0_0_20px_rgba(37,99,235,0.2)]"
                 >
                   Masuk
                 </button>
