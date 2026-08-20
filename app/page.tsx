@@ -15,31 +15,9 @@ export default function Home() {
       <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 py-5 sm:py-8 space-y-8 sm:space-y-12">
 
         {/* 2. Hero Section */}
-        <section className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 pt-8 sm:pt-16 pb-8 w-full">
+        <section className="flex flex-col items-center justify-center pt-8 sm:pt-16 pb-8 w-full">
           
-          {/* Left Side: Text & Label */}
-          <div className="flex-1 w-full flex flex-col items-center lg:items-start text-center lg:text-left">
-            
-
-
-            {/* Stats Card */}
-            <div className="w-full max-w-md mt-8 bg-white/[0.03] md:bg-white border border-white/10 md:border-gray-200 rounded-2xl p-4 sm:p-5 backdrop-blur-sm md:shadow-sm grid grid-cols-3 divide-x divide-white/10 md:divide-gray-200">
-              <div className="px-2 text-center">
-                <div className="text-lg md:text-xl font-bold text-white md:text-gray-900">3.708</div>
-                <div className="text-[10px] sm:text-xs text-white/50 md:text-gray-500 mt-1">Pengguna</div>
-              </div>
-              <div className="px-2 text-center">
-                <div className="text-lg md:text-xl font-bold text-white md:text-gray-900">1.127</div>
-                <div className="text-[10px] sm:text-xs text-white/50 md:text-gray-500 mt-1">Wajib Pajak</div>
-              </div>
-              <div className="px-2 text-center">
-                <div className="text-lg md:text-xl font-bold text-white md:text-gray-900">+51rb</div>
-                <div className="text-[10px] sm:text-xs text-white/50 md:text-gray-500 mt-1">Transaksi</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Side: Login Form */}
+          {/* Login Form */}
           <div className="w-full max-w-[420px] shrink-0">
             <div className="bg-[#0f1115] border border-white/5 rounded-[20px] md:rounded-[24px] p-5 sm:p-8 shadow-2xl flex flex-col w-full text-white">
               
@@ -148,31 +126,19 @@ export default function Home() {
 
       {/* 8. Footer */}
       <footer className="w-full border-t border-white/10 md:border-gray-200 bg-[#07090e] md:bg-gray-50 mt-12 sm:mt-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-6">
-          <div className="flex flex-col md:flex-row items-start justify-between gap-8 md:gap-4">
-            <div className="flex items-center gap-2.5">
-              <div className="relative w-7 h-7 flex-shrink-0">
-                <Image
-                  src="/logo/logo.png"
-                  alt="SAPADA Logo"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-bold text-base tracking-tight text-white md:text-gray-900 leading-none">
-                  SAPADA
-                </span>
-                <span className="text-[11px] text-white/50 md:text-gray-500 mt-0.5">
-                  Sistem Administrasi Pajak Daerah Garut
-                </span>
-              </div>
-            </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10 flex flex-col items-center text-center space-y-6">
+          <div className="flex flex-col items-center">
+            <span className="font-bold text-base tracking-tight text-white md:text-gray-900 leading-none">
+              SAPADA
+            </span>
+            <span className="text-[11px] text-white/50 md:text-gray-500 mt-1">
+              Sistem Administrasi Pajak Daerah Garut
+            </span>
           </div>
 
           {/* Thin Divider & Bottom Bar */}
-          <div className="pt-6 border-t border-white/10 md:border-gray-200 text-center sm:text-left text-xs text-white/40 md:text-gray-400 flex flex-col sm:flex-row items-center justify-between gap-2">
-            <div>
+          <div className="pt-6 border-t border-white/10 md:border-gray-200 w-full max-w-sm mx-auto flex flex-col items-center gap-2">
+            <div className="text-xs text-white/40 md:text-gray-400">
               © 2026 Badan Pendapatan Daerah Kabupaten Garut. Hak Cipta Dilindungi.
             </div>
             <div className="text-[11px] text-white/30 md:text-gray-400">
