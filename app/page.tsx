@@ -20,13 +20,7 @@ export default function Home() {
           {/* Left Side: Text & Label */}
           <div className="flex-1 w-full flex flex-col items-center lg:items-start text-center lg:text-left">
             
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white md:text-gray-900 leading-tight max-w-xl">
-              Sistem Administrasi Pajak Daerah Kabupaten Garut.
-            </h1>
 
-            <p className="text-sm sm:text-base md:text-lg text-white/70 md:text-gray-600 max-w-xl mt-3 md:mt-4 leading-relaxed">
-              Daftar objek pajak, cek tagihan, dan bayar langsung via QR. Semua dari HP tanpa perlu antre.
-            </p>
 
             {/* Stats Card */}
             <div className="w-full max-w-md mt-8 bg-white/[0.03] md:bg-white border border-white/10 md:border-gray-200 rounded-2xl p-4 sm:p-5 backdrop-blur-sm md:shadow-sm grid grid-cols-3 divide-x divide-white/10 md:divide-gray-200">
@@ -92,7 +86,7 @@ export default function Home() {
                     id="email-home" 
                     name="email" 
                     placeholder="Masukkan email Anda" 
-                    className="w-full px-4 py-3 md:py-3.5 bg-[#1a1c23] border border-white/5 rounded-[12px] md:rounded-[14px] text-white text-[14px] md:text-[15px] focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500 transition-all placeholder-gray-500"
+                    className="w-full px-4 py-3 md:py-3.5 bg-[#1a1c23] border border-white/5 rounded-[12px] md:rounded-[14px] text-white text-[14px] md:text-[15px] focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all placeholder-gray-500"
                     required
                   />
                 </div>
@@ -105,7 +99,7 @@ export default function Home() {
                       id="password-home" 
                       name="password" 
                       placeholder="Masukkan kata sandi" 
-                      className="w-full px-4 py-3 md:py-3.5 bg-[#1a1c23] border border-white/5 rounded-[12px] md:rounded-[14px] text-white text-[14px] md:text-[15px] focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500 transition-all placeholder-gray-500 pr-12"
+                      className="w-full px-4 py-3 md:py-3.5 bg-[#1a1c23] border border-white/5 rounded-[12px] md:rounded-[14px] text-white text-[14px] md:text-[15px] focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all placeholder-gray-500 pr-12"
                       required
                     />
                     <button type="button" className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition-colors">
@@ -121,10 +115,10 @@ export default function Home() {
                 <div className="flex items-center justify-between mt-1">
                   <label className="relative inline-flex items-center cursor-pointer group">
                     <input type="checkbox" value="" className="sr-only peer" />
-                    <div className="w-9 h-5 bg-white/5 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-green-500/40 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green-500 group-hover:after:scale-95 border border-white/10"></div>
+                    <div className="w-9 h-5 bg-white/5 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500/40 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-500 group-hover:after:scale-95 border border-white/10"></div>
                     <span className="ml-2.5 md:ml-3 text-[13px] md:text-sm font-medium text-gray-400 cursor-pointer group-hover:text-gray-300 transition-colors">Ingat saya</span>
                   </label>
-                  <Link href="/forgot-password" className="text-[13px] md:text-sm font-semibold text-green-500 hover:text-green-400 transition-colors">
+                  <Link href="/forgot-password" className="text-[13px] md:text-sm font-semibold text-blue-500 hover:text-blue-400 transition-colors">
                     Lupa kata sandi?
                   </Link>
                 </div>
@@ -139,7 +133,7 @@ export default function Home() {
 
               <div className="text-center mt-5 md:mt-6 text-[14px] md:text-[15px]">
                 <span className="text-gray-400">Belum punya akun? </span>
-                <Link href="/register" className="font-semibold text-white hover:text-green-400 hover:underline transition-colors">
+                <Link href="/register" className="font-semibold text-white hover:text-blue-400 hover:underline transition-colors">
                   Daftar
                 </Link>
               </div>
