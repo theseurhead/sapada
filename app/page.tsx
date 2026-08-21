@@ -15,22 +15,16 @@ export default function Home() {
       <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 py-5 sm:py-8 space-y-8 sm:space-y-12">
 
         {/* 2. Hero Section */}
-        <section className="flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16 pt-2 sm:pt-4 pb-8 w-full max-w-5xl mx-auto">
+        <section className="flex flex-col md:flex-row items-start justify-between gap-10 md:gap-16 pt-2 sm:pt-4 pb-8 w-full max-w-5xl mx-auto">
           
           {/* Left Side: Intro Text */}
-          <div className="flex-1 flex flex-col text-center md:text-left space-y-4">
+          <div className="flex-1 flex flex-col text-center md:text-left space-y-4 md:pt-10">
             <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
-              Selamat Datang di <span className="text-blue-600">SAPADA</span>
+              Selamat Datang
             </h1>
             <p className="text-base md:text-lg text-gray-600 max-w-lg mx-auto md:mx-0">
               Sistem Administrasi Pajak Daerah Kabupaten Garut. Kelola pajak daerah Anda dengan mudah, cepat, dan transparan secara online.
             </p>
-            <div className="pt-4 flex flex-wrap justify-center md:justify-start gap-3">
-              <div className="flex items-center gap-2 text-sm font-medium text-gray-700 bg-blue-50/50 px-3 py-1.5 rounded-full border border-blue-100">
-                <ShieldCheck className="w-4 h-4 text-blue-600" />
-                Aman & Transparan
-              </div>
-            </div>
           </div>
 
           {/* Right Side: Login Form */}
